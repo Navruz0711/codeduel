@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CodeDuel — AI davrida haqiqiy dasturchilar uchun algoritmik platforma. 8+ dasturlash tili, AI Duel Arena, AI Mentor va o'yinlashtirilgan reyting.">
+    <title>CodeDuel — AI-Proof Your Coding Skills | Cyber Arena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Premium Vector Icons: RemixIcon & Devicon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <!-- Background Ambient & Particle Effects -->
+    <div class="ambient-mesh"></div>
+    <div class="ambient-grid"></div>
+    <canvas id="ambient-particles-canvas"></canvas>
+
+    <!-- Navigation Bar (Floating Cyber HUD Capsule) -->
+    <header class="navbar-wrapper">
+        <nav class="navbar" id="navbar">
+            <div class="nav-container">
+                <!-- Clean Modern Cyber Brand Logo -->
+                <a href="#" class="nav-logo" data-page="home">
+                    <div class="logo-brand">
+                        <span class="logo-text">CODE<span class="logo-accent">DUEL</span></span>
+                        <span class="logo-badge">V2.0 PRO</span>
+                    </div>
+                </a>
+                
+                <!-- Main Desktop Navigation Links (Clean, Compact, No Overflow) -->
+                <div class="nav-links" id="nav-links-menu">
+                    <a href="#" class="nav-link active" data-page="home" id="nav-home">
+                        <span class="nav-icon"><i class="ri-home-4-line"></i></span>
+                        <span class="nav-label" data-i18n="nav_home">Bosh sahifa</span>
+                    </a>
+                    <a href="#" class="nav-link" data-page="courses" id="nav-courses">
+                        <span class="nav-icon"><i class="ri-graduation-cap-line"></i></span>
+                        <span class="nav-label" data-i18n="nav_courses">Kurslar</span>
+                        <span class="nav-hot-pill" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);">NEW</span>
+                    </a>
+                    <a href="#" class="nav-link" data-page="challenges" id="nav-challenges">
+                        <span class="nav-icon"><i class="ri-code-s-slash-line"></i></span>
+                        <span class="nav-label" data-i18n="nav_challenges">Masalalar</span>
+                    </a>
+                    <a href="#" class="nav-link nav-link-duel" data-page="duel" id="nav-duel">
+                        <span class="nav-icon"><i class="ri-sword-line"></i></span>
+                        <span class="nav-label" data-i18n="nav_duel">AI Duel</span>
+                        <span class="nav-hot-pill">HOT</span>
+                    </a>
+                    <a href="#" class="nav-link" data-page="playground" id="nav-playground">
+                        <span class="nav-icon"><i class="ri-flask-line"></i></span>
+                        <span class="nav-label" data-i18n="nav_playground">Playground</span>
+                    </a>
+                    <a href="#" class="nav-link" data-page="leaderboard" id="nav-leaderboard">
+                        <span class="nav-icon"><i class="ri-trophy-line"></i></span>
+                        <span class="nav-label" data-i18n="nav_leaderboard">Reyting</span>
+                    </a>
+                </div>
+
+                <!-- Nav Controls Suite -->
+                <div class="nav-controls">
+                    <!-- CodeDuel PRO VIP Button -->
+                    <button class="nav-pro-pill" id="nav-btn-pro" title="CodeDuel PRO / VIP Obuna">
+                        <span class="pro-crown"><i class="ri-vip-crown-fill" style="color: #ffd700;"></i></span>
+                        <span class="pro-pill-text">PRO</span>
+                    </button>
+
+                    <!-- Gems Economy Pill -->
+                    <button class="nav-gems-pill" id="nav-gems-pill" title="Kiber Yoqutlar & Do'kon">
+                        <span class="gem-icon"><i class="ri-copper-diamond-fill" style="color: #22d3ee;"></i></span>
+                        <span class="gem-count" id="nav-gems-count">150</span>
+                    </button>
+
+                    <!-- Bug Hunt Arena Pill -->
+                    <button class="nav-bughunt-pill" id="nav-btn-bughunt" title="Kiber Detektiv: Kunlik Bug Bounty">
+                        <span class="bughunt-icon">🐛</span>
+                        <span class="bughunt-pill-text">Bug Hunt</span>
+                        <span class="bughunt-dot pulse-dot" id="nav-bughunt-dot" style="display: none;"></span>
+                    </button>
+
+                    <!-- Holographic Gamer HUD Profile Badge -->
+                    <div class="nav-gamer-hud" id="nav-user-info" data-page="profile" title="Profilni Ko'rish">
+                        <div class="hud-avatar-ring">
+                            <span class="hud-avatar" id="nav-avatar-icon">🥷</span>
+                        </div>
+                        <div class="hud-info">
+                            <div class="hud-stats-row">
+                                <span class="hud-streak clickable" id="nav-streak" title="Daily Streak Kalendarini Ko'rish">🔥 0</span>
+                                <span class="hud-xp" id="nav-xp" title="Total XP">⚡ 0 XP</span>
+                            </div>
+                            <div class="hud-rank-row">
+                                <span class="hud-rank-badge" id="nav-rank">8 kyu</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modern Cyber Hamburger Button (Always Accessible & Responsive) -->
+                    <button class="cyber-hamburger-btn" id="mobile-toggle" aria-label="Menyu va Sozlamalar" title="Menyuni Ochish">
+                        <span class="hbg-bar bar-top"></span>
+                        <span class="hbg-bar bar-mid"></span>
+                        <span class="hbg-bar bar-bot"></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Continuous Infinite Neon Activity Marquee -->
+        <div class="live-activity-ticker">
+            <div class="marquee-track">
+                <div class="ticker-content">
+                    <span class="ticker-item"><span class="ticker-dot green"></span> <strong>1,842</strong> kod yechimlari bugun</span>
+                    <span class="ticker-separator">✦</span>
+                    <span class="ticker-item"><span class="ticker-dot purple"></span> <strong>94</strong> AI duellar o'tkazildi</span>
+                    <span class="ticker-separator">✦</span>
+                    <span class="ticker-item"><span class="ticker-dot cyan"></span> <strong>48</strong> jangchilar ayni paytda faol</span>
+                    <span class="ticker-separator">✦</span>
+                    <span class="ticker-item"><span class="ticker-dot amber"></span> 🏆 Mavsum tugashiga: <strong id="season-countdown-ticker">3d 14h 22m</strong></span>
+                    <span class="ticker-separator">✦</span>
+                    <span class="ticker-item"><span class="ticker-dot green"></span> 💎 Haftalik Mukofot: <strong>10,000 XP</strong></span>
+                    <span class="ticker-separator">✦</span>
+                </div>
+                <!-- Duplicate for seamless infinite loop -->
+                <div class="ticker-content" aria-hidden="true">
+                    <span class="ticker-item"><span class="ticker-dot green"></span> <strong>1,842</strong> kod yechimlari bugun</span>
+                    <span class="ticker-separator">✦</span>
+                    <span class="ticker-item"><span class="ticker-dot purple"></span> <strong>94</strong> AI duellar o'tkazildi</span>
+                    <span class="ticker-separator">✦</span>
+                    <span class="ticker-item"><span class="ticker-dot cyan"></span> <strong>48</strong> jangchilar ayni paytda faol</span>
+                    <span class="ticker-separator">✦</span>
+                    <span class="ticker-item"><span class="ticker-dot amber"></span> 🏆 Mavsum tugashiga: <strong>3d 14h 22m</strong></span>
+                    <span class="ticker-separator">✦</span>
+                    <span class="ticker-item"><span class="ticker-dot green"></span> 💎 Haftalik Mukofot: <strong>10,000 XP</strong></span>
+                    <span class="ticker-separator">✦</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== CYBER SLIDING SIDE DRAWER (HAMBURGER MENU) ========== -->
+    <div class="cyber-drawer-backdrop" id="cyber-drawer-backdrop"></div>
+    <aside class="cyber-drawer" id="cyber-drawer-panel" aria-label="Asosiy Menyu">
+        <div class="drawer-header">
+            <div class="drawer-user-card" id="drawer-user-profile-btn" data-page="profile">
+                <div class="drawer-avatar-ring">
+                    <span class="drawer-avatar" id="drawer-avatar-icon">🥷</span>
+                </div>
+                <div class="drawer-user-meta">
+                    <div class="drawer-user-name" id="drawer-user-name">CodeWarrior</div>
+                    <div class="drawer-user-sub">
+                        <span class="rank-badge kyu-8" id="drawer-rank-badge">8 kyu</span>
+                        <span class="drawer-user-xp" id="drawer-user-xp">⚡ 0 XP</span>
+                    </div>
+                </div>
+            </div>
+            <button class="drawer-close-btn" id="btn-close-drawer" aria-label="Yopish">✕</button>
+        </div>
+
+        <div class="drawer-scroll-body">
+            <!-- Navigation Links Section -->
+            <div class="drawer-section">
+                <div class="drawer-section-title">ASOSIY SAHIFALAR</div>
+                <div class="drawer-nav-list">
+                    <a href="#" class="drawer-nav-item active" data-page="home">
+                        <span class="dni-icon"><i class="ri-home-4-line"></i></span>
+                        <span class="dni-label" data-i18n="nav_home">Bosh sahifa</span>
+                    </a>
+                    <a href="#" class="drawer-nav-item" data-page="courses">
+                        <span class="dni-icon"><i class="ri-graduation-cap-line"></i></span>
+                        <span class="dni-label" data-i18n="nav_courses">Interaktiv Kurslar</span>
+                        <span class="nav-hot-pill" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);">NEW</span>
+                    </a>
+                    <a href="#" class="drawer-nav-item" data-page="challenges">
+                        <span class="dni-icon"><i class="ri-code-s-slash-line"></i></span>
+                        <span class="dni-label" data-i18n="nav_challenges">Masalalar To'plami</span>
+                    </a>
+                    <a href="#" class="drawer-nav-item drawer-nav-duel" data-page="duel">
+                        <span class="dni-icon"><i class="ri-sword-line"></i></span>
+                        <span class="dni-label" data-i18n="nav_duel">1v1 AI Duel Arena</span>
+                        <span class="nav-hot-pill">HOT</span>
+                    </a>
+                    <a href="#" class="drawer-nav-item" data-page="playground">
+                        <span class="dni-icon"><i class="ri-flask-line"></i></span>
+                        <span class="dni-label" data-i18n="nav_playground">Playground Sandbox</span>
+                    </a>
+                    <a href="#" class="drawer-nav-item" data-page="quests">
+                        <span class="dni-icon"><i class="ri-focus-3-line"></i></span>
+                        <span class="dni-label" data-i18n="nav_quests">Kunlik Topshiriqlar</span>
+                        <span class="quest-count-chip" id="drawer-quest-dot">3</span>
+                    </a>
+                    <a href="#" class="drawer-nav-item" data-page="leaderboard">
+                        <span class="dni-icon"><i class="ri-trophy-line"></i></span>
+                        <span class="dni-label" data-i18n="nav_leaderboard">Reyting & Ligalar</span>
+                    </a>
+                    <a href="#" class="drawer-nav-item" data-page="profile">
+                        <span class="dni-icon"><i class="ri-user-3-line"></i></span>
+                        <span class="dni-label" data-i18n="nav_profile">Dasturchi Profili</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Special Features / Monetization & Loot -->
+            <div class="drawer-section">
+                <div class="drawer-section-title">MAXSUS IMKONIYATLAR</div>
+                <div class="drawer-action-cards">
+                    <div class="drawer-action-card pro-card" id="drawer-btn-pro">
+                        <div class="dac-icon"><i class="ri-vip-crown-fill" style="color: #ffd700;"></i></div>
+                        <div class="dac-info">
+                            <div class="dac-title">CodeDuel PRO</div>
+                            <div class="dac-desc">2x XP, cheksiz AI va barcha masalalar</div>
+                        </div>
+                        <span class="dac-btn">VIP</span>
+                    </div>
+
+                    <div class="drawer-action-card loot-card" id="btn-daily-loot">
+                        <div class="dac-icon"><i class="ri-gift-2-line" style="color: #00ff88;"></i></div>
+                        <div class="dac-info">
+                            <div class="dac-title">Kunlik Sirli Sandiq</div>
+                            <div class="dac-desc">Har kuni bepul XP va kiber yoqutlar</div>
+                        </div>
+                        <span class="dac-btn">Ochish</span>
+                    </div>
+
+                    <div class="drawer-action-card bughunt-card" id="drawer-btn-bughunt">
+                        <div class="dac-icon"><span style="font-size: 22px;">🐛</span></div>
+                        <div class="dac-info">
+                            <div class="dac-title">Bug Bounty Arena</div>
+                            <div class="dac-desc">Koddagi xatoni tuzating va +100 XP oling</div>
+                        </div>
+                        <span class="dac-btn">Hunt</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Studio Tools & Customization -->
+            <div class="drawer-section">
+                <div class="drawer-section-title">STUDIO SOZLAMALARI</div>
+                
+                <!-- Theme Selector -->
+                <div class="drawer-tool-item">
+                    <div class="dti-header">
+                        <span><i class="ri-palette-line"></i> Kiber Rang Mavzusi</span>
+                    </div>
+                    <div class="drawer-theme-grid">
+                        <button class="theme-option-card active" data-theme="emerald">
+                            <span class="theme-circle emerald"></span>
+                            <span>Matrix</span>
+                        </button>
+                        <button class="theme-option-card" data-theme="synthwave">
+                            <span class="theme-circle synthwave"></span>
+                            <span>2077</span>
+                        </button>
+                        <button class="theme-option-card" data-theme="cyan">
+                            <span class="theme-circle cyan"></span>
+                            <span>Cyan</span>
+                        </button>
+                        <button class="theme-option-card" data-theme="amber">
+                            <span class="theme-circle amber"></span>
+                            <span>Solar</span>
+                        </button>
+                        <button class="theme-option-card" data-theme="crimson">
+                            <span class="theme-circle crimson"></span>
+                            <span>Blade</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sound FX Toggle -->
+                <div class="drawer-tool-item drawer-tool-row">
+                    <span><i class="ri-volume-up-line"></i> Ovoz Effektlari (Sound FX)</span>
+                    <button class="nav-sound-eq-btn active" id="btn-sound-toggle" title="Ovozni o'zgartirish">
+                        <div class="eq-bars">
+                            <span class="eq-bar bar-1"></span>
+                            <span class="eq-bar bar-2"></span>
+                            <span class="eq-bar bar-3"></span>
+                            <span class="eq-bar bar-4"></span>
+                        </div>
+                        <span class="eq-label" id="sound-text-label">FX ON</span>
+                    </button>
+                </div>
+
+                <!-- Language Switcher -->
+                <div class="drawer-tool-item drawer-tool-row">
+                    <span><i class="ri-global-line"></i> Tizim Tili</span>
+                    <div class="segmented-lang-picker">
+                        <button class="lang-segment active" data-lang="uz">UZ</button>
+                        <button class="lang-segment" data-lang="en">EN</button>
+                        <button class="lang-segment" data-lang="ru">RU</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Container -->
+    <main class="main-content" id="main-content">
+
+        <!-- ========== HOME PAGE ========== -->
+        <section class="page page-home active" id="page-home">
+            <!-- Hero -->
+            <div class="hero">
+                <div class="hero-glow hero-glow-1"></div>
+                <div class="hero-glow hero-glow-2"></div>
+                <div class="hero-content">
+                    <div class="hero-badge" data-i18n="hero_badge">🛡️ AI Davrida Haqiqiy Dasturchi Bo'ling</div>
+                    <h1 class="hero-title">
+                        <span data-i18n="hero_title_1">AI ga imkon bermang,</span><br>
+                        <span class="hero-gradient" data-i18n="hero_title_accent">Bilimingizni Charxlang</span>
+                    </h1>
+                    <p class="hero-subtitle" data-i18n="hero_subtitle">
+                        AI yordamisiz toza kod yozing. Haqiqiy algoritmik masalalarni yeching, o'z mahoratingizni isbotlang va 1-dan darajasiga ko'tariling!
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-glow" id="hero-start-btn">
+                            <span data-i18n="hero_btn_start">⚔️ Kodlashni Boshlash</span>
+                        </button>
+                        <button class="btn btn-secondary btn-glow" id="hero-courses-btn" style="background: linear-gradient(135deg, #3b82f6, #06b6d4); color: #fff; border: none; box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);">
+                            <span>🎓 Interaktiv Kurslar (Coddy)</span>
+                        </button>
+                        <button class="btn btn-secondary btn-glow" id="hero-duel-btn">
+                            <span data-i18n="hero_btn_duel">🤖 AI Bilan Duel</span>
+                        </button>
+                        <button class="btn btn-pro-glow" id="hero-pro-btn">
+                            <span>👑 CodeDuel PRO</span>
+                        </button>
+                        <button class="btn btn-outline" id="hero-explore-btn" data-i18n="hero_btn_explore">
+                            Masalalar (220+) →
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <span class="hero-stat-number" id="stat-challenges">220+</span>
+                            <span class="hero-stat-label" data-i18n="stat_challenges">Masalalar</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number" id="stat-languages">8+</span>
+                            <span class="hero-stat-label" data-i18n="stat_languages">Dasturlash Tillari</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number" id="stat-warriors">2,450+</span>
+                            <span class="hero-stat-label" data-i18n="stat_warriors">Dasturchilar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Code Card -->
+                <div class="hero-code-float tilt-card">
+                    <div class="code-float-header">
+                        <div class="code-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="code-float-title">two_sum.js</span>
+                        <span class="code-badge-live">⚡ LIVE</span>
+                    </div>
+                    <pre class="code-float-body"><code><span class="code-kw">function</span> <span class="code-fn">twoSum</span>(<span class="code-param">nums</span>, <span class="code-param">target</span>) {
+  <span class="code-kw">const</span> map = <span class="code-kw">new</span> <span class="code-fn">Map</span>();
+  <span class="code-kw">for</span> (<span class="code-kw">let</span> i = <span class="code-num">0</span>; i &lt; nums.length; i++) {
+    <span class="code-kw">const</span> diff = target - nums[i];
+    <span class="code-kw">if</span> (map.<span class="code-fn">has</span>(diff)) {
+      <span class="code-kw">return</span> [map.<span class="code-fn">get</span>(diff), i];
+    }
+    map.<span class="code-fn">set</span>(nums[i], i);
+  }
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- ========== DAILY RETENTION COMMAND CENTER ========== -->
+            <div class="retention-grid" id="home-retention-grid">
+                <!-- 1. Daily Featured Challenge Card -->
+                <div class="retention-card daily-challenge-card tilt-card" id="home-daily-challenge-card">
+                    <div class="rc-badge-row">
+                        <span class="rc-tag red"><span class="pulse-dot red"></span> KUNLIK MASALA</span>
+                        <span class="rc-tag gold">🔥 2X BONUS XP</span>
+                    </div>
+                    <div class="rc-content">
+                        <div class="rc-icon-col">
+                            <span class="rc-icon-circle">⚔️</span>
+                        </div>
+                        <div class="rc-text-col">
+                            <div class="rc-title-row">
+                                <h3 class="rc-title" id="daily-pick-title">Yuklanmoqda...</h3>
+                                <span class="rank-badge kyu-7" id="daily-pick-rank">7 kyu</span>
+                            </div>
+                            <p class="rc-desc" id="daily-pick-desc">Bugungi maxsus masalani yeching va 2 barobar ko'proq tajribaga ega bo'ling!</p>
+                            <div class="rc-meta-row">
+                                <span class="rc-timer"><i class="ri-time-line"></i> <span id="daily-pick-timer">12:00:00</span> qoldi</span>
+                                <span class="rc-xp" id="daily-pick-xp">⚡ +60 XP & 💎 +15</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm btn-glow rc-cta-btn" id="btn-start-daily-challenge">
+                        Hozir Yechish →
+                    </button>
+                </div>
+
+                <!-- 2. Weekly Streak Flame Tracker Card -->
+                <div class="retention-card streak-card tilt-card" id="home-streak-card">
+                    <div class="rc-badge-row">
+                        <span class="rc-tag orange">🔥 KUNLIK STREAK</span>
+                        <span class="rc-shield-status" id="home-streak-shield-text">🛡️ 1x Qalqon</span>
+                    </div>
+                    <div class="streak-card-body">
+                        <div class="streak-count-display">
+                            <span class="sc-flame">🔥</span>
+                            <div class="sc-info">
+                                <div class="sc-number"><span id="home-streak-count">0</span> Kun</div>
+                                <div class="sc-sub" id="home-streak-status-text">Bugun hali kod yozilmadi</div>
+                            </div>
+                        </div>
+                        <!-- 7-Day Flame Track -->
+                        <div class="weekly-flame-track" id="home-weekly-flames">
+                            <!-- Rendered dynamically -->
+                        </div>
+                    </div>
+                    <button class="btn btn-outline btn-sm rc-cta-btn" id="btn-view-streak-modal">
+                        Kalendarni Ko'rish
+                    </button>
+                </div>
+
+                <!-- 3. Daily Bug Hunt Arena Card -->
+                <div class="retention-card bughunt-card tilt-card" id="home-bughunt-card">
+                    <div class="rc-badge-row">
+                        <span class="rc-tag red"><span class="pulse-dot red"></span> BUG BOUNTY</span>
+                        <span class="rc-tag green" id="home-bughunt-status-tag">TAYYOR!</span>
+                    </div>
+                    <div class="bughunt-card-body">
+                        <div class="bughunt-preview-icon">🐛</div>
+                        <div class="bughunt-preview-info">
+                            <h4 id="home-bughunt-title">Koddagi Xatoni Qidiring!</h4>
+                            <p id="home-bughunt-desc">Tizimda mantiqiy xatolik aniqlandi. Kodni to'g'irlang va +100 XP hamda 25 💎 oling!</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary btn-sm btn-glow rc-cta-btn" id="btn-home-start-bughunt">
+                        Xatoni Tuzatish (Debug) →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="features-section">
+                <h2 class="section-title">
+                    <span data-i18n="features_title">Nima uchun</span> <span class="text-accent">CodeDuel</span>?
+                </h2>
+                <p class="section-subtitle" data-i18n="features_subtitle">
+                    Platformamiz sizni kuchli, mustaqil va haqiqiy muhandis bo'lib yetishishingizga yordam beradi.
+                </p>
+                <div class="features-grid">
+                    <div class="feature-card tilt-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3 data-i18n="feat_1_title">AI-Free Fikrlash</h3>
+                        <p data-i18n="feat_1_desc">Bu yerda faqat o'z miyangiz ishlaydi. Algoritmlarni chuqur tushunib, mustaqil kod yozish mahoratingizni charxlaysiz.</p>
+                    </div>
+                    <div class="feature-card tilt-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3 data-i18n="feat_2_title">8+ Dasturlash Tili</h3>
+                        <p data-i18n="feat_2_desc">JavaScript, Python, TypeScript, C++, Java, Go, PHP va Rust tillarida real vaqtda testlarni bajaring.</p>
+                    </div>
+                    <div class="feature-card feature-card-glow tilt-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3 data-i18n="feat_3_title">1v1 AI Duel Arena</h3>
+                        <p data-i18n="feat_3_desc">Sun'iy intellekt botlariga qarshi tezlik va aniqlik bo'yicha real vaqtda kuch sinashing!</p>
+                    </div>
+                    <div class="feature-card tilt-card">
+                        <div class="feature-icon">💡</div>
+                        <h3 data-i18n="feat_4_title">Aqlli AI Mentor</h3>
+                        <p data-i18n="feat_4_desc">Yechimni ko'rsatmasdan, fikrlash yo'nalishini beruvchi bosqichma-bosqich AI maslahatlar va Big-O tahlili.</p>
+                    </div>
+                    <div class="feature-card tilt-card">
+                        <div class="feature-icon">🏆</div>
+                        <h3 data-i18n="feat_5_title">Rank & Dan Tizimi</h3>
+                        <p data-i18n="feat_5_desc">8-kyu dan 1-dan gacha o'sing. Har bir yechilgan masala sizni buyuk usta darajasiga yaqinlashtiradi.</p>
+                    </div>
+                    <div class="feature-card tilt-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3 data-i18n="feat_6_title">Kundalik Topshiriqlar</h3>
+                        <p data-i18n="feat_6_desc">Har kuni yangi missiyalarni bajaring, XP bonuslariga ega bo'ling va streakingizni saqlang.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CODDY COURSES & ROADMAP PAGE ========== -->
+        <section class="page page-courses" id="page-courses">
+            <!-- 1. Courses Catalog View -->
+            <div id="courses-catalog-container">
+                <div class="courses-hero-banner tilt-card">
+                    <div class="courses-hero-content">
+                        <span class="courses-hero-chip">🎓 CODDY.TECH USLUBIDAGI AMALIY TA'LIM</span>
+                        <h2 class="courses-hero-title">Dasturlashni Bosqichma-Bosqich O'rganing</h2>
+                        <p class="courses-hero-desc">Quruq videolarsiz, 100% amaliyotga asoslangan darslar. Har bir bosqichda kod yozing, AI murabbiy yordamidan foydalaning va rasmiy sertifikatlarga ega bo'ling!</p>
+                        <div class="courses-hero-stats">
+                            <div class="c-stat"><span>5</span> Kurslar</div>
+                            <div class="c-stat"><span>27+</span> Interaktiv Darslar</div>
+                            <div class="c-stat"><span>1,300+</span> Umumiy XP</div>
+                            <div class="c-stat"><span>🏆</span> Rasmiy Sertifikatlar</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="courses-filter-bar">
+                    <button class="course-filter-btn active" data-filter="all">Barchasi (5)</button>
+                    <button class="course-filter-btn" data-filter="python">🐍 Python</button>
+                    <button class="course-filter-btn" data-filter="javascript">⚡ JavaScript</button>
+                    <button class="course-filter-btn" data-filter="html">🌐 Veb (HTML/CSS)</button>
+                    <button class="course-filter-btn" data-filter="algorithms">🧙 Algoritmlar</button>
+                    <button class="course-filter-btn" data-filter="sql">🐬 SQL Baza</button>
+                </div>
+
+                <div class="courses-grid" id="courses-grid">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+
+            <!-- 2. Course Roadmap Tree View -->
+            <div id="course-roadmap-container" style="display: none;">
+                <div class="roadmap-header-bar">
+                    <button class="btn btn-outline btn-sm" id="btn-back-to-catalog">← Barcha Kurslarga Qaytish</button>
+                    <button class="btn btn-primary btn-sm btn-glow" id="btn-view-course-cert" style="display: none;">🏆 Kurs Sertifikatini Ko'rish</button>
+                </div>
+
+                <div class="course-banner-card tilt-card" id="roadmap-banner-card">
+                    <div class="cb-icon" id="roadmap-course-icon"></div>
+                    <div class="cb-info">
+                        <div class="cb-badges">
+                            <span class="rank-badge kyu-8" id="roadmap-course-level">Boshlang'ich</span>
+                            <span class="course-lang-pill" id="roadmap-course-lang">Python</span>
+                        </div>
+                        <h2 class="cb-title" id="roadmap-course-title">Python Asoslari</h2>
+                        <p class="cb-desc" id="roadmap-course-desc">Dasturlash asoslarini noldan o'rganing.</p>
+                        <div class="cb-progress-container">
+                            <div class="cb-progress-bar">
+                                <div class="cb-progress-fill" id="roadmap-progress-fill" style="width: 0%;"></div>
+                            </div>
+                            <span class="cb-progress-text" id="roadmap-progress-text">0 / 6 dars tugatildi (0%)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-tree-wrapper">
+                    <h3 class="roadmap-tree-title">📍 O'quv Yo'nalishi Xaritasi (Roadmap)</h3>
+                    <div class="roadmap-nodes-container" id="roadmap-nodes-list">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CODDY BITE-SIZED LESSON RUNNER PAGE ========== -->
+        <section class="page page-lesson" id="page-lesson">
+            <div class="lesson-runner-header">
+                <button class="btn btn-outline btn-xs" id="btn-lesson-back">← Xaritaga Qaytish</button>
+                <div class="lesson-breadcrumb">
+                    <span id="lesson-course-badge" class="lesson-course-chip">Python Asoslari</span>
+                    <span class="lesson-separator">›</span>
+                    <span id="lesson-title-badge" class="lesson-active-title">1-Dars: print()</span>
+                </div>
+                <div class="lesson-progress-chip" id="lesson-step-badge">1 / 6</div>
+            </div>
+
+            <div class="lesson-workspace-split">
+                <!-- Left Pane: Theory, Task, Hints, and AI Tutor -->
+                <div class="lesson-left-pane">
+                    <div class="lesson-pane-tabs">
+                        <button class="l-tab active" data-tab="theory">📖 Nazariya</button>
+                        <button class="l-tab" data-tab="task">🎯 Vazifa</button>
+                        <button class="l-tab" data-tab="hints">💡 Maslahat</button>
+                    </div>
+
+                    <div class="lesson-tab-content active" id="l-tab-theory">
+                        <div class="theory-markdown" id="lesson-theory-body">
+                            <!-- Theory content -->
+                        </div>
+                    </div>
+
+                    <div class="lesson-tab-content" id="l-tab-task">
+                        <div class="task-card">
+                            <h4>📌 Aniq Topshiriq:</h4>
+                            <p id="lesson-task-text"></p>
+                            <div class="task-checklist" id="lesson-checklist">
+                                <!-- Checkmarks -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lesson-tab-content" id="l-tab-hints">
+                        <div class="hints-accordion" id="lesson-hints-list">
+                            <!-- Hints rendered here -->
+                        </div>
+                    </div>
+
+                    <!-- AI Tutor Assistant Card -->
+                    <div class="lesson-ai-assistant-card">
+                        <div class="ai-assistant-header">
+                            <span>🤖 Coddy AI Murabbiy</span>
+                            <span class="ai-pulse-dot"></span>
+                        </div>
+                        <p class="ai-assistant-desc">Mavzuni tushunishda qiynalayapsizmi? AI murabbiy qadamma-qadam tushuntirib beradi.</p>
+                        <button class="btn btn-outline btn-xs" id="btn-lesson-ask-ai">💡 Tushuntirib Ber</button>
+                        <div class="ai-assistant-output" id="lesson-ai-output" style="display: none;"></div>
+                    </div>
+                </div>
+
+                <!-- Right Pane: Code Editor & Console Check -->
+                <div class="lesson-right-pane">
+                    <div class="lesson-editor-topbar">
+                        <div class="editor-lang-tag" id="lesson-editor-lang">Python</div>
+                        <div class="editor-controls-group">
+                            <button class="btn btn-ghost btn-xs" id="btn-lesson-reset" title="Kodni boshlang'ich holatga qaytarish">🔄 Qayta tiklash</button>
+                        </div>
+                    </div>
+
+                    <div class="lesson-editor-box" id="lesson-monaco-container">
+                        <textarea id="lesson-fallback-editor" class="code-textarea" spellcheck="false"></textarea>
+                    </div>
+
+                    <div class="lesson-action-bar">
+                        <button class="btn btn-outline btn-sm" id="btn-lesson-run">▶️ Kodni Ishga Tushirish</button>
+                        <button class="btn btn-primary btn-sm btn-glow" id="btn-lesson-check">✅ Tekshirish (Check)</button>
+                    </div>
+
+                    <div class="lesson-console-panel">
+                        <div class="console-panel-header">
+                            <span>🖥️ Natija & Konsol</span>
+                            <button class="console-clear-btn" id="btn-lesson-clear-console">Tozalash</button>
+                        </div>
+                        <pre class="lesson-console-output" id="lesson-console-output">Kodingizni yozib, "Tekshirish" tugmasini bosing...</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CODDY MULTI-LANGUAGE PLAYGROUND PAGE ========== -->
+        <section class="page page-playground" id="page-playground">
+            <div class="playground-header">
+                <div>
+                    <h2 class="section-title">🧪 Coddy Erkin Playground (Qumloq)</h2>
+                    <p class="section-subtitle">Cheklovlarsiz erkin dasturlang, g'oyalaringizni sinab ko'ring yoki jonli veb-sayt yarating.</p>
+                </div>
+                <div class="playground-toolbar">
+                    <div class="pg-tool-item">
+                        <label>Til:</label>
+                        <select id="pg-language-select" class="filter-select">
+                            <option value="javascript">JavaScript</option>
+                            <option value="python">Python</option>
+                            <option value="html">HTML5 + CSS3 (Jonli Veb)</option>
+                        </select>
+                    </div>
+                    <div class="pg-tool-item">
+                        <label>Shablon:</label>
+                        <select id="pg-template-select" class="filter-select">
+                            <option value="">-- Shablonni tanlang --</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary btn-sm btn-glow" id="btn-pg-run">▶️ Ishga Tushirish</button>
+                    <button class="btn btn-outline btn-sm" id="btn-pg-copy">📋 Nusxa Olish</button>
+                </div>
+            </div>
+
+            <div class="playground-workspace">
+                <div class="pg-editor-pane">
+                    <div class="pg-pane-title">
+                        <span>📝 Kod Muharriri</span>
+                        <button class="btn btn-ghost btn-xs" id="btn-pg-format">Formatlash</button>
+                    </div>
+                    <div class="pg-monaco-wrapper" id="pg-editor-container">
+                        <textarea id="pg-fallback-editor" class="code-textarea" spellcheck="false"></textarea>
+                    </div>
+                </div>
+
+                <div class="pg-output-pane">
+                    <div class="pg-output-tabs">
+                        <button class="pg-out-tab active" id="tab-pg-console" data-view="console">🖥️ Konsol</button>
+                        <button class="pg-out-tab" id="tab-pg-preview" data-view="preview" style="display: none;">🌐 Jonli Ko'rinish (Live Web)</button>
+                    </div>
+                    <div class="pg-output-display" id="pg-console-display">
+                        <pre id="pg-console-text">Natija bu yerda ko'rinadi...</pre>
+                    </div>
+                    <div class="pg-preview-display" id="pg-preview-display" style="display: none;">
+                        <iframe id="pg-live-iframe" class="pg-preview-iframe" sandbox="allow-scripts allow-modals"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CHALLENGES LIST PAGE ========== -->
+        <section class="page page-challenges" id="page-challenges">
+            <div class="challenges-header">
+                <div>
+                    <h2 class="section-title" data-i18n="challenges_title">⚡ Masalalar To'plami</h2>
+                    <p class="section-subtitle" data-i18n="challenges_subtitle">O'zingizga mos qiyinlik va dasturlash tilini tanlab, bilimingizni sinang.</p>
+                </div>
+                <div class="challenges-filters">
+                    <div class="filter-group">
+                        <label data-i18n="filter_difficulty">Qiyinlik:</label>
+                        <select id="filter-difficulty" class="filter-select">
+                            <option value="all" data-i18n="filter_all">Barchasi</option>
+                            <option value="8" data-i18n="diff_8_kyu">8 kyu (Boshlang'ich)</option>
+                            <option value="7" data-i18n="diff_7_kyu">7 kyu (Oson)</option>
+                            <option value="6" data-i18n="diff_6_kyu">6 kyu (O'rta)</option>
+                            <option value="5" data-i18n="diff_5_kyu">5 kyu (Murakkab)</option>
+                            <option value="4" data-i18n="diff_4_kyu">4 kyu (Qiyin)</option>
+                            <option value="3" data-i18n="diff_3_kyu">3 kyu (Usta)</option>
+                            <option value="2" data-i18n="diff_2_kyu">2 kyu (Ekspert)</option>
+                            <option value="1" data-i18n="diff_1_kyu">1 kyu (Grandmaster)</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label data-i18n="filter_language">Dasturlash tili:</label>
+                        <select id="filter-language" class="filter-select">
+                            <option value="all" data-i18n="filter_all">Barchasi</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="python">Python</option>
+                            <option value="typescript">TypeScript</option>
+                            <option value="cpp">C++</option>
+                            <option value="java">Java</option>
+                            <option value="go">Go</option>
+                            <option value="php">PHP</option>
+                            <option value="rust">Rust</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label data-i18n="filter_status">Holat:</label>
+                        <select id="filter-status" class="filter-select">
+                            <option value="all" data-i18n="filter_all">Barchasi</option>
+                            <option value="solved" data-i18n="filter_solved">✅ Yechilgan</option>
+                            <option value="unsolved" data-i18n="filter_unsolved">⬜ Yechilmagan</option>
+                        </select>
+                    </div>
+                    <div class="filter-group search-group">
+                        <input type="text" id="filter-search" class="filter-input" data-i18n-placeholder="filter_search_placeholder" placeholder="🔍 Qidirish...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fake Advertisement Banner (Monetization Strategy) -->
+            <div class="ad-banner-container tilt-card" id="ad-banner" style="background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 30px; position: relative;">
+                <div style="font-size: 10px; color: var(--text-muted); position: absolute; top: 10px; right: 15px; text-transform: uppercase;">Reklama</div>
+                <h3 style="color: var(--accent-amber); font-size: 18px; margin-bottom: 8px;">🚀 Dasturlash bo'yicha kuchli kurs qidiryapsizmi?</h3>
+                <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 15px;">Bizning hamkorlarimiz tomonidan taqdim etilayotgan maxsus chegirmalar orqali o'z bilimingizni yanada oshiring.</p>
+                <div style="display: flex; justify-content: center; gap: 15px;">
+                  <button class="btn btn-outline btn-sm">Batafsil ma'lumot</button>
+                  <button class="btn btn-ghost btn-sm" style="color: var(--text-muted);" onclick="document.getElementById('ad-banner').style.display='none'">Yopish</button>
+                </div>
+                <div style="margin-top: 15px; font-size: 12px;">
+                  Reklamalarni o'chirish va barcha <strong>Premium</strong> masalalarni ochish uchun <a href="#" id="ad-banner-pro-link" style="color: var(--accent-cyan); font-weight: bold; text-decoration: underline;">PRO a'zolikni xarid qiling!</a>
+                </div>
+            </div>
+
+            <div class="challenges-grid" id="challenges-grid">
+                <!-- Challenge cards rendered here by JS -->
+            </div>
+        </section>
+
+        <!-- ========== CHALLENGE DETAIL / CODE ARENA PAGE ========== -->
+        <section class="page page-challenge-detail" id="page-challenge-detail">
+            <div class="challenge-detail-layout">
+                <!-- Left Panel: Problem Description -->
+                <div class="challenge-desc-panel" id="challenge-desc-panel">
+                    <div class="challenge-detail-header">
+                        <button class="btn btn-outline btn-sm btn-back-challenges" id="back-to-challenges" data-i18n="btn_back">← Chiqish (Masalalar)</button>
+                        <div class="challenge-meta-row">
+                            <span class="challenge-rank-badge" id="detail-rank">8 kyu</span>
+                            <span class="challenge-category" id="detail-category">Arrays</span>
+                            <div class="challenge-timer" id="challenge-timer">
+                                <span data-i18n="timer_label">⏱️ Vaqt:</span> <span id="timer-display">00:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 class="challenge-detail-title" id="detail-title">Challenge Title</h2>
+                    <div class="challenge-detail-desc" id="detail-description">
+                        <!-- Description rendered here -->
+                    </div>
+                    <div class="challenge-examples" id="detail-examples">
+                        <h3 data-i18n="detail_examples">📋 Misollar</h3>
+                        <!-- Examples rendered here -->
+                    </div>
+                    <div class="challenge-xp-info" id="detail-xp-info">
+                        <!-- XP reward info -->
+                    </div>
+                </div>
+
+                <!-- Right Panel: Editor & Intelligence Suite -->
+                <div class="challenge-editor-panel">
+                    <!-- Editor Toolbar -->
+                    <div class="editor-toolbar">
+                        <div class="editor-toolbar-left">
+                            <select id="language-select" class="filter-select editor-lang-select">
+                                <option value="javascript">JavaScript</option>
+                                <option value="python">Python</option>
+                                <option value="typescript">TypeScript</option>
+                                <option value="cpp">C++</option>
+                                <option value="java">Java</option>
+                                <option value="go">Go</option>
+                                <option value="php">PHP</option>
+                                <option value="rust">Rust</option>
+                            </select>
+                            <span class="editor-wpm-badge" id="editor-wpm-display">⚡ 0 WPM</span>
+                            <button class="btn btn-ghost btn-xs" id="btn-format" title="Format code" data-i18n="btn_format">🪄 Format</button>
+                            <button class="btn btn-ghost btn-xs" id="btn-reset" title="Reset code" data-i18n="btn_reset">↺ Tiklash</button>
+                        </div>
+                        <div class="editor-actions">
+                            <button class="btn btn-secondary btn-sm" id="btn-ai-hint" data-i18n="btn_ai_hint">💡 AI Maslahat</button>
+                            <button class="btn btn-outline btn-sm" id="btn-run" data-i18n="btn_run">▶ Run</button>
+                            <button class="btn btn-primary btn-sm btn-glow" id="btn-submit" data-i18n="btn_submit">🚀 Submit</button>
+                            <button class="btn btn-ghost btn-sm btn-exit-challenge" id="btn-exit-challenge" title="Masalalar ro'yxatiga qaytish">🚪 Chiqish</button>
+                        </div>
+                    </div>
+
+                    <!-- Monaco Editor Container -->
+                    <div class="editor-container" id="editor-container">
+                        <!-- Monaco editor injected here -->
+                    </div>
+
+                    <!-- Bottom Panels: Test Results & AI Mentor Tabs -->
+                    <div class="editor-bottom-tabs">
+                        <div class="tabs-header">
+                            <button class="tab-header-btn active" data-tab="tests" id="tab-btn-tests" data-i18n="tab_tests">📊 Test Natijalari</button>
+                            <button class="tab-header-btn" data-tab="custom" id="tab-btn-custom" data-i18n="tab_custom_test">🧪 Maxsus Test</button>
+                            <button class="tab-header-btn" data-tab="ai" id="tab-btn-ai" data-i18n="tab_ai_mentor">🤖 AI Mentor</button>
+                        </div>
+
+                        <!-- Test Results Panel -->
+                        <div class="tab-pane active" id="pane-tests">
+                            <div class="test-results-header">
+                                <span class="test-summary" id="test-summary"></span>
+                            </div>
+                            <div class="test-results-list" id="test-results-list">
+                                <div class="test-placeholder" data-i18n="test_placeholder">
+                                    Testlarni ko'rish uchun kodni ishga tushiring...
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Custom Test Input Panel -->
+                        <div class="tab-pane" id="pane-custom">
+                            <div class="custom-test-box">
+                                <label data-i18n="custom_test_placeholder">Maxsus kiruvchi ma'lumot:</label>
+                                <div class="custom-test-row">
+                                    <input type="text" id="custom-test-input" class="filter-input" placeholder="e.g. [1, -4, 7, 12]">
+                                    <button class="btn btn-secondary btn-sm" id="btn-run-custom" data-i18n="custom_test_btn_run">Ishlatish</button>
+                                </div>
+                                <div class="custom-test-output" id="custom-test-output"></div>
+                            </div>
+                        </div>
+
+                        <!-- AI Mentor Panel -->
+                        <div class="tab-pane" id="pane-ai">
+                            <div class="ai-mentor-container">
+                                <div class="ai-mentor-controls">
+                                    <div class="ai-hints-buttons">
+                                        <button class="btn btn-xs btn-outline" id="ai-btn-hint-1" data-i18n="ai_hint_level_1">1-Bosqich: Asosiy g'oya</button>
+                                        <button class="btn btn-xs btn-outline" id="ai-btn-hint-2" data-i18n="ai_hint_level_2">2-Bosqich: Mantiq & Cheklovlar</button>
+                                        <button class="btn btn-xs btn-outline" id="ai-btn-hint-3" data-i18n="ai_hint_level_3">3-Bosqich: Pseudo-kod</button>
+                                    </div>
+                                    <div class="ai-review-trigger">
+                                        <button class="btn btn-xs btn-secondary" id="ai-btn-review" data-i18n="btn_ai_review">🔍 Kod Tahlili & Big-O</button>
+                                        <button class="btn btn-xs btn-ghost" id="ai-btn-settings" title="Gemini API Key">🔑 API</button>
+                                    </div>
+                                </div>
+                                <div class="ai-mentor-response" id="ai-mentor-response">
+                                    <div class="ai-bubble">
+                                        🤖 <strong>CodeDuel AI Mentor:</strong> Masalani yechishda qiyinchilik bo'lsa, yuqoridagi maslahat tugmalarini bosing yoki kodingizni tahlil qildiring!
+                                    </div>
+                                </div>
+                                <div class="ai-chat-input-row">
+                                    <input type="text" id="ai-chat-input" class="filter-input" data-i18n-placeholder="ai_chat_placeholder" placeholder="Savolingizni yozing...">
+                                    <button class="btn btn-primary btn-sm" id="ai-chat-send" data-i18n="ai_send">Yuborish</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating AI Copilot Toggle Button -->
+            <button class="ai-floating-badge-btn" id="btn-floating-ai" title="AI Copilot & Mentor (Ctrl+M)">
+                <span class="ai-pulse-dot"></span>
+                <span class="ai-floating-icon">🤖</span>
+                <span class="ai-floating-label" data-i18n="ai_floating_btn">AI Copilot</span>
+            </button>
+
+            <!-- Backdrop Overlay for AI Copilot Drawer -->
+            <div class="ai-drawer-backdrop" id="ai-drawer-backdrop"></div>
+
+            <!-- Slide-Out Cyberpunk AI Copilot Drawer -->
+            <div class="ai-copilot-drawer" id="ai-copilot-drawer">
+                <div class="ai-drawer-header">
+                    <div class="ai-drawer-title-group">
+                        <div class="ai-avatar-badge">🤖</div>
+                        <div class="ai-drawer-info">
+                            <h4 class="ai-drawer-title" data-i18n="ai_mentor_title">🤖 AI Copilot & Mentor</h4>
+                            <div class="ai-drawer-status">
+                                <span class="ai-status-indicator"></span>
+                                <span class="ai-status-text" id="ai-status-text" data-i18n="ai_status_online">Online</span>
+                                <span class="ai-provider-badge" id="ai-current-provider-badge">💻 Mistral Codestral</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ai-drawer-actions">
+                            <select id="ai-provider-select" class="ai-provider-dropdown" title="AI Provayderni tanlash">
+                                <option value="mistral" selected>💻 Mistral</option>
+                                <option value="groq">⚡ Groq Llama</option>
+                                <option value="huggingface">🤗 HF Qwen</option>
+                                <option value="openrouter">🌐 OpenRouter</option>
+                                <option value="gemini">✨ Gemini</option>
+                                <option value="heuristic">🧠 Offline AI</option>
+                            </select>
+                        <button class="ai-action-icon-btn" id="ai-btn-open-settings" title="AI API Sozlamalari (Bepul kalitlar)">🔑</button>
+                        <button class="ai-action-icon-btn" id="ai-btn-clear-chat" title="Chatni Tozalash">🧹</button>
+                        <button class="ai-action-icon-btn" id="ai-btn-expand-drawer" title="Kengaytirish">⛶</button>
+                        <button class="btn-drawer-exit" id="ai-btn-close-drawer" title="Chatni Yopish / Chiqish (Esc)">
+                            <span class="exit-x">✕</span>
+                            <span class="exit-label">Chiqish</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Action Chips Bar -->
+                <div class="ai-action-chips-bar" id="ai-action-chips-bar">
+                    <button class="ai-chip" data-action="hint_1" data-i18n="ai_chip_hint_1">💡 1-G'oya</button>
+                    <button class="ai-chip" data-action="hint_2" data-i18n="ai_chip_hint_2">🧠 2-Mantiq</button>
+                    <button class="ai-chip" data-action="hint_3" data-i18n="ai_chip_hint_3">🛠️ 3-Skelet</button>
+                    <button class="ai-chip" data-action="review" data-i18n="ai_chip_review">🔍 Big-O Tahlil</button>
+                    <button class="ai-chip" data-action="debug" data-i18n="ai_chip_debug">🐛 Xatoni Topish</button>
+                    <button class="ai-chip" data-action="optimize" data-i18n="ai_chip_optimize">⚡ Optimizatsiya</button>
+                    <button class="ai-chip" data-action="explain" data-i18n="ai_chip_explain">❓ Tushuntirish</button>
+                </div>
+
+                <!-- Messages Container -->
+                <div class="ai-drawer-messages" id="ai-drawer-messages">
+                    <div class="ai-msg-bubble ai-bubble-assistant">
+                        <div class="ai-msg-avatar">🤖</div>
+                        <div class="ai-msg-body">
+                            <div class="ai-msg-header">
+                                <span class="ai-msg-sender">CodeDuel AI Copilot</span>
+                                <span class="ai-msg-time">Hozir</span>
+                            </div>
+                            <div class="ai-msg-text">
+                                Salom, jangchi! Masalani mustaqil yechishda yordam kerakmi? Yuqoridagi <strong>1-G'oya</strong>, <strong>2-Mantiq</strong>, <strong>Big-O Tahlil</strong> tugmalaridan birini bosing yoki quyida savolingizni yozing!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thinking indicator -->
+                <div class="ai-thinking-bubble" id="ai-thinking-bubble" style="display: none;">
+                    <span class="ai-thinking-dot"></span>
+                    <span class="ai-thinking-dot"></span>
+                    <span class="ai-thinking-dot"></span>
+                    <span class="ai-thinking-text" data-i18n="ai_status_thinking">AI tahlil qilmoqda...</span>
+                </div>
+
+                <!-- Input Footer -->
+                <div class="ai-drawer-footer">
+                    <div class="ai-input-box-wrapper">
+                        <textarea id="ai-drawer-input" class="ai-drawer-textarea" rows="1" data-i18n-placeholder="ai_chat_placeholder" placeholder="Savol yozing yoki tezkor tugmani bosing... (Enter)"></textarea>
+                        <button class="btn btn-primary btn-sm ai-drawer-send-btn" id="ai-drawer-send" data-i18n="ai_send">
+                            <span>Yuborish</span> 🚀
+                        </button>
+                    </div>
+                    <div class="ai-drawer-footer-hints">
+                        <span><kbd>Enter</kbd> yuborish &bull; <kbd>Shift+Enter</kbd> yangi qator &bull; <kbd>Ctrl+M</kbd> ochish/yopish</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 1v1 AI DUEL ARENA PAGE ========== -->
+        <section class="page page-duel" id="page-duel">
+            <div class="duel-container">
+                <div class="duel-header-section">
+                    <h2 class="section-title" data-i18n="duel_title">⚔️ AI Duel Arena</h2>
+                    <p class="section-subtitle" data-i18n="duel_subtitle">Sun'iy intellekt botlariga qarshi real vaqtda kodlash bellashuvi!</p>
+                </div>
+
+                <!-- Opponent Selection -->
+                <div class="duel-bot-selection" id="duel-bot-selection">
+                    <h3 data-i18n="duel_select_bot">Raqibni Tanlang:</h3>
+                    <div class="bot-cards-grid">
+                        <div class="bot-card active tilt-card" data-bot="buggy-bot">
+                            <div class="bot-avatar">🤖</div>
+                            <div class="bot-info">
+                                <h4>BuggyBot</h4>
+                                <span class="rank-badge kyu-8">8 kyu</span>
+                                <p class="bot-desc">Boshlang'ich bot. Sekinroq kod yozadi.</p>
+                            </div>
+                        </div>
+                        <div class="bot-card tilt-card" data-bot="cyber-ninja">
+                            <div class="bot-avatar">⚡</div>
+                            <div class="bot-info">
+                                <h4>CyberNinja</h4>
+                                <span class="rank-badge kyu-6">6 kyu</span>
+                                <p class="bot-desc">O'rta daraja. Tezkor va barqaror.</p>
+                            </div>
+                        </div>
+                        <div class="bot-card tilt-card" data-bot="algo-master">
+                            <div class="bot-avatar">🧙</div>
+                            <div class="bot-info">
+                                <h4>AlgoMaster <span class="challenge-premium-badge" style="margin-left: 5px;">PRO</span></h4>
+                                <span class="rank-badge kyu-4">4 kyu</span>
+                                <p class="bot-desc">Tajribali usta. O(n) vaqtda yechadi.</p>
+                            </div>
+                        </div>
+                        <div class="bot-card tilt-card" data-bot="quantum-ai">
+                            <div class="bot-avatar">👑</div>
+                            <div class="bot-info">
+                                <h4>QuantumAI <span class="challenge-premium-badge" style="margin-left: 5px;">PRO</span></h4>
+                                <span class="rank-badge kyu-2">2 kyu</span>
+                                <p class="bot-desc">Grandmaster AI. Ultra tezkor hisoblash.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="duel-launch-box">
+                        <button class="btn btn-primary btn-lg btn-glow" id="btn-launch-duel" data-i18n="duel_start_btn">
+                            ⚔️ Dueni Boshlash!
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Active Battle Arena Display -->
+                <div class="duel-battlefield" id="duel-battlefield" style="display: none;">
+                    <div class="duel-vs-bar">
+                        <!-- Player Card -->
+                        <div class="duel-fighter player-fighter">
+                            <div class="fighter-avatar" id="duel-player-avatar">🥷</div>
+                            <div class="fighter-details">
+                                <span class="fighter-name" id="duel-player-name">Siz</span>
+                                <div class="fighter-progress-bar">
+                                    <div class="fighter-progress-fill" id="player-duel-progress" style="width: 0%;"></div>
+                                </div>
+                                <span class="fighter-status" id="player-duel-status">Kodni yozing...</span>
+                            </div>
+                        </div>
+
+                        <!-- VS Center Badge -->
+                        <div class="duel-vs-badge">VS</div>
+
+                        <!-- Bot Card -->
+                        <div class="duel-fighter bot-fighter">
+                            <div class="fighter-details">
+                                <span class="fighter-name" id="duel-bot-name">AI Bot</span>
+                                <div class="fighter-progress-bar">
+                                    <div class="fighter-progress-fill bot-fill" id="bot-duel-progress" style="width: 0%;"></div>
+                                </div>
+                                <span class="fighter-status" id="bot-duel-status">AI kod yozmoqda...</span>
+                            </div>
+                            <div class="fighter-avatar" id="duel-bot-avatar">🤖</div>
+                        </div>
+                    </div>
+
+                    <div class="duel-actions-row">
+                        <button class="btn btn-primary btn-sm" id="btn-duel-open-challenge">
+                            ⚡ Masalaga O'tish va Yechish →
+                        </button>
+                        <button class="btn btn-ghost btn-sm" id="btn-duel-quit">
+                            🏳️ Chiqish
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== DAILY QUESTS PAGE ========== -->
+        <section class="page page-quests" id="page-quests">
+            <div class="quests-container">
+                <div class="quests-header-section">
+                    <h2 class="section-title" data-i18n="quests_title">🎯 Kundalik Topshiriqlar</h2>
+                    <p class="section-subtitle" data-i18n="quests_subtitle">Har kuni yangilanadi. Qo'shimcha XP va mukofotlarni oling!</p>
+                </div>
+                <div class="quests-list" id="quests-list">
+                    <!-- Quests rendered by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PROFILE PAGE ========== -->
+        <section class="page page-profile" id="page-profile">
+            <div class="profile-container">
+                <!-- Profile Header -->
+                <div class="profile-header-card tilt-card">
+                    <div class="profile-avatar-wrapper" id="profile-avatar-btn" title="Click to change avatar">
+                        <div class="profile-avatar" id="profile-avatar">🥷</div>
+                        <span class="avatar-edit-badge">✏️</span>
+                    </div>
+                    <div class="profile-info">
+                        <div class="profile-name-row">
+                            <h2 class="profile-name" id="profile-name">CodeWarrior</h2>
+                            <span class="pro-status-chip" id="profile-pro-badge">⚡ FREE</span>
+                            <span class="profile-title-badge" id="profile-custom-title">Code Initiate</span>
+                            <span class="profile-shield-badge" id="profile-shield-display" style="display: none;">🛡️ 1 Shield</span>
+                        </div>
+                        <div class="profile-rank-display">
+                            <span class="rank-badge large" id="profile-rank">8 kyu</span>
+                            <span class="rank-title" id="profile-rank-title">Beginner</span>
+                        </div>
+                    </div>
+                    <div class="profile-header-actions">
+                        <div class="profile-streak-display">
+                            <div class="streak-fire">🔥</div>
+                            <span class="streak-count" id="profile-streak">0</span>
+                            <span class="streak-label" data-i18n="profile_streak">kunlik streak</span>
+                        </div>
+                        <button class="btn btn-primary btn-sm btn-glow" id="btn-view-devcard" style="margin-top: 10px; width: 100%;">
+                            🪪 Kiber-Pasport (Dev-ID)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="profile-stats-grid">
+                    <div class="stat-card tilt-card">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-value" id="profile-xp">0</div>
+                        <div class="stat-label" data-i18n="stat_total_xp">Umumiy XP</div>
+                    </div>
+                    <div class="stat-card tilt-card">
+                        <div class="stat-icon">💎</div>
+                        <div class="stat-value" id="profile-gems-count">150</div>
+                        <div class="stat-label">Kiber Yoqutlar</div>
+                    </div>
+                    <div class="stat-card tilt-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-value" id="profile-solved">0</div>
+                        <div class="stat-label" data-i18n="stat_solved">Yechilgan</div>
+                    </div>
+                    <div class="stat-card tilt-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-value" id="profile-accuracy">0%</div>
+                        <div class="stat-label" data-i18n="stat_accuracy">Aniqlik</div>
+                    </div>
+                    <div class="stat-card tilt-card">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-value" id="profile-best-streak">0</div>
+                        <div class="stat-label" data-i18n="stat_best_streak">Eng yaxshi streak</div>
+                    </div>
+                    <div class="stat-card tilt-card">
+                        <div class="stat-icon">⚔️</div>
+                        <div class="stat-value" id="profile-duel-wins">0</div>
+                        <div class="stat-label" data-i18n="stat_duel_wins">Duel G'alabalari</div>
+                    </div>
+                </div>
+
+                <!-- Skill Radar Matrix -->
+                <div class="radar-section tilt-card">
+                    <h3 data-i18n="radar_title">🕸️ Ko'nikmalar Radari (Skill Matrix)</h3>
+                    <div class="radar-container">
+                        <canvas id="skill-radar-canvas"></canvas>
+                    </div>
+                </div>
+
+                <!-- XP Progress Bar -->
+                <div class="xp-progress-section tilt-card">
+                    <h3 data-i18n="progress_next_rank">🎯 Keyingi Darajagacha Taraqqiyot</h3>
+                    <div class="xp-bar-container">
+                        <div class="xp-bar" id="profile-xp-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="xp-bar-labels">
+                        <span id="xp-current-label">0 XP</span>
+                        <span id="xp-next-label">100 XP to 7 kyu</span>
+                    </div>
+                </div>
+
+                <!-- Activity Heatmap -->
+                <div class="activity-section tilt-card">
+                    <h3 data-i18n="activity_title">📅 Faollik Taqsimoti</h3>
+                    <div class="activity-calendar" id="activity-calendar">
+                        <!-- Generated by JS -->
+                    </div>
+                </div>
+
+                <!-- Badges Grid -->
+                <div class="badges-section">
+                    <h3 data-i18n="badges_title">🏅 Yutuqlar va Nishonlar (Badges)</h3>
+                    <div class="badges-grid" id="badges-grid">
+                        <!-- Generated by JS -->
+                    </div>
+                </div>
+
+                <!-- Recent Solutions -->
+                <div class="recent-solutions-section">
+                    <h3 data-i18n="recent_title">📝 Oxirgi Yechilgan Masalalar</h3>
+                    <div class="recent-list" id="recent-solutions-list">
+                        <!-- Generated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== LEADERBOARD PAGE ========== -->
+        <section class="page page-leaderboard" id="page-leaderboard">
+            <div class="leaderboard-container">
+                <div class="leaderboard-header-row">
+                    <div>
+                        <h2 class="section-title" data-i18n="leaderboard_title">🏆 Peshqadamlar Jadvali</h2>
+                        <div class="season-badge-pill" id="season-league-badge">
+                            <span>👑 Mavsum Ligasi:</span> <strong id="user-current-league-name">Bronze League</strong>
+                        </div>
+                    </div>
+                    <div class="leaderboard-tabs">
+                        <button class="tab-btn active" data-tab="weekly" id="tab-weekly" data-i18n="lb_tab_weekly">Haftalik</button>
+                        <button class="tab-btn" data-tab="league" id="tab-league">🏆 Mavsum Ligasi</button>
+                        <button class="tab-btn" data-tab="alltime" id="tab-alltime" data-i18n="lb_tab_alltime">Barcha Vaqt</button>
+                    </div>
+                </div>
+                <div class="leaderboard-table" id="leaderboard-table">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Confetti Canvas Overlay -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Daily Mystery Loot Modal -->
+    <div class="modal-overlay" id="loot-modal">
+        <div class="modal-content loot-modal-content">
+            <button class="modal-close-icon" id="btn-close-loot-modal-icon" title="Yopish (Esc)">✕</button>
+            <div class="loot-chest-glow"></div>
+            <div class="loot-chest-animation" id="loot-chest-icon">🎁</div>
+            <h2 class="loot-title" id="loot-modal-title">KUNLIK SIRLI SANDIQ</h2>
+            <p class="loot-desc" id="loot-modal-desc">Har 24 soatda sandiqni ochib, bepul XP, streak qalqoni va unvonlar oling!</p>
+            <div class="loot-reward-box" id="loot-reward-display" style="display: none;">
+                <div class="loot-reward-item" id="loot-reward-text">+100 XP</div>
+            </div>
+            <div class="loot-actions">
+                <button class="btn btn-primary btn-glow btn-lg" id="btn-open-loot-chest">🎁 Sandiqni Ochish!</button>
+                <button class="btn btn-ghost" id="btn-close-loot-modal">Yopish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kiber Detektiv (Bug Hunt Arena) Modal -->
+    <div class="modal-overlay" id="bughunt-modal">
+        <div class="modal-content bughunt-modal-content">
+            <button class="modal-close-icon" id="btn-close-bughunt-modal-icon" title="Yopish (Esc)">✕</button>
+            <div class="bughunt-glow"></div>
+            <div class="bughunt-modal-header">
+                <span class="bughunt-badge">🚨 TIZIMDAGI XATOLIKNI TOPING (DEBUG ARENA)</span>
+                <h2 class="bughunt-title" id="bughunt-case-title">Juft Sonlar Yig'indisi Buzilgan</h2>
+                <p class="bughunt-scenario" id="bughunt-case-scenario"></p>
+                <div class="bughunt-bounty-row">
+                    <span class="bb-pill xp" id="bughunt-xp-reward">⚡ +100 XP Bounty</span>
+                    <span class="bb-pill gems" id="bughunt-gems-reward">💎 +25 Yoqut</span>
+                    <span class="bb-pill diff" id="bughunt-difficulty">7 kyu</span>
+                </div>
+            </div>
+
+            <!-- Code Editor Box -->
+            <div class="bughunt-editor-wrapper">
+                <div class="bew-header">
+                    <span>💻 Xatoli Kodni Tahrirlang:</span>
+                    <button class="btn btn-ghost btn-xs" id="btn-reset-bug-code">↺ Asliga Qaytarish</button>
+                </div>
+                <textarea class="bughunt-code-input" id="bughunt-code-input" spellcheck="false"></textarea>
+            </div>
+
+            <!-- Test Results Terminal -->
+            <div class="bughunt-terminal" id="bughunt-terminal" style="display: none;">
+                <div class="bt-header">🖥️ Tekshiruv Natijalari (Debug Log):</div>
+                <div class="bt-body" id="bughunt-log-body"></div>
+            </div>
+
+            <div class="bughunt-actions">
+                <button class="btn btn-primary btn-glow btn-lg" id="btn-run-bughunt-tests">🔍 Kodni Tekshirish & Yechish</button>
+                <button class="btn btn-ghost" id="btn-close-bughunt-modal">Yopish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kunlik Streak & Kalendar Modali -->
+    <div class="modal-overlay" id="streak-modal">
+        <div class="modal-content streak-modal-content">
+            <button class="modal-close-icon" id="btn-close-streak-modal-icon" title="Yopish (Esc)">✕</button>
+            <div class="streak-flame-hero">
+                <div class="big-flame-anim">🔥</div>
+                <h2 class="streak-modal-title"><span id="streak-modal-count">0</span> Kunlik Streak!</h2>
+                <p class="streak-modal-desc" id="streak-modal-desc">Har kuni kamida bitta masala yoki kurs darsini yechib, olovingizni davom ettiring.</p>
+            </div>
+
+            <!-- Weekly Flame Calendar -->
+            <div class="streak-calendar-box">
+                <div class="sc-box-header">Haftalik Faollik Kalendari</div>
+                <div class="sc-days-row" id="streak-modal-days-row">
+                    <!-- 7 days rendered by JS -->
+                </div>
+            </div>
+
+            <!-- Streak Shield Status -->
+            <div class="streak-shield-card">
+                <div class="ssc-icon">🛡️</div>
+                <div class="ssc-info">
+                    <div class="ssc-title">Streak Himoya Qalqoni (Freeze)</div>
+                    <div class="ssc-desc">Bir kun qoldirsangiz ham qalqon streakingizni yo'qolishdan avtomat asraydi.</div>
+                </div>
+                <div class="ssc-badge" id="streak-shield-count-badge">1x Faol</div>
+            </div>
+
+            <!-- Milestones Road -->
+            <div class="streak-milestones-box">
+                <div class="sm-title">🏆 Streak Mukofotlari:</div>
+                <div class="sm-list" id="streak-milestones-list">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+
+            <div class="streak-actions">
+                <button class="btn btn-primary btn-glow btn-lg" id="btn-streak-start-today">⚔️ Bugungi Masalani Yechish</button>
+                <button class="btn btn-ghost" id="btn-close-streak-modal">Yopish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal-content success-modal-content">
+            <button class="modal-close-icon" id="btn-close-success-modal-icon" title="Yopish (Esc)">✕</button>
+            <div class="success-icon">🎉</div>
+            <h2 class="success-title" id="success-modal-title" data-i18n="modal_success_title">Challenge Completed!</h2>
+            <p class="success-subtitle" id="success-modal-subtitle" data-i18n="modal_success_subtitle">You earned XP!</p>
+            <div class="success-stats" id="success-modal-stats"></div>
+            <div class="success-actions">
+                <button class="btn btn-primary btn-glow" id="success-next-btn" data-i18n="modal_btn_next">Keyingi Masala →</button>
+                <button class="btn btn-ghost" id="success-close-btn" data-i18n="modal_btn_close">Yopish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rank Up Celebration Modal -->
+    <div class="modal-overlay" id="rankup-modal">
+        <div class="modal-content rankup-modal-content">
+            <button class="modal-close-icon" id="btn-close-rankup-modal-icon" title="Yopish (Esc)">✕</button>
+            <div class="rankup-glow"></div>
+            <div class="rankup-icon">🌟</div>
+            <h2 class="rankup-title" data-i18n="modal_rankup_title">TABRIKLAYMIZ! DARAJANGIZ OSHDI!</h2>
+            <div class="rankup-badge-display" id="rankup-new-badge">7 kyu</div>
+            <p class="rankup-subtitle" id="rankup-modal-subtitle" data-i18n="modal_rankup_subtitle">Siz yangi unvonga sazovor bo'ldingiz!</p>
+            <div class="rankup-actions">
+                <button class="btn btn-primary btn-glow btn-lg" id="rankup-continue-btn">Davom etish 🚀</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Avatar Picker Modal -->
+    <div class="modal-overlay" id="avatar-modal">
+        <div class="modal-content avatar-modal-content">
+            <button class="modal-close-icon" id="btn-close-avatar-modal-icon" title="Yopish (Esc)">✕</button>
+            <h3 data-i18n="avatar_modal_title">🥷 Avatarni Tanlang</h3>
+            <div class="avatar-grid" id="avatar-grid">
+                <!-- 16 Avatars rendered by JS -->
+            </div>
+            <div class="modal-actions-right">
+                <button class="btn btn-ghost" id="avatar-close-btn" data-i18n="modal_btn_close">Yopish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Multi-Provider AI Settings Modal -->
+    <div class="modal-overlay" id="ai-settings-modal">
+        <div class="modal-content ai-settings-modal-content">
+            <div class="ai-modal-header">
+                <h3 data-i18n="ai_key_settings">🤖 Bepul AI Provayderlar & API Sozlamalari</h3>
+                <button class="modal-close-icon" id="btn-close-ai-modal-icon">✕</button>
+            </div>
+            <p class="ai-modal-subtitle">
+                Google Gemini, Groq Cloud (Llama 3.3) yoki OpenRouter bepul API kalitlarini ulang yoki oflayn rejimdan foydalaning.
+            </p>
+
+            <!-- Provider Tabs in Modal -->
+            <div class="ai-provider-modal-tabs">
+                <button class="ai-modal-tab-btn active" data-tab="mistral">💻 Mistral Codestral (Asosiy)</button>
+                <button class="ai-modal-tab-btn" data-tab="groq">⚡ Groq Cloud</button>
+                <button class="ai-modal-tab-btn" data-tab="huggingface">🤗 Hugging Face</button>
+                <button class="ai-modal-tab-btn" data-tab="openrouter">🌐 OpenRouter</button>
+                <button class="ai-modal-tab-btn" data-tab="gemini">✨ Google Gemini</button>
+                <button class="ai-modal-tab-btn" data-tab="heuristic">🧠 Offline Smart AI</button>
+            </div>
+
+            <!-- Tab 1: Mistral Codestral (Primary) -->
+            <div class="ai-modal-tab-pane active" id="modal-pane-mistral">
+                <div class="ai-provider-badge-row">
+                    <span class="ai-badge-pill green">Mistral AI (Dasturlash Maxsus Modeli)</span>
+                    <span class="ai-badge-pill blue">80+ Tilda Kodlash</span>
+                </div>
+                <p class="ai-provider-help-desc">
+                    Mistral Console orqali bepul API kalit oling:
+                    <a href="https://console.mistral.ai/api-keys" target="_blank" rel="noopener" class="ai-key-link" data-i18n="ai_get_free_key">Bepul Mistral kalit olish ↗</a>
+                </p>
+                <label class="ai-field-label">Mistral API Kaliti:</label>
+                <div class="ai-key-input-row">
+                    <input type="password" id="modal-mistral-key-input" class="filter-input" placeholder="G2ZYhhRuNpbEHXrJYIgDDHjVOsa8o7m1" style="width: 100%;">
+                </div>
+                <label class="ai-field-label" style="margin-top: 10px;">Model:</label>
+                <select id="modal-mistral-model-select" class="filter-select" style="width: 100%;">
+                    <option value="codestral-latest">🚀 Codestral Latest (Maxsus Kod AI)</option>
+                    <option value="mistral-small-latest">⚡ Mistral Small Latest</option>
+                    <option value="open-mistral-nemo">🌊 Mistral Nemo (Bepul)</option>
+                </select>
+            </div>
+
+            <!-- Tab 2: Groq -->
+            <div class="ai-modal-tab-pane" id="modal-pane-groq" style="display: none;">
+                <div class="ai-provider-badge-row">
+                    <span class="ai-badge-pill orange">Groq Cloud (O'ta Tezkor / Bepul)</span>
+                    <span class="ai-badge-pill cyan">500+ token/s &bull; 14,400 so'rov/kun</span>
+                </div>
+                <p class="ai-provider-help-desc">
+                    Groq Console orqali 30 soniyada mutlaqo bepul API kalit oling (karta shart emas):
+                    <a href="https://console.groq.com/keys" target="_blank" rel="noopener" class="ai-key-link" data-i18n="ai_get_free_key">Bepul Groq kalit olish ↗</a>
+                </p>
+                <label class="ai-field-label">Groq API Kaliti:</label>
+                <div class="ai-key-input-row">
+                    <input type="password" id="modal-groq-key-input" class="filter-input" placeholder="gsk_..." style="width: 100%;">
+                </div>
+                <label class="ai-field-label" style="margin-top: 10px;">Model:</label>
+                <select id="modal-groq-model-select" class="filter-select" style="width: 100%;">
+                    <option value="llama-3.3-70b-versatile">🦙 Llama 3.3 70B Versatile (Tavsiya)</option>
+                    <option value="llama-3.1-8b-instant">⚡ Llama 3.1 8B Instant (Ultra-fast)</option>
+                    <option value="deepseek-r1-distill-llama-70b">🔮 DeepSeek R1 Distill 70B</option>
+                    <option value="gemma2-9b-it">💎 Google Gemma 2 9B</option>
+                </select>
+            </div>
+
+            <!-- Tab 3: Hugging Face -->
+            <div class="ai-modal-tab-pane" id="modal-pane-huggingface" style="display: none;">
+                <div class="ai-provider-badge-row">
+                    <span class="ai-badge-pill purple">Hugging Face Serverless</span>
+                    <span class="ai-badge-pill green">Qwen 2.5 Coder 32B</span>
+                </div>
+                <p class="ai-provider-help-desc">
+                    Hugging Face bepul User Access Token oling:
+                    <a href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener" class="ai-key-link" data-i18n="ai_get_free_key">Bepul HF Token olish ↗</a>
+                </p>
+                <label class="ai-field-label">Hugging Face Access Token:</label>
+                <div class="ai-key-input-row">
+                    <input type="password" id="modal-huggingface-key-input" class="filter-input" placeholder="hf_..." style="width: 100%;">
+                </div>
+                <label class="ai-field-label" style="margin-top: 10px;">Model:</label>
+                <select id="modal-huggingface-model-select" class="filter-select" style="width: 100%;">
+                    <option value="Qwen/Qwen2.5-Coder-32B-Instruct">💻 Qwen 2.5 Coder 32B (Top Coding AI)</option>
+                    <option value="meta-llama/Meta-Llama-3-8B-Instruct">🦙 Llama 3 8B Instruct</option>
+                </select>
+            </div>
+
+            <!-- Tab 4: OpenRouter -->
+            <div class="ai-modal-tab-pane" id="modal-pane-openrouter" style="display: none;">
+                <div class="ai-provider-badge-row">
+                    <span class="ai-badge-pill purple">OpenRouter Free Models</span>
+                    <span class="ai-badge-pill blue">DeepSeek R1, Llama 3.3, Qwen 2.5</span>
+                </div>
+                <p class="ai-provider-help-desc">
+                    OpenRouter orqali bepul kalit oling:
+                    <a href="https://openrouter.ai/keys" target="_blank" rel="noopener" class="ai-key-link" data-i18n="ai_get_free_key">Bepul OpenRouter kalit olish ↗</a>
+                </p>
+                <label class="ai-field-label">OpenRouter API Kaliti:</label>
+                <div class="ai-key-input-row">
+                    <input type="password" id="modal-openrouter-key-input" class="filter-input" placeholder="sk-or-..." style="width: 100%;">
+                </div>
+                <label class="ai-field-label" style="margin-top: 10px;">Model:</label>
+                <select id="modal-openrouter-model-select" class="filter-select" style="width: 100%;">
+                    <option value="deepseek/deepseek-r1:free">🔮 DeepSeek R1 (Free)</option>
+                    <option value="meta-llama/llama-3.3-70b-instruct:free">🦙 Llama 3.3 70B Instruct (Free)</option>
+                    <option value="qwen/qwen-2.5-coder-32b-instruct:free">💻 Qwen 2.5 Coder 32B (Free)</option>
+                </select>
+            </div>
+
+            <!-- Tab 5: Gemini -->
+            <div class="ai-modal-tab-pane" id="modal-pane-gemini" style="display: none;">
+                <div class="ai-provider-badge-row">
+                    <span class="ai-badge-pill green">Google AI Studio (Bepul)</span>
+                    <span class="ai-badge-pill blue">1500+ so'rov/kun</span>
+                </div>
+                <p class="ai-provider-help-desc">
+                    Google AI Studio orqali bepul API kalit oling:
+                    <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" class="ai-key-link" data-i18n="ai_get_free_key">Bepul Gemini kalit olish ↗</a>
+                </p>
+                <label class="ai-field-label">Gemini API Kaliti:</label>
+                <div class="ai-key-input-row">
+                    <input type="password" id="modal-gemini-key-input" class="filter-input" placeholder="AIzaSy..." style="width: 100%;">
+                </div>
+                <label class="ai-field-label" style="margin-top: 10px;">Model:</label>
+                <select id="modal-gemini-model-select" class="filter-select" style="width: 100%;">
+                    <option value="gemini-2.5-flash">⚡ Gemini 2.5 Flash</option>
+                    <option value="gemini-3.6-flash">🧠 Gemini 3.6 Flash</option>
+                    <option value="gemini-flash-latest">🚀 Gemini Flash Latest</option>
+                </select>
+            </div>
+
+            <!-- Tab 6: Heuristic -->
+            <div class="ai-modal-tab-pane" id="modal-pane-heuristic" style="display: none;">
+                <div class="ai-provider-badge-row">
+                    <span class="ai-badge-pill green">CodeDuel Smart Offline Engine</span>
+                    <span class="ai-badge-pill purple">100% Lokal & Oflayn</span>
+                </div>
+                <p class="ai-provider-help-desc">
+                    Hech qanday API kalit yoki internet talab qilinmaydi. Ichki statik tahlilchi kodingizdagi sikllar, xotira sarfi, Big-O murakkabligi va bosqichma-bosqich maslahatlarni taqdim etadi.
+                </p>
+            </div>
+
+            <!-- Connection Test Status Box -->
+            <div class="ai-test-status-box" id="ai-test-status-box" style="display: none;">
+                <span id="ai-test-status-icon">⏳</span>
+                <span id="ai-test-status-msg">Ulanish tekshirilmoqda...</span>
+            </div>
+
+            <div class="modal-actions-row" style="margin-top: 20px; justify-content: space-between;">
+                <button class="btn btn-secondary btn-sm" id="btn-test-ai-key" data-i18n="ai_test_btn">⚡ Ulanishni Tekshirish</button>
+                <div style="display: flex; gap: 8px;">
+                    <button class="btn btn-primary btn-sm" id="btn-save-ai-settings" data-i18n="ai_key_save">Saqlash</button>
+                    <button class="btn btn-ghost btn-sm" id="btn-close-ai-modal" data-i18n="modal_btn_close">Yopish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== PRO PRICING MODAL ========== -->
+    <div class="modal-overlay" id="pro-pricing-modal">
+        <div class="modal-content pro-modal-content">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title" style="color: #ffd700;">👑 CodeDuel PRO — A'zolik Rejalari</h3>
+                    <p class="modal-subtitle">Cheksiz Mistral AI Codestral, FAANG masalalari, rasmiy sertifikat va 2x XP oling!</p>
+                </div>
+                <button class="modal-close" id="btn-close-pro-modal">✕</button>
+            </div>
+
+            <!-- PRO Plans Grid -->
+            <div class="pro-plans-grid" id="pro-plans-grid">
+                <!-- Injected by UI -->
+            </div>
+
+            <!-- Promo Code Row -->
+            <div class="pro-promo-row">
+                <input type="text" id="pro-promo-input" class="filter-input" placeholder="Promokod kiriting (masalan: PROMO2026, WARRIOR100)..." style="flex: 1;">
+                <button class="btn btn-secondary btn-sm" id="btn-apply-promo">✨ Qo'llash</button>
+            </div>
+            <div id="pro-promo-msg" style="font-size: 13px; font-weight: 600; margin-top: 6px;"></div>
+        </div>
+    </div>
+
+    <!-- ========== CYBER GEMS SHOP MODAL ========== -->
+    <div class="modal-overlay" id="shop-modal">
+        <div class="modal-content shop-modal-content">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title" style="color: #00ff88;">💎 Kiber Do'kon (Cyber Shop)</h3>
+                    <p class="modal-subtitle">Sizning balansingiz: <strong id="shop-user-gems" style="color: #00e5ff;">150</strong> 💎 Kiber Yoqut</p>
+                </div>
+                <button class="modal-close" id="btn-close-shop-modal">✕</button>
+            </div>
+
+            <!-- Shop Items Grid -->
+            <div class="shop-items-grid" id="shop-items-grid">
+                <!-- Injected by UI -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== PAYMENT CHECKOUT MODAL ========== -->
+    <div class="modal-overlay" id="payment-checkout-modal">
+        <div class="modal-content checkout-modal-content">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title" style="color: #00e5ff;">💳 Xavfsiz To'lov Oynasi</h3>
+                    <p class="modal-subtitle">O'zbekiston to'lov tizimlari orqali bir zumda faollashtirish</p>
+                </div>
+                <button class="modal-close" id="btn-close-payment-modal">✕</button>
+            </div>
+
+            <div class="checkout-summary-box">
+                <div class="cs-item-name" id="checkout-item-title">Yillik PRO Obuna</div>
+                <div class="cs-item-price" id="checkout-item-price">199,000 so'm</div>
+            </div>
+
+            <div class="checkout-methods-section">
+                <label class="ai-field-label">To'lov usulini tanlang:</label>
+                <div class="payment-methods-grid" id="checkout-payment-methods">
+                    <!-- Injected by UI -->
+                </div>
+            </div>
+
+            <div class="checkout-phone-section" style="margin-top: 15px;">
+                <label class="ai-field-label">Telefon raqamingiz yoki Karta egasi:</label>
+                <input type="text" class="filter-input" placeholder="+998 90 123 45 67" style="width: 100%; margin-top: 4px;">
+            </div>
+
+            <div class="modal-actions-row" style="margin-top: 20px;">
+                <button class="btn btn-primary btn-glow btn-lg" id="btn-confirm-payment" style="width: 100%;">
+                    ✅ To'lashni Tasdiqlash
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== LESSON SUCCESS CELEBRATION MODAL ========== -->
+    <div class="modal-overlay" id="lesson-success-modal">
+        <div class="modal-content lesson-celebration-card tilt-card" style="max-width: 520px; text-align: center;">
+            <div class="celebration-icon-burst">🎉</div>
+            <h2 class="celebration-title" id="lesson-success-title">Ajoyib Natija!</h2>
+            <p class="celebration-subtitle" id="lesson-success-desc">Topshiriq muvaffaqiyatli bajarildi va barcha testlardan o'tdi!</p>
+
+            <div class="celebration-rewards-row">
+                <div class="cel-reward-item">
+                    <span class="cel-value" id="lesson-reward-xp">+25</span>
+                    <span class="cel-label">⚡ XP Qozonildi</span>
+                </div>
+                <div class="cel-reward-item">
+                    <span class="cel-value" id="lesson-reward-gems">+10</span>
+                    <span class="cel-label">💎 Yoqut Berildi</span>
+                </div>
+                <div class="cel-reward-item">
+                    <span class="cel-value">🔥 +1</span>
+                    <span class="cel-label">Kundalik Streak</span>
+                </div>
+            </div>
+
+            <div class="celebration-actions-row">
+                <button class="btn btn-outline" id="btn-lesson-modal-roadmap">🗺️ Yo'l Xaritasiga Qaytish</button>
+                <button class="btn btn-primary btn-glow" id="btn-lesson-modal-next">Keyingi Dars ➡️</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== CYBER DEVELOPER PASSPORT / DEVCARD MODAL ========== -->
+    <div class="modal-overlay" id="devcard-modal">
+        <div class="modal-content devcard-modal-content">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title" style="color: #38bdf8;">🪪 Kiber Dasturchi Pasporti (Verified Cyber Dev-ID)</h3>
+                    <p class="modal-subtitle">Holografik raqamli pasport • Barcha tajriba, streak va mahoratingiz jamlangan</p>
+                </div>
+                <button class="modal-close" id="btn-close-devcard-modal">✕</button>
+            </div>
+
+            <div class="devcard-preview-box" id="devcard-canvas-container" style="text-align: center; margin: 15px 0; overflow-x: auto;">
+                <!-- Canvas rendered here -->
+            </div>
+
+            <div class="modal-actions-row" style="justify-content: center; gap: 15px;">
+                <button class="btn btn-primary btn-glow btn-lg" id="btn-download-devcard-png">
+                    📥 Kiber-Pasportni Yuklab Olish (PNG 900x540)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Quick Retention Dock (Habit-Building Daily Access) -->
+    <div class="floating-retention-dock" id="floating-retention-dock">
+        <button class="frd-btn frd-bughunt" id="dock-btn-bughunt" title="Kiber Detektiv (Bug Bounty)">
+            <span class="frd-icon">🐛</span>
+            <span class="frd-label">Bug Hunt</span>
+            <span class="frd-pulse-dot" id="dock-bughunt-dot" style="display: none;"></span>
+        </button>
+        <button class="frd-btn frd-loot" id="dock-btn-loot" title="Kunlik Sirli Sandiq">
+            <span class="frd-icon">🎁</span>
+            <span class="frd-label">Sandiq</span>
+            <span class="frd-pulse-dot" id="dock-loot-dot" style="display: none;"></span>
+        </button>
+        <button class="frd-btn frd-streak" id="dock-btn-streak" title="Kunlik Streak & Kalendar">
+            <span class="frd-icon">🔥</span>
+            <span class="frd-label" id="dock-streak-count">0 Kun</span>
+        </button>
+    </div>
+
+    <script type="module" src="/src/app.js"></script>
+</body>
+</html>

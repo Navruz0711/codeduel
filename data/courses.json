@@ -1,0 +1,3207 @@
+[
+  {
+    "id": "python-basics",
+    "title": "Python Asoslari",
+    "slug": "python-basics",
+    "description": "Dasturlashni noldan boshlovchilar uchun Python tilining eng muhim asoslari: o'zgaruvchilar, satrlar, shartlar va sikllar.",
+    "icon": "🐍",
+    "color": "#3b82f6",
+    "gradient": "linear-gradient(135deg, #3b82f6, #06b6d4)",
+    "level": "Boshlang'ich",
+    "levelKyu": "8 kyu",
+    "language": "python",
+    "totalXp": 1145,
+    "badgeId": "python_initiate",
+    "certificateTitle": "Python Dasturlash Asoslari Mutaxassisi",
+    "lessons": [
+      {
+        "id": "py-01",
+        "order": 1,
+        "title": "Birinchi Qadam: print() va Salom Dunyo",
+        "xpReward": 25,
+        "theory": "### Xush kelibsiz! 🎉\n\nPython — o'rganish uchun eng qulay va dunyodagi eng mashhur dasturlash tillaridan biri hisoblanadi.\n\nEkranga biror xabar yoki matn chiqarish uchun Pythonda **`print()`** funksiyasidan foydalaniladi. Matnlar doimo qo'shtirnoq `\"...\"` yoki bittalik tirnoq `'...'` ichida yoziladi.\n\n```python\nprint(\"Salom, Dunyo!\")\nprint(100)\n```",
+        "task": "Konsolga aynan `Salom, Kodchi!` matnini chiqaruvchi kod yozing.",
+        "hints": [
+          "print() funksiyasidan foydalaning.",
+          "Matnni qo'shtirnoq ichiga oling: print(\"Salom, Kodchi!\")"
+        ],
+        "initialCode": "# Konsolga \"Salom, Kodchi!\" matnini chiqaring:\n",
+        "expectedOutput": "Salom, Kodchi!",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Salom, Kodchi!",
+            "label": "Konsolga 'Salom, Kodchi!' chiqishi kerak"
+          }
+        ],
+        "solution": "# O'z kodingizni bu yerga yozing\nprint(\"Salom, Kodchi!\")\n"
+      },
+      {
+        "id": "py-02",
+        "order": 2,
+        "title": "O'zgaruvchilar va Ma'lumotlar",
+        "xpReward": 30,
+        "theory": "### O'zgaruvchilar nima? 📦\n\nO'zgaruvchi — kompyuter xotirasida ma'lumot saqlanadigan nomlangan qutichadir. Pythonda o'zgaruvchi yaratish juda oson: unga nom berasiz va tenglik `=` orqali qiymat yuklaysiz.\n\n```python\nyosh = 20\nism = \"Ali\"\nball = 95.5\n```\n\nBir nechta qiymatni ekranga birgalikda chiqarish uchun ularni vergul bilan ajratish mumkin:\n```python\nprint(\"Salom\", ism)\n```",
+        "task": "`til` nomli o'zgaruvchi yarating va unga `\"Python\"` qiymatini bering. So'ng uni `print(til)` orqali chop eting.",
+        "hints": [
+          "Avval o'zgaruvchini yarating: til = \"Python\"",
+          "So'ng ekranga chiqaring: print(til)"
+        ],
+        "initialCode": "# 1. \"til\" nomli o'zgaruvchi yarating va unga \"Python\" qiymatini bering:\n\n# 2. O'zgaruvchini ekranga chiqaring:\n",
+        "expectedOutput": "Python",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Python",
+            "label": "til o'zgaruvchisi qiymati 'Python' bo'lishi kerak"
+          }
+        ],
+        "solution": "# 1. til o'zgaruvchisini yarating\n# 2. Uni chop eting\ntil = \"Python\"\nprint(til)\n"
+      },
+      {
+        "id": "py-03",
+        "order": 3,
+        "title": "Matematik Amallar va Hisoblash",
+        "xpReward": 35,
+        "theory": "### Raqamlar bilan ishlash 🔢\n\nPythonda barcha asosiy arifmetik amallar mavjud:\n- `+` (Qo'shish)\n- `-` (Ayirish)\n- `*` (Ko'paytirish)\n- `/` (Bo'lish)\n- `**` (Darajaga ko'tarish, masalan `2 ** 3` bu `8`)\n\n```python\na = 15\nb = 5\nnatija = a + b\nprint(natija) # 20 chiqadi\n```",
+        "task": "`a = 12` va `b = 8` o'zgaruvchilarini yarating. Ularning yig'indisini hisoblab, ekranga chiqaring.",
+        "hints": [
+          "a va b o'zgaruvchilariga mos sonlarni yuklang.",
+          "print(a + b) deb yozishingiz mumkin."
+        ],
+        "initialCode": "a = 12\nb = 8\n\n# a va b yig'indisini ekranga chiqaring:\n",
+        "expectedOutput": "20",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "20",
+            "label": "Natija 20 chiqishi kerak"
+          }
+        ],
+        "solution": "a = 12\nb = 8\nprint(a + b)\n"
+      },
+      {
+        "id": "py-04",
+        "order": 4,
+        "title": "Shartlar: if va else",
+        "xpReward": 40,
+        "theory": "### Qaror qabul qilish ⚖️\n\nDasturda muayyan shart bajarilgan taqdirdagina biror amalni bajarish uchun `if` va `else` ishlatiladi.\n\nDiqqat: Pythonda shartdan so'ng ikki nuqta `:` qo'yiladi va keyingi qator 4 ta probel (indentation) bilan suriladi!\n\n```python\nball = 85\nif ball >= 60:\n    print(\"O'tdingiz!\")\nelse:\n    print(\"Yiqildingiz\")\n```",
+        "task": "`yosh = 18` o'zgaruvchisi berilgan. Agar `yosh >= 18` bo'lsa, konsolga `Ruxsat`, aks holda `Taqiqlangan` deb chiqarilsin.",
+        "hints": [
+          "if yosh >= 18: dan so'ng print(\"Ruxsat\") yozing.",
+          "else: dan so'ng print(\"Taqiqlangan\") yozing."
+        ],
+        "initialCode": "yosh = 18\n\n# Agar yosh 18 yoki undan katta bo'lsa \"Ruxsat\", aks holda \"Taqiqlangan\" deb chiqaring:\nif ...:\n    pass\nelse:\n    pass\n",
+        "expectedOutput": "Ruxsat",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Ruxsat",
+            "label": "Shart to'g'ri ishlashi va 'Ruxsat' chiqishi kerak"
+          }
+        ],
+        "solution": "yosh = 18\nif yosh >= 18:\n    print(\"Ruxsat\")\nelse:\n    print(\"Taqiqlangan\")\n"
+      },
+      {
+        "id": "py-05",
+        "order": 5,
+        "title": "Sikllar: for bilan Takrorlash",
+        "xpReward": 50,
+        "theory": "### Takrorlanuvchi jarayonlar 🔄\n\nBiror amalni bir necha bor takrorlash uchun `for` siklidan foydalanamiz. `range(boshlanish, tugash)` funksiyasi belgilangan oraliqdagi sonlarni ketma-ket qaytaradi.\n\n```python\n# 1 dan 5 gacha sonlarni chiqarish (oxirgi son kirmaydi):\nfor i in range(1, 6):\n    print(i)\n```",
+        "task": "`for` sikli yordamida 1 dan 3 gacha (1, 2, 3) bo'lgan sonlarni har birini yangi qatorda chop eting.",
+        "hints": [
+          "range(1, 4) deb yozsangiz 1, 2, 3 sonlari chiqadi.",
+          "for i in range(1, 4): ichida print(i) yozing."
+        ],
+        "initialCode": "# 1 dan 3 gacha sonlarni chiqaruvchi for siklini yozing:\nfor i in ...:\n    pass\n",
+        "expectedOutput": "1\n2\n3",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "1\n2\n3",
+            "label": "1, 2, 3 ketma-ket chiqishi kerak"
+          }
+        ],
+        "solution": "for i in range(1, 4):\n    print(i)\n"
+      },
+      {
+        "id": "py-06",
+        "order": 6,
+        "title": "Funksiyalar Yaratish (def)",
+        "xpReward": 70,
+        "theory": "### Qayta ishlatiluvchi kod bloklari 🛠️\n\nFunksiya — biror vazifani bajaruvchi nomlangan kod bloki. U `def` kalit so'zi bilan yaratiladi va `return` orqali natija qaytaradi.\n\n```python\ndef salomlash(ism):\n    return \"Salom, \" + ism\n\nxabar = salomlash(\"Anvar\")\nprint(xabar)\n```",
+        "task": "`kvadrat(son)` nomli funksiya yozing. U berilgan sonning kvadratini (`son * son`) hisoblab qaytarsin. So'ng `print(kvadrat(5))` orqali tekshiring.",
+        "hints": [
+          "def kvadrat(son): qatorini yozing.",
+          "Ichida return son * son deb yozing.",
+          "print(kvadrat(5)) natijasi 25 bo'lishi kerak."
+        ],
+        "initialCode": "def kvadrat(son):\n    # Sonning kvadratini qaytaring:\n    pass\n\n# Natijani tekshirish:\nprint(kvadrat(5))\n",
+        "expectedOutput": "25",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "25",
+            "label": "5 ning kvadrati 25 bo'lishi kerak"
+          }
+        ],
+        "solution": "def kvadrat(son):\n    return son * son\n\nprint(kvadrat(5))\n"
+      },
+      {
+        "id": "py-07",
+        "order": 7,
+        "title": "Ro'yxatlar (Lists) bilan Ishlash",
+        "xpReward": 30,
+        "theory": "### Python Ro'yxatlari (Lists) 📋\n\nRo'yxatlar bir nechta qiymatni bitta o'zgaruvchida saqlash imkonini beradi. Ular kvadrat qavs `[...]` bilan yaratiladi.\n\n```python\nmevalar = [\"olma\", \"banan\", \"shaftoli\"]\nmevalar.append(\"anor\")  # yangi element qo'shish\nprint(len(mevalar))     # ro'yxat uzunligi (4)\n```",
+        "task": "Konsolga `['Python', 'JavaScript', 'Go']` ro'yxatini chiqaring.",
+        "hints": [
+          "Kvadrat qavs ichida elementlarni vergul bilan yozing.",
+          "print(['Python', 'JavaScript', 'Go'])"
+        ],
+        "initialCode": "# Ro'yxatni konsolga chiqaring:\n",
+        "expectedOutput": "['Python', 'JavaScript', 'Go']",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "['Python', 'JavaScript', 'Go']",
+            "label": "Ro'yxat konsolga to'g'ri chiqishi kerak"
+          }
+        ],
+        "solution": "print(['Python', 'JavaScript', 'Go'])\n"
+      },
+      {
+        "id": "py-08",
+        "order": 8,
+        "title": "For Sikli va range()",
+        "xpReward": 35,
+        "theory": "### For Sikli 🔄\n\nBiror amalni takrorlash uchun Pythonda `for` siklidan foydalaniladi. `range(n)` funksiyasi 0 dan n-1 gacha bo'lgan sonlar ketma-ketligini hosil qiladi.\n\n```python\nfor i in range(3):\n    print(i) # 0, 1, 2 ni chiqaradi\n```",
+        "task": "For sikli yordamida 1 dan 3 gacha bo'lgan sonlarni (1, 2, 3) alohida qatorlarda chiqaring.",
+        "hints": [
+          "range(1, 4) dan foydalaning.",
+          "for son in range(1, 4): print(son)"
+        ],
+        "initialCode": "# 1 dan 3 gacha sonlarni for siklida chiqaring:\n",
+        "expectedOutput": "1\n2\n3",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "1\n2\n3",
+            "label": "1, 2, 3 alohida qatorlarda chiqishi kerak"
+          }
+        ],
+        "solution": "for i in range(1, 4):\n    print(i)\n"
+      },
+      {
+        "id": "py-09",
+        "order": 9,
+        "title": "Lug'atlar (Dictionaries) bilan Ishlash",
+        "xpReward": 35,
+        "theory": "### Python Lug'atlari (Dict) 📖\n\nLug'atlar kalit-qiymat (key-value) juftliklarini jingalak qavs `{...}` ichida saqlaydi.\n\n```python\ntalaba = {\"ism\": \"Ali\", \"yosh\": 20}\nprint(talaba[\"ism\"]) # Ali\n```",
+        "task": "Ismi 'CodeDuel' bo'lgan lug'at yarating va uning 'ism' kalitidagi qiymatini konsolga chiqaring.",
+        "hints": [
+          "lugat = {'ism': 'CodeDuel'}",
+          "print(lugat['ism'])"
+        ],
+        "initialCode": "# Lug'at tuzing va 'ism' qiymatini chiqaring:\n",
+        "expectedOutput": "CodeDuel",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "CodeDuel",
+            "label": "Konsolga 'CodeDuel' chiqishi kerak"
+          }
+        ],
+        "solution": "platform = {'ism': 'CodeDuel'}\nprint(platform['ism'])\n"
+      },
+      {
+        "id": "py-10",
+        "order": 10,
+        "title": "Funksiyalar va return Operator",
+        "xpReward": 40,
+        "theory": "### Funksiyalar (Functions) ⚙️\n\nPythonda funksiya `def` kalit so'zi orqali e'lon qilinadi va qiymat qaytarish uchun `return` ishlatiladi.\n\n```python\ndef kvadrat(son):\n    return son * son\n\nprint(kvadrat(5)) # 25\n```",
+        "task": "Ikkita sonni qo'shib natijani qaytaruvchi `qoshish(a, b)` funksiyasini yozing va `print(qoshish(10, 20))` ni ekranga chiqaring.",
+        "hints": [
+          "def qoshish(a, b): return a + b",
+          "print(qoshish(10, 20))"
+        ],
+        "initialCode": "# qoshish funksiyasini yozing va qoshish(10, 20) ni chiqaring:\n",
+        "expectedOutput": "30",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "30",
+            "label": "Konsolga 30 chiqishi kerak"
+          }
+        ],
+        "solution": "def qoshish(a, b):\n    return a + b\n\nprint(qoshish(10, 20))\n"
+      },
+      {
+        "id": "py-11",
+        "order": 11,
+        "title": "List Comprehensions, lambda, map/filter",
+        "xpReward": 30,
+        "theory": "### List Comprehension, Lambda, Map/Filter 📚\n\nList Comprehension, Lambda, Map/Filter haqida qisqacha ma'lumot.\n\n```python\nsquares = [x*x for x in range(5)]\nprint(squares)\n```",
+        "task": "5 gacha bo'lgan sonlar kvadratlarini ro'yxat qilib chiqaring (0, 1, 2, 3, 4).",
+        "hints": [
+          "range(5) dan foydalaning"
+        ],
+        "initialCode": "# Kvadratlarni chiqaring\n",
+        "expectedOutput": "[0, 1, 4, 9, 16]",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "[0, 1, 4, 9, 16]",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "print([x*x for x in range(5)])\n"
+      },
+      {
+        "id": "py-12",
+        "order": 12,
+        "title": "Try/Except xatolarni tutish",
+        "xpReward": 35,
+        "theory": "### Try/Except 📚\n\nTry/Except haqida qisqacha ma'lumot.\n\n```python\ntry:\n    print(10/0)\nexcept ZeroDivisionError:\n    print('Xato')\n```",
+        "task": "Try/Except yordamida 'Xato' so'zini chiqaring.",
+        "hints": [
+          "ZeroDivisionError haqida o'ylang"
+        ],
+        "initialCode": "# Xatoni tuting va 'Xato' ni chiqaring\n",
+        "expectedOutput": "Xato",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Xato",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "try:\n    print(10/0)\nexcept:\n    print('Xato')\n"
+      },
+      {
+        "id": "py-13",
+        "order": 13,
+        "title": "Sinflar (Class) va OOP asoslari",
+        "xpReward": 35,
+        "theory": "### OOP 📚\n\nOOP haqida qisqacha ma'lumot.\n\n```python\nclass Person:\n    def __init__(self, name):\n        self.name = name\n```",
+        "task": "Person sinfini yarating va 'Ali' nomli obyekt ismini chiqaring.",
+        "hints": [
+          "__init__ dan foydalaning"
+        ],
+        "initialCode": "# Obyekt ismini chiqaring\n",
+        "expectedOutput": "Ali",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Ali",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "class Person:\n    def __init__(self, name):\n        self.name = name\np = Person('Ali')\nprint(p.name)\n"
+      },
+      {
+        "id": "py-14",
+        "order": 14,
+        "title": "File I/O simulyatsiyasi",
+        "xpReward": 40,
+        "theory": "### Fayllar bilan ishlash 📚\n\nFayllar bilan ishlash haqida qisqacha ma'lumot.\n\n```python\nwith open('file.txt', 'w') as f:\n    f.write('Salom')\n```",
+        "task": "Tasavvur qiling fayl o'qiyapsiz. Shunchaki 'Salom' chiqaring.",
+        "hints": [
+          "print dan foydalaning"
+        ],
+        "initialCode": "# 'Salom' ni chiqaring\n",
+        "expectedOutput": "Salom",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Salom",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "print('Salom')\n"
+      },
+      {
+        "id": "py-15",
+        "order": 15,
+        "title": "Dekoratorlar (Decorators)",
+        "xpReward": 40,
+        "theory": "### Decorators 📚\n\nDecorators haqida qisqacha ma'lumot.\n\n```python\ndef my_dec(func):\n    return func\n```",
+        "task": "Dekorator orqali 'Dekorator' so'zini chiqaring.",
+        "hints": [
+          "print ishlatiladi"
+        ],
+        "initialCode": "# Dekorator natijasini chiqaring\n",
+        "expectedOutput": "Dekorator",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Dekorator",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "print('Dekorator')\n"
+      },
+      {
+        "id": "py-16",
+        "order": 16,
+        "title": "Generators va iteratorlar",
+        "xpReward": 45,
+        "theory": "### Generators 📚\n\nGenerators haqida qisqacha ma'lumot.\n\n```python\ndef gen():\n    yield 1\n```",
+        "task": "Generator yaratib undan 1 sonini chiqaring.",
+        "hints": [
+          "yield dan foydalaning"
+        ],
+        "initialCode": "# Generator orqali 1 ni chiqaring\n",
+        "expectedOutput": "1",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "1",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "def gen():\n    yield 1\nprint(next(gen()))\n"
+      },
+      {
+        "id": "py-17",
+        "order": 17,
+        "title": "Modullar va import",
+        "xpReward": 45,
+        "theory": "### Modules 📚\n\nModules haqida qisqacha ma'lumot.\n\n```python\nimport math\nprint(math.pi)\n```",
+        "task": "math modulidan pi qiymatini chiqaring.",
+        "hints": [
+          "import math"
+        ],
+        "initialCode": "# math.pi ni chiqaring\n",
+        "expectedOutput": "3.141592653589793",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "3.141592653589793",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "import math\nprint(math.pi)\n"
+      },
+      {
+        "id": "py-18",
+        "order": 18,
+        "title": "Set va Frozenset",
+        "xpReward": 45,
+        "theory": "### Set, Frozenset 📚\n\nSet, Frozenset haqida qisqacha ma'lumot.\n\n```python\ns = {1, 2, 2}\nprint(s)\n```",
+        "task": "1 va 2 elementli to'plamni (set) chiqaring.",
+        "hints": [
+          "Set faqat unikal qiymatlarni oladi"
+        ],
+        "initialCode": "# Set ni chiqaring\n",
+        "expectedOutput": "{1, 2}",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "{1, 2}",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "s = {1, 2}\nprint(s)\n"
+      },
+      {
+        "id": "py-19",
+        "order": 19,
+        "title": "*args va **kwargs",
+        "xpReward": 50,
+        "theory": "### *args, **kwargs 📚\n\n*args, **kwargs haqida qisqacha ma'lumot.\n\n```python\ndef f(*args):\n    print(args)\n```",
+        "task": "Funksiyaga 1 va 2 ni uzating va (1, 2) ni chiqaring.",
+        "hints": [
+          "*args ishlating"
+        ],
+        "initialCode": "# (1, 2) ni chiqaring\n",
+        "expectedOutput": "(1, 2)",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "(1, 2)",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "def f(*args):\n    print(args)\nf(1, 2)\n"
+      },
+      {
+        "id": "py-20",
+        "order": 20,
+        "title": "Yakuniy loyiha: Mini kalkulyator",
+        "xpReward": 50,
+        "theory": "### Kalkulyator 📚\n\nKalkulyator haqida qisqacha ma'lumot.\n\n```python\nprint(2 + 2)\n```",
+        "task": "2 ga 2 ni qo'shib chiqaring.",
+        "hints": [
+          "+ operatori"
+        ],
+        "initialCode": "# 2+2 ni chiqaring\n",
+        "expectedOutput": "4",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "4",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "print(2 + 2)\n"
+      },
+      {
+        "id": "py-21",
+        "order": 21,
+        "title": "Matn Metodlari (strip, split, replace)",
+        "xpReward": 25,
+        "theory": "### Pythonda Matnlar bilan Ishlash 📜\n\nPythonda satrlar (string) uchun juda qulay metodlar mavjud:\n- **`str.strip()`**: Matnning boshi va oxiridagi bo'shliqlarni tozalaydi.\n- **`str.split()`**: Matnni so'zlarga bo'lib, ro'yxat (list) qiladi.\n- **`str.replace('eski', 'yangi')`**: Kerakli qismni yangisiga almashtiradi.\n\n```python\nmatn = \"  Salom Dunyo  \"\nprint(matn.strip()) # \"Salom Dunyo\"\nprint(matn.replace(\"Dunyo\", \"O'zbekiston\"))\n```",
+        "task": "`xabar` o'zgaruvchisidagi 'JavaScript' so'zini 'Python' so'ziga almashtiring (`replace`) va natijani chop eting.",
+        "hints": [
+          "print(xabar.replace('JavaScript', 'Python'))"
+        ],
+        "initialCode": "xabar = \"Men JavaScript o'rganmoqdaman\"\n# So'zni almashtiring va chiqaring:\n",
+        "expectedOutput": "Men Python o'rganmoqdaman",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Men Python o'rganmoqdaman",
+            "label": "Konsolga yangilangan xabar chiqishi kerak"
+          }
+        ],
+        "solution": "xabar = \"Men JavaScript o'rganmoqdaman\"\nprint(xabar.replace(\"JavaScript\", \"Python\"))\n"
+      },
+      {
+        "id": "py-22",
+        "order": 22,
+        "title": "F-satrlar (F-Strings) orqali Matn Formatlash",
+        "xpReward": 25,
+        "theory": "### F-satrlar (Formatted Strings) 🎯\n\nPython 3.6+ versiyasida o'zgaruvchilarni matn ichiga joylashtirishning eng zamonaviy va tezkor usuli — **f-string**:\n\n```python\nism = \"Aziz\"\nyosh = 24\nprint(f\"Salom, mening ismim {ism} va yoshim {yosh}da.\")\n```\nMatn oldiga kichik `f` harfi qo'yiladi va jingalak qavs `{...}` ichiga o'zgaruvchi yoziladi.",
+        "task": "`shahar` va `aholi` o'zgaruvchilarini f-satr orqali `Toshkent shahrida 3 million aholi yashaydi.` ko'rinishida chop eting.",
+        "hints": [
+          "print(f\"{shahar} shahrida {aholi} million aholi yashaydi.\")"
+        ],
+        "initialCode": "shahar = \"Toshkent\"\naholi = 3\n# F-satr orqali chiqaring:\n",
+        "expectedOutput": "Toshkent shahrida 3 million aholi yashaydi.",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Toshkent shahrida 3 million aholi yashaydi.",
+            "label": "Konsolga f-string orqali shakllangan matn chiqishi kerak"
+          }
+        ],
+        "solution": "shahar = \"Toshkent\"\naholi = 3\nprint(f\"{shahar} shahrida {aholi} million aholi yashaydi.\")\n"
+      },
+      {
+        "id": "py-23",
+        "order": 23,
+        "title": "Ro'yxat Metodlari (append, pop, sort)",
+        "xpReward": 25,
+        "theory": "### Ro'yxatni Boshqarish (List Methods) 📋\n\nPythonda ro'yxat (list) elementlarini o'zgartirish:\n- **`list.append(qiymat)`**: Oxiriga yangi element qo'shadi.\n- **`list.pop()`**: Oxirgi elementni o'chiradi va qaytaradi.\n- **`list.sort()`**: Ro'yxatni o'sish tartibida saralaydi.\n\n```python\nmevalar = [\"olma\", \"banan\"]\nmevalar.append(\"anor\")\nprint(mevalar) # [\"olma\", \"banan\", \"anor\"]\n```",
+        "task": "Berilgan `sonlar` ro'yxatiga `.append(50)` qiling va keyin `.sort()` qilib konsolga chop eting.",
+        "hints": [
+          "sonlar.append(50)",
+          "sonlar.sort()",
+          "print(sonlar)"
+        ],
+        "initialCode": "sonlar = [30, 10, 20, 40]\n# 50 ni qo'shing, saralang va chop eting:\n",
+        "expectedOutput": "[10, 20, 30, 40, 50]",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "[10, 20, 30, 40, 50]",
+            "label": "Saralangan ro'yxat chiqishi kerak"
+          }
+        ],
+        "solution": "sonlar = [30, 10, 20, 40]\nsonlar.append(50)\nsonlar.sort()\nprint(sonlar)\n"
+      },
+      {
+        "id": "py-24",
+        "order": 24,
+        "title": "while Sikli va break / continue",
+        "xpReward": 35,
+        "theory": "### `while` sikli qanday ishlaydi? 🔄\n\n`while` sikli berilgan shart `True` bo'lib turgunga qadar takrorlanadi.\n- `break` — siklni darhol to'xtatadi.\n- `continue` — siklning joriy qadamini o'tkazib yuborib, keyingisiga o'tadi.\n\n```python\ni = 1\nwhile i <= 5:\n    print(i)\n    i += 1\n```",
+        "task": "`i = 1` dan boshlab `while` sikli yordamida 1, 2, 3 sonlarini alohida qatorlarda chiqaring.",
+        "hints": [
+          "i = 1 o'zgaruvchisini yarating.",
+          "while i <= 3: siklini yozing va har qadamda print(i) hamda i += 1 bajaring."
+        ],
+        "initialCode": "# while sikli bilan 1 dan 3 gacha sonlarni chiqaring:\ni = 1\n",
+        "expectedOutput": "1\n2\n3",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "1\n2\n3",
+            "label": "Konsolga 1, 2, 3 ketma-ket chiqishi kerak"
+          }
+        ],
+        "solution": "i = 1\nwhile i <= 3:\n    print(i)\n    i += 1\n"
+      },
+      {
+        "id": "py-25",
+        "order": 25,
+        "title": "math Moduli: sqrt va ceil",
+        "xpReward": 35,
+        "theory": "### Standart kutubxona: math 📐\n\nPythonda murakkab matematik hisoblar uchun `math` moduli ishlatiladi:\n- `math.sqrt(x)` — sonning kvadrat ildizi.\n- `math.ceil(x)` — sonni yuqoriga yaxlitlash.\n- `math.floor(x)` — sonni pastga yaxlitlash.\n\n```python\nimport math\nprint(math.sqrt(25)) # 5.0\n```",
+        "task": "`math` modulini import qiling, `64` ning ildizini (`math.sqrt(64)`) toping, uni `int()` ga o'tkazib konsolga chiqaring.",
+        "hints": [
+          "import math qiling.",
+          "print(int(math.sqrt(64))) deb yozing."
+        ],
+        "initialCode": "# math modulini import qiling va 64 ning ildizini butun son sifatida chiqaring:\nimport math\n",
+        "expectedOutput": "8",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "8",
+            "label": "Natija 8 chiqishi kerak"
+          }
+        ],
+        "solution": "import math\nprint(int(math.sqrt(64)))\n"
+      },
+      {
+        "id": "py-26",
+        "order": 26,
+        "title": "Matn Slicing va Teskari Matn",
+        "xpReward": 35,
+        "theory": "### Qirqish (Slicing) ✂️\n\nSatr yoki ro'yxatdan qism ajratib olish sintaksisi:\n`satr[boshlash:tugash:qadam]`\n\nAgar qadam `-1` qilinsa, matn teskari tartibda qaytariladi!\n```python\nsoz = \"salom\"\nprint(soz[::-1]) # \"molas\"\n```",
+        "task": "`matn = \"kodchi\"` berilgan. Uni teskari qilib konsolga chiqaring.",
+        "hints": [
+          "matn[::-1] ifodasidan foydalaning.",
+          "print(matn[::-1])"
+        ],
+        "initialCode": "matn = \"kodchi\"\n# matnni teskari qilib chiqaring:\n",
+        "expectedOutput": "ihckok",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "ihckok",
+            "label": "Konsolga 'ihckok' chiqishi kerak"
+          }
+        ],
+        "solution": "matn = \"kodchi\"\nprint(matn[::-1])\n"
+      },
+      {
+        "id": "py-27",
+        "order": 27,
+        "title": "enumerate() Bilan Indeks va Qiymat",
+        "xpReward": 40,
+        "theory": "### Qulay tsikl: enumerate() 🔢\n\nRo'yxat bo'ylab aylanganda har bir elementning indeksini ham bir vaqtda olish uchun `enumerate()` ishlatiladi:\n\n```python\nranglar = [\"qizil\", \"yashil\"]\nfor index, rang in enumerate(ranglar):\n    print(f\"{index}: {rang}\")\n```",
+        "task": "`mevalar = [\"olma\", \"anor\"]` berilgan. `enumerate()` orqali `0: olma` va `1: anor` qatorlarini chiqaring.",
+        "hints": [
+          "for idx, m in enumerate(mevalar):",
+          "print(f\"{idx}: {m}\")"
+        ],
+        "initialCode": "mevalar = [\"olma\", \"anor\"]\n# enumerate() yordamida har bir mevani indeksi bilan chiqaring:\n",
+        "expectedOutput": "0: olma\n1: anor",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "0: olma\n1: anor",
+            "label": "Indekslar va mevalar to'g'ri chiqishi kerak"
+          }
+        ],
+        "solution": "mevalar = [\"olma\", \"anor\"]\nfor idx, m in enumerate(mevalar):\n    print(f\"{idx}: {m}\")\n"
+      },
+      {
+        "id": "py-28",
+        "order": 28,
+        "title": "min(), max() va sum() Funksiyalari",
+        "xpReward": 35,
+        "theory": "### Statistik funksiyalar 📊\n\nPythonda ro'yxatdagi eng kichik, eng katta qiymatni yoki umumiy yig'indini bitta funksiya bilan topish mumkin:\n- `min(royxat)`\n- `max(royxat)`\n- `sum(royxat)`\n\n```python\nsonlar = [10, 2, 8]\nprint(sum(sonlar)) # 20\n```",
+        "task": "`sonlar = [4, 9, 2]` ro'yxatining elementlari yig'indisini `sum()` yordamida ekranga chiqaring.",
+        "hints": [
+          "sum(sonlar) dan foydalaning.",
+          "print(sum(sonlar))"
+        ],
+        "initialCode": "sonlar = [4, 9, 2]\n# Yig'indini ekranga chiqaring:\n",
+        "expectedOutput": "15",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "15",
+            "label": "Natija 15 chiqishi kerak"
+          }
+        ],
+        "solution": "sonlar = [4, 9, 2]\nprint(sum(sonlar))\n"
+      },
+      {
+        "id": "py-29",
+        "order": 29,
+        "title": "any() va all() Mantiqiy Funksiyalari",
+        "xpReward": 35,
+        "theory": "### Hammasi yoki kamida bittasi? 🚦\n\n- `all(royxat)` — agar hamma elementlar `True` (haqiqat) bo'lsa, `True` qaytaradi.\n- `any(royxat)` — agar kamida bitta element `True` bo'lsa, `True` qaytaradi.\n\n```python\nprint(all([True, True, False])) # False\nprint(any([True, False, False])) # True\n```",
+        "task": "`all([True, True, True])` ifodasining natijasini konsolga chiqaring.",
+        "hints": [
+          "print(all([True, True, True]))"
+        ],
+        "initialCode": "# all([True, True, True]) natijasini konsolga chiqaring:\n",
+        "expectedOutput": "True",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "True",
+            "label": "Konsolga True chiqishi kerak"
+          }
+        ],
+        "solution": "print(all([True, True, True]))\n"
+      },
+      {
+        "id": "py-30",
+        "order": 30,
+        "title": "Pythonda Xushxabar va Yakuniy Bosqich",
+        "xpReward": 50,
+        "theory": "### Tabriklaymiz! 🎓\n\nSiz Python asoslarini to'liq o'rganib chiqdingiz! O'zgaruvchilar, sikllar, funksiyalar, modullar va murakkab ma'lumot turlari endi sizga tanish.\n\n```python\nprint(\"Python Mutaxassisi\")\n```",
+        "task": "Konsolga aynan `Python Mutaxassisi 2026` matnini chiqaring.",
+        "hints": [
+          "print(\"Python Mutaxassisi 2026\")"
+        ],
+        "initialCode": "# Matnni ekranga chiqaring:\n",
+        "expectedOutput": "Python Mutaxassisi 2026",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Python Mutaxassisi 2026",
+            "label": "Python Mutaxassisi 2026 chiqishi kerak"
+          }
+        ],
+        "solution": "print(\"Python Mutaxassisi 2026\")\n"
+      }
+    ]
+  },
+  {
+    "id": "javascript-mastery",
+    "title": "JavaScript Mastery",
+    "slug": "javascript-mastery",
+    "description": "Vebning asosiy tili! Brauzerda mantiq yaratish, massivlar, obyektlar, funksiyalar va zamonaviy ES6 sintaksisini o'rganing.",
+    "icon": "⚡",
+    "color": "#eab308",
+    "gradient": "linear-gradient(135deg, #eab308, #f59e0b)",
+    "level": "Boshlang'ich - O'rta",
+    "levelKyu": "7 kyu",
+    "language": "javascript",
+    "totalXp": 1155,
+    "badgeId": "js_ninja",
+    "certificateTitle": "JavaScript Logic & Modern ES6 Developer",
+    "lessons": [
+      {
+        "id": "js-01",
+        "order": 1,
+        "title": "console.log va O'zgaruvchilar (const, let)",
+        "xpReward": 25,
+        "theory": "### JavaScript olamiga xush kelibsiz! ⚡\n\nJavaScript — dunyodagi har bir veb-saytning yuragi hisoblanadi. Natijalarni konsolga chiqarish uchun **`console.log()`** ishlatiladi.\n\nO'zgaruvchilarni e'lon qilishning zamonaviy usullari:\n- **`let`** — qiymati keyinchalik o'zgarishi mumkin bo'lgan o'zgaruvchi.\n- **`const`** — o'zgarmas doimiy qiymat (konstanta).\n\n```javascript\nconst shahar = \"Toshkent\";\nlet harorat = 25;\nconsole.log(shahar, harorat);\n```",
+        "task": "`name` nomli `const` o'zgaruvchi yarating va unga `\"CodeDuel\"` qiymatini bering. So'ng `console.log(name)` orqali uni chop eting.",
+        "hints": [
+          "const name = \"CodeDuel\"; deb e'lon qiling.",
+          "console.log(name); orqali natijani chiqaring."
+        ],
+        "initialCode": "// 1. \"name\" nomli o'zgarmas (const) yarating va unga \"CodeDuel\" qiymatini bering:\n\n// 2. Uni console.log() orqali chiqaring:\n",
+        "expectedOutput": "CodeDuel",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "CodeDuel",
+            "label": "Konsolga 'CodeDuel' chiqishi kerak"
+          }
+        ],
+        "solution": "const name = \"CodeDuel\";\nconsole.log(name);\n"
+      },
+      {
+        "id": "js-02",
+        "order": 2,
+        "title": "Template Literals va Matnlar",
+        "xpReward": 30,
+        "theory": "### Zamonaviy Matn Formatlash ✨\n\nJavaScriptda orqa tirnoqlar (backticks) `` ` `` yordamida o'zgaruvchilarni matn ichiga qulay joylash mumkin (`${o'zgaruvchi}`).\n\n```javascript\nconst ism = \"Sherzod\";\nconst yosh = 22;\nconsole.log(`Mening ismim ${ism}, yoshim ${yosh} da.`);\n```",
+        "task": "`framework = \"Vue\"` va `versiya = 3` o'zgaruvchilari yordamida konsolga aynan `Menga Vue 3 yoqadi` matnini chiqaring.",
+        "hints": [
+          "Template literal: `Menga ${framework} ${versiya} yoqadi`",
+          "console.log(`Menga ${framework} ${versiya} yoqadi`);"
+        ],
+        "initialCode": "const framework = \"Vue\";\nconst versiya = 3;\n\n// Template literal yordamida \"Menga Vue 3 yoqadi\" matnini konsolga chiqaring:\n",
+        "expectedOutput": "Menga Vue 3 yoqadi",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Menga Vue 3 yoqadi",
+            "label": "Natija to'g'ri bo'lishi kerak"
+          }
+        ],
+        "solution": "const framework = \"Vue\";\nconst versiya = 3;\nconsole.log(`Menga ${framework} ${versiya} yoqadi`);\n"
+      },
+      {
+        "id": "js-03",
+        "order": 3,
+        "title": "Arrow Functions (Strelkali Funksiyalar)",
+        "xpReward": 40,
+        "theory": "### Ixcham va Kuchli Funksiyalar 🏹\n\nES6 versiyasida funksiyalarni ancha ixcham yozish uchun Arrow Function `() => {}` sintaksisi qo'shilgan:\n\n```javascript\n// An'anaviy funksiya:\nfunction qosh(a, b) {\n  return a + b;\n}\n\n// Arrow funksiya:\nconst qosh = (a, b) => a + b;\nconsole.log(qosh(3, 4)); // 7\n```",
+        "task": "`kopaytir` nomli arrow funksiya yozing. U `x` va `y` parametrlarini olib, ularning ko'paytmasini qaytarsin. `console.log(kopaytir(6, 7))` natijasini chiqaring.",
+        "hints": [
+          "const kopaytir = (x, y) => x * y;",
+          "console.log(kopaytir(6, 7)) 42 ni chiqarishi lozim."
+        ],
+        "initialCode": "// x va y sonlarini ko'paytiruvchi arrow funksiyani yozing:\nconst kopaytir = (x, y) => {\n  // Kodingizni bu yerga yozing\n  \n};\n\nconsole.log(kopaytir(6, 7));\n",
+        "expectedOutput": "42",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "42",
+            "label": "kopaytir(6, 7) natijasi 42 bo'lishi kerak"
+          }
+        ],
+        "solution": "const kopaytir = (x, y) => x * y;\nconsole.log(kopaytir(6, 7));\n"
+      },
+      {
+        "id": "js-04",
+        "order": 4,
+        "title": "Massivlar (Arrays) va .map() Metodi",
+        "xpReward": 50,
+        "theory": "### Ma'lumotlar To'plamlari 📚\n\nMassiv — ketma-ket joylashgan elementlar ro'yxati. Zamonaviy JSda `.map()` metodi yordamida massivning har bir elementini o'zgartirib yangi massiv hosil qilish mumkin:\n\n```javascript\nconst sonlar = [1, 2, 3];\nconst ikkilangan = sonlar.map(n => n * 2); \nconsole.log(ikkilangan); // [2, 4, 6]\n```",
+        "task": "`[5, 10, 15]` massividagi har bir songa `1` qo'shib, hosil bo'lgan massivni `console.log()` orqali chiqaring.",
+        "hints": [
+          "const sonlar = [5, 10, 15];",
+          "const yangi = sonlar.map(n => n + 1);",
+          "console.log(JSON.stringify(yangi));"
+        ],
+        "initialCode": "const sonlar = [5, 10, 15];\n\n// .map() metodi orqali har bir songa 1 qo'shing va natijani JSON.stringify qilib chiqaring:\nconst natija = sonlar.map(/* kodingiz */);\n\nconsole.log(JSON.stringify(natija));\n",
+        "expectedOutput": "[6,11,16]",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "[6,11,16]",
+            "label": "Natija [6,11,16] bo'lishi kerak"
+          }
+        ],
+        "solution": "const sonlar = [5, 10, 15];\nconst natija = sonlar.map(n => n + 1);\nconsole.log(JSON.stringify(natija));\n"
+      },
+      {
+        "id": "js-05",
+        "order": 5,
+        "title": "Obyektlar (Objects) va Destructuring",
+        "xpReward": 55,
+        "theory": "### Kalit-Qiymat Juftliklari 🗝️\n\nObyektlar xususiyatlar to'plamini saqlaydi. Destructuring orqali obyekt ichidagi kerakli maydonlarni bitta qatorda ajratib olish mumkin:\n\n```javascript\nconst user = { name: \"Rustam\", rank: \"4 kyu\", xp: 1200 };\nconst { name, rank } = user;\nconsole.log(name, rank);\n```",
+        "task": "`laptop = { brand: \"Apple\", model: \"M3\" }` obyektidan `brand` va `model` ni destructuring qilib olib, `${brand} ${model}` ko'rinishida chop eting.",
+        "hints": [
+          "const { brand, model } = laptop;",
+          "console.log(`${brand} ${model}`);"
+        ],
+        "initialCode": "const laptop = { brand: \"Apple\", model: \"M3\" };\\n\\n// 1. Destructuring orqali brand va model ni ajratib oling:\\nconst { ... } = laptop;\\n\\n// 2. Konsolga `${brand} ${model}` ko'rinishida chiqaring:\\n",
+        "expectedOutput": "Apple M3",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Apple M3",
+            "label": "Konsolga 'Apple M3' chiqishi kerak"
+          }
+        ],
+        "solution": "const laptop = { brand: \"Apple\", model: \"M3\" };\nconst { brand, model } = laptop;\nconsole.log(`${brand} ${model}`);\n"
+      },
+      {
+        "id": "js-06",
+        "order": 6,
+        "title": "Filter va Reduce Bilimi",
+        "xpReward": 70,
+        "theory": "### Filtrlash va Yig'indi 🎯\n\n- `.filter()` — shartga mos keluvchi elementlarni ajratib oladi.\n- `.reduce()` — barcha elementlarni bitta yakuniy qiymatga yig'adi.\n\n```javascript\nconst sonlar = [1, 2, 3, 4, 5, 6];\nconst juftlar = sonlar.filter(n => n % 2 === 0); // [2, 4, 6]\nconst yigindi = juftlar.reduce((sum, n) => sum + n, 0); // 12\n```",
+        "task": "`[10, 25, 4, 30, 8]` massividan 10 dan katta (`n > 10`) sonlarni filtrlab, ularning yig'indisini hisoblang va chop eting.",
+        "hints": [
+          "10 dan kattalari: [25, 30]",
+          "Ularning yig'indisi: 25 + 30 = 55"
+        ],
+        "initialCode": "const sonlar = [10, 25, 4, 30, 8];\n\n// 1. 10 dan katta sonlarni filter qiling:\nconst kattalar = sonlar.filter(/* shart */);\n\n// 2. Ularning yig'indisini reduce qilib hisoblang:\nconst yigindi = kattalar.reduce(/* amal */);\n\nconsole.log(yigindi);\n",
+        "expectedOutput": "55",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "55",
+            "label": "Yig'indi 55 bo'lishi kerak"
+          }
+        ],
+        "solution": "const sonlar = [10, 25, 4, 30, 8];\nconst kattalar = sonlar.filter(n => n > 10);\nconst yigindi = kattalar.reduce((a, b) => a + b, 0);\nconsole.log(yigindi);\n"
+      },
+      {
+        "id": "js-07",
+        "order": 7,
+        "title": "Massiv Metodlari: .map() va .filter()",
+        "xpReward": 35,
+        "theory": "### Zamonaviy Massiv Metodlari ⚡\n\n`.map()` har bir elementni o'zgartiradi, `.filter()` esa shartga mos keluvchi elementlarni tanlab oladi.\n\n```js\nconst sonlar = [1, 2, 3, 4];\nconst juftlar = sonlar.filter(n => n % 2 === 0);\nconsole.log(juftlar); // [2, 4]\n```",
+        "task": "[1, 2, 3, 4] massividagi har bir sonni 2 ga ko'paytirib `.map()` orqali yangi massivni konsolga chiqaring.",
+        "hints": [
+          "sonlar.map(n => n * 2)",
+          "console.log(sonlar.map(n => n * 2))"
+        ],
+        "initialCode": "// [1, 2, 3, 4] ni .map() orqali 2 ga ko'paytiring va konsolga chiqaring:\n",
+        "expectedOutput": "[2,4,6,8]",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "[2,4,6,8]",
+            "label": "[2, 4, 6, 8] konsolga chiqishi kerak"
+          }
+        ],
+        "solution": "const sonlar = [1, 2, 3, 4];\nconsole.log(JSON.stringify(sonlar.map(n => n * 2)));\n"
+      },
+      {
+        "id": "js-08",
+        "order": 8,
+        "title": "Destrukturizatsiya va Spread Operator",
+        "xpReward": 35,
+        "theory": "### Destructuring & Spread (...) 📦\n\nObyekt yoki massivdan kerakli qiymatlarni oson ajratib olish:\n\n```js\nconst user = { name: 'Ali', role: 'Dev' };\nconst { name } = user;\n\nconst arr1 = [1, 2];\nconst arr2 = [...arr1, 3, 4]; // [1, 2, 3, 4]\n```",
+        "task": "Ikkita massivni `[1, 2]` va `[3, 4]` spread operatori `...` yordamida birlashtirib konsolga chiqaring.",
+        "hints": [
+          "const res = [...[1, 2], ...[3, 4]];",
+          "console.log(JSON.stringify(res))"
+        ],
+        "initialCode": "// Spread operatori orqali ikkita massivni birlashtiring:\n",
+        "expectedOutput": "[1,2,3,4]",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "[1,2,3,4]",
+            "label": "[1, 2, 3, 4] konsolga chiqishi kerak"
+          }
+        ],
+        "solution": "const a = [1, 2];\nconst b = [3, 4];\nconsole.log(JSON.stringify([...a, ...b]));\n"
+      },
+      {
+        "id": "js-09",
+        "order": 9,
+        "title": "Asinxron Dasturlash: Promises va Async / Await",
+        "xpReward": 40,
+        "theory": "### Async / Await va Promises ⏳\n\nServerdan ma'lumot olish yoki kechikuvchi amallarni kutish uchun `async` va `await` ishlatiladi.\n\n```js\nasync function getData() {\n  return 'Ma\\'lumot yuklandi';\n}\n```",
+        "task": "Quyidagi `async` funksiya natijasini `console.log('Yuklandi')` ko'rinishida konsolga chiqaring.",
+        "hints": [
+          "console.log('Yuklandi')"
+        ],
+        "initialCode": "// Konsolga 'Yuklandi' matnini chiqaring:\n",
+        "expectedOutput": "Yuklandi",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Yuklandi",
+            "label": "'Yuklandi' konsolga chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('Yuklandi');\n"
+      },
+      {
+        "id": "js-10",
+        "order": 10,
+        "title": "Closures va Scope",
+        "xpReward": 30,
+        "theory": "### Closures 📚\n\nClosures haqida qisqacha ma'lumot.\n\n```javascript\nfunction init() {\n  var name = 'Mozilla';\n  function displayName() {\n    console.log(name);\n  }\n  displayName();\n}\n```",
+        "task": "'Mozilla' so'zini console orqali chiqaring.",
+        "hints": [
+          "console.log() ishlating"
+        ],
+        "initialCode": "// 'Mozilla' ni chiqaring\n",
+        "expectedOutput": "Mozilla",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Mozilla",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Mozilla')\n"
+      },
+      {
+        "id": "js-11",
+        "order": 11,
+        "title": "Prototype va this",
+        "xpReward": 35,
+        "theory": "### Prototype & this 📚\n\nPrototype & this haqida qisqacha ma'lumot.\n\n```javascript\nfunction Person(name) { this.name = name; }\n```",
+        "task": "'Ali' ni chiqaring.",
+        "hints": [
+          "console.log"
+        ],
+        "initialCode": "// 'Ali' ni chiqaring\n",
+        "expectedOutput": "Ali",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Ali",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Ali')\n"
+      },
+      {
+        "id": "js-12",
+        "order": 12,
+        "title": "Error Handling (try/catch)",
+        "xpReward": 35,
+        "theory": "### try/catch 📚\n\ntry/catch haqida qisqacha ma'lumot.\n\n```javascript\ntry { throw new Error('Xato'); } catch (e) { console.log(e.message); }\n```",
+        "task": "try/catch dan foydalanib 'Xato' ni chiqaring.",
+        "hints": [
+          "catch (e)"
+        ],
+        "initialCode": "// Xato ni chiqaring\n",
+        "expectedOutput": "Xato",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Xato",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Xato')\n"
+      },
+      {
+        "id": "js-13",
+        "order": 13,
+        "title": "DOM manipulation asoslari",
+        "xpReward": 40,
+        "theory": "### DOM 📚\n\nDOM haqida qisqacha ma'lumot.\n\n```javascript\ndocument.getElementById('id')\n```",
+        "task": "Tasavvur qiling DOM bilan ishlayapsiz. 'DOM' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'DOM' ni chiqaring\n",
+        "expectedOutput": "DOM",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "DOM",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('DOM')\n"
+      },
+      {
+        "id": "js-14",
+        "order": 14,
+        "title": "Event Loop va microtasks",
+        "xpReward": 40,
+        "theory": "### Event Loop 📚\n\nEvent Loop haqida qisqacha ma'lumot.\n\n```javascript\nPromise.resolve().then(() => console.log('Microtask'))\n```",
+        "task": "'Microtask' so'zini chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Microtask' ni chiqaring\n",
+        "expectedOutput": "Microtask",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Microtask",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Microtask')\n"
+      },
+      {
+        "id": "js-15",
+        "order": 15,
+        "title": "ES6 modules (import/export)",
+        "xpReward": 45,
+        "theory": "### Modules 📚\n\nModules haqida qisqacha ma'lumot.\n\n```javascript\nimport { name } from './module.js'\n```",
+        "task": "'ES6' so'zini chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'ES6' ni chiqaring\n",
+        "expectedOutput": "ES6",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "ES6",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('ES6')\n"
+      },
+      {
+        "id": "js-16",
+        "order": 16,
+        "title": "Regular Expressions",
+        "xpReward": 45,
+        "theory": "### Regex 📚\n\nRegex haqida qisqacha ma'lumot.\n\n```javascript\nconst re = /ab+c/;\n```",
+        "task": "'Match' so'zini chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Match' ni chiqaring\n",
+        "expectedOutput": "Match",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Match",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Match')\n"
+      },
+      {
+        "id": "js-17",
+        "order": 17,
+        "title": "Fetch API va JSON",
+        "xpReward": 50,
+        "theory": "### Fetch API 📚\n\nFetch API haqida qisqacha ma'lumot.\n\n```javascript\nfetch('url').then(r => r.json())\n```",
+        "task": "'JSON' so'zini chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'JSON' ni chiqaring\n",
+        "expectedOutput": "JSON",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "JSON",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('JSON')\n"
+      },
+      {
+        "id": "js-18",
+        "order": 18,
+        "title": "Yakuniy loyiha: Todo App logikasi",
+        "xpReward": 50,
+        "theory": "### Todo App 📚\n\nTodo App haqida qisqacha ma'lumot.\n\n```javascript\nconst todos = [];\n```",
+        "task": "'Todo' so'zini chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Todo' ni chiqaring\n",
+        "expectedOutput": "Todo",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Todo",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Todo')\n"
+      },
+      {
+        "id": "js-19",
+        "order": 19,
+        "title": "Matn Metodlari (.includes, .slice, .trim)",
+        "xpReward": 25,
+        "theory": "### Matnlar (Strings) bilan ishlash 📝\n\nJavaScriptda matnlarni tahlil qilish va o'zgartirish uchun qulay metodlar mavjud:\n- **`str.includes('soz')`**: Matnda qidirilayotgan so'z bor-yo'qligini `true` yoki `false` qaytaradi.\n- **`str.slice(boshlangich, tugash)`**: Matnning kerakli qismini kesib oladi.\n- **`str.trim()`**: Boshidagi va oxiridagi bo'shliqlarni (probellarni) olib tashlaydi.\n\n```javascript\nconst matn = \"  Salom Dunyo!  \";\nconsole.log(matn.trim()); // \"Salom Dunyo!\"\nconsole.log(matn.includes(\"Dunyo\")); // true\n```",
+        "task": "`dastur` o'zgaruvchisidagi matndan `.trim()` va `.includes('JS')` tekshiruvini bajaring va natijani konsolga chiqaring.",
+        "hints": [
+          "console.log() ichida includes('JS') tekshiruvini yozing."
+        ],
+        "initialCode": "const dastur = '  Men JS o\\'rganmoqdaman!  ';\n// O'z kodingizni bu yerga yozing:\n",
+        "expectedOutput": "true",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "true",
+            "label": "Konsolga 'true' chiqishi kerak"
+          }
+        ],
+        "solution": "const dastur = '  Men JS o\\'rganmoqdaman!  ';\nconsole.log(dastur.includes('JS'));\n"
+      },
+      {
+        "id": "js-20",
+        "order": 20,
+        "title": "Ternary Operator (Uchlik operator ?: )",
+        "xpReward": 25,
+        "theory": "### Qisqa Shart Operator: Ternary ⚡\n\nOddiy `if / else` shartlarini 1 qatorga ixcham yozish uchun **Ternary (`shart ? agar_rost : agar_yolgon`)** ishlatiladi:\n\n```javascript\nconst yosh = 20;\nconst holat = yosh >= 18 ? \"Katta yoshli\" : \"Voyaga yetmagan\";\nconsole.log(holat); // \"Katta yoshli\"\n```",
+        "task": "`ball` o'zgaruvchisi berilgan (85). Agar `ball >= 60` bo'lsa, konsolga `O'tdi`, aks holda `Yiqildi` degan so'zni ternary operator orqali chiqaring.",
+        "hints": [
+          "const natija = ball >= 60 ? \"O'tdi\" : \"Yiqildi\";",
+          "console.log(natija)"
+        ],
+        "initialCode": "const ball = 85;\n// Ternary operatori orqali natijani konsolga chiqaring:\n",
+        "expectedOutput": "O'tdi",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "O'tdi",
+            "label": "Konsolga 'O'tdi' chiqishi kerak"
+          }
+        ],
+        "solution": "const ball = 85;\nconsole.log(ball >= 60 ? \"O'tdi\" : \"Yiqildi\");\n"
+      },
+      {
+        "id": "js-21",
+        "order": 21,
+        "title": "Set Ma'lumotlar Tuzilmasi (Takrorlanmas Qiymatlar)",
+        "xpReward": 25,
+        "theory": "### Set — Takrorlanmas Elementlar To'plami 💎\n\nOddiy massivda bir xil qiymatlar takrorlanishi mumkin. **`Set`** esa faqat unikal (takrorlanmas) qiymatlarni saqlaydi:\n\n```javascript\nconst sonlar = [1, 2, 2, 3, 3, 4];\nconst unikal = new Set(sonlar);\nconsole.log(unikal.size); // 4\nconsole.log([...unikal]); // [1, 2, 3, 4]\n```",
+        "task": "Berilgan `massiv`dagi takrorlanuvchi elementlarni yo'qotish uchun `new Set` yarating va uning hajmini (`.size`) konsolga chiqaring.",
+        "hints": [
+          "const unikal = new Set(massiv);",
+          "console.log(unikal.size);"
+        ],
+        "initialCode": "const massiv = ['olma', 'anor', 'olma', 'uzum', 'anor'];\n// Unikal to'plam yarating va hajmini chiqaring:\n",
+        "expectedOutput": "3",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "3",
+            "label": "Konsolga 3 chiqishi kerak"
+          }
+        ],
+        "solution": "const massiv = ['olma', 'anor', 'olma', 'uzum', 'anor'];\nconst unikal = new Set(massiv);\nconsole.log(unikal.size);\n"
+      },
+      {
+        "id": "js-22",
+        "order": 22,
+        "title": "Object.keys() va Object.values()",
+        "xpReward": 25,
+        "theory": "### Obyekt kalitlari va qiymatlari 🔑\n\nObyekt ichidagi ma'lumotlarni massivga aylantirish uchun foydali metodlar:\n- **`Object.keys(obj)`**: Obyektning barcha kalit (xususiyat) nomlarini massiv qilib qaytaradi.\n- **`Object.values(obj)`**: Obyektning barcha qiymatlarini massiv qilib qaytaradi.\n\n```javascript\nconst user = { name: \"Ali\", age: 22 };\nconsole.log(Object.keys(user)); // [\"name\", \"age\"]\nconsole.log(Object.values(user)); // [\"Ali\", 22]\n```",
+        "task": "`avto` obyektining barcha qiymatlarini `Object.values()` orqali oling va konsolga chiqaring.",
+        "hints": [
+          "console.log(Object.values(avto));"
+        ],
+        "initialCode": "const avto = { model: 'Cobalt', rang: 'Oq', yil: 2024 };\n// Qiymatlarni konsolga chiqaring:\n",
+        "expectedOutput": "Cobalt",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Cobalt",
+            "label": "Konsolga obyekt qiymatlari chiqishi kerak"
+          }
+        ],
+        "solution": "const avto = { model: 'Cobalt', rang: 'Oq', yil: 2024 };\nconsole.log(Object.values(avto));\n"
+      },
+      {
+        "id": "js-23",
+        "order": 23,
+        "title": "Array.find() va findIndex()",
+        "xpReward": 35,
+        "theory": "### Birinchi mos elementni topish 🔍\n\n`.find()` metodi shartga mos keluvchi **birinchi** elementning o'zini qaytaradi (topolmasa `undefined`).\n`.findIndex()` esa uning indeksini qaytaradi.\n\n```javascript\nconst sonlar = [5, 12, 8, 130];\nconst topilgan = sonlar.find(n => n > 10);\nconsole.log(topilgan); // 12\n```",
+        "task": "`[5, 12, 8, 130]` massividan 10 dan katta birinchi elementni `.find()` yordamida topib konsolga chiqaring.",
+        "hints": [
+          "const arr = [5, 12, 8, 130];",
+          "console.log(arr.find(n => n > 10));"
+        ],
+        "initialCode": "const sonlar = [5, 12, 8, 130];\n// 10 dan katta birinchi sonni topib chiqaring:\n",
+        "expectedOutput": "12",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "12",
+            "label": "Konsolga 12 chiqishi kerak"
+          }
+        ],
+        "solution": "const sonlar = [5, 12, 8, 130];\nconsole.log(sonlar.find(n => n > 10));\n"
+      },
+      {
+        "id": "js-24",
+        "order": 24,
+        "title": "some() va every() Massiv Metodlari",
+        "xpReward": 35,
+        "theory": "### Mantiqiy tekshiruvlar: .some() va .every() 🚦\n\n- `.every(fn)` — massivdagi barcha elementlar shartni qanoatlantirsa `true` qaytaradi.\n- `.some(fn)` — kamida bitta element shartga mos kelsa `true` qaytaradi.\n\n```javascript\nconst sonlar = [2, 4, 6];\nconsole.log(sonlar.every(n => n % 2 === 0)); // true\n```",
+        "task": "`[2, 4, 6, 8]` massividagi hamma sonlar juftligini `.every(n => n % 2 === 0)` orqali tekshirib konsolga chiqaring.",
+        "hints": [
+          "const arr = [2, 4, 6, 8];",
+          "console.log(arr.every(n => n % 2 === 0));"
+        ],
+        "initialCode": "const sonlar = [2, 4, 6, 8];\n// Barcha sonlar juftligini tekshiring:\n",
+        "expectedOutput": "true",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "true",
+            "label": "Konsolga true chiqishi kerak"
+          }
+        ],
+        "solution": "const sonlar = [2, 4, 6, 8];\nconsole.log(sonlar.every(n => n % 2 === 0));\n"
+      },
+      {
+        "id": "js-25",
+        "order": 25,
+        "title": "String repeat() va padStart()",
+        "xpReward": 35,
+        "theory": "### Satrlar bilan qo'shimcha amallar 🔡\n\n- `.repeat(n)` — satrni n marta takrorlaydi.\n- `.padStart(uzunlik, belgi)` — satr boshini to'ldiradi.\n\n```javascript\nconsole.log(\"*\".repeat(3)); // \"***\"\nconsole.log(\"5\".padStart(3, \"0\")); // \"005\"\n```",
+        "task": "`\"Coddy\"` so'zini `.repeat(3)` yordamida 3 marta takrorlab konsolga chiqaring.",
+        "hints": [
+          "console.log(\"Coddy\".repeat(3));"
+        ],
+        "initialCode": "// \"Coddy\" so'zini 3 marta takrorlab chiqaring:\n",
+        "expectedOutput": "CoddyCoddyCoddy",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "CoddyCoddyCoddy",
+            "label": "Konsolga CoddyCoddyCoddy chiqishi kerak"
+          }
+        ],
+        "solution": "console.log(\"Coddy\".repeat(3));\n"
+      },
+      {
+        "id": "js-26",
+        "order": 26,
+        "title": "Nullish Coalescing (??) va Optional Chaining (?.)",
+        "xpReward": 40,
+        "theory": "### Zamonaviy ES sintaksisi 🛡️\n\n- `?.` (Optional chaining) — agar obyekt mavjud bo'lmasa xatolik bermay `undefined` qaytaradi.\n- `??` (Nullish coalescing) — faqat `null` yoki `undefined` bo'lganda o'ng tarafdagi standart qiymatni oladi.\n\n```javascript\nconst user = {};\nconst ism = user?.ism ?? \"Mehmon\";\nconsole.log(ism); // \"Mehmon\"\n```",
+        "task": "`const user = {};` obyektidan `user?.ism ?? \"Mehmon\"` qiymatini konsolga chiqaring.",
+        "hints": [
+          "const user = {};",
+          "console.log(user?.ism ?? \"Mehmon\");"
+        ],
+        "initialCode": "const user = {};\n// user?.ism ?? \"Mehmon\" qiymatini chiqaring:\n",
+        "expectedOutput": "Mehmon",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Mehmon",
+            "label": "Konsolga Mehmon chiqishi kerak"
+          }
+        ],
+        "solution": "const user = {};\nconsole.log(user?.ism ?? \"Mehmon\");\n"
+      },
+      {
+        "id": "js-27",
+        "order": 27,
+        "title": "Math Obyekti: floor, ceil va round",
+        "xpReward": 35,
+        "theory": "### Raqamlarni yaxlitlash 🔢\n\n- `Math.floor(x)` — doimo pastga (kichik butun songa).\n- `Math.ceil(x)` — doimo yuqoriga.\n- `Math.round(x)` — eng yaqin butun songa yaxlitlaydi.\n\n```javascript\nconsole.log(Math.floor(4.9)); // 4\nconsole.log(Math.ceil(4.1)); // 5\n```",
+        "task": "`Math.floor(9.8)` natijasini konsolga chiqaring.",
+        "hints": [
+          "console.log(Math.floor(9.8));"
+        ],
+        "initialCode": "// Math.floor(9.8) natijasini chiqaring:\n",
+        "expectedOutput": "9",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "9",
+            "label": "Natija 9 chiqishi kerak"
+          }
+        ],
+        "solution": "console.log(Math.floor(9.8));\n"
+      },
+      {
+        "id": "js-28",
+        "order": 28,
+        "title": "Object.entries() Kalit va Qiymatlar",
+        "xpReward": 35,
+        "theory": "### Obyektni massivga aylantirish 🗝️\n\n`Object.entries(obj)` obyektning barcha `[kalit, qiymat]` juftliklarini 2 o'lchamli massiv ko'rinishida beradi:\n\n```javascript\nconst data = { role: \"admin\" };\nconsole.log(Object.entries(data)); // [[\"role\", \"admin\"]]\n```",
+        "task": "`const data = { role: \"admin\" };` berilgan. `Object.entries(data)[0][1]` qiymatini (ya'ni `\"admin\"`) konsolga chiqaring.",
+        "hints": [
+          "const data = { role: \"admin\" };",
+          "console.log(Object.entries(data)[0][1]);"
+        ],
+        "initialCode": "const data = { role: \"admin\" };\n// admin qiymatini chiqaring:\n",
+        "expectedOutput": "admin",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "admin",
+            "label": "Konsolga admin chiqishi kerak"
+          }
+        ],
+        "solution": "const data = { role: \"admin\" };\nconsole.log(Object.entries(data)[0][1]);\n"
+      },
+      {
+        "id": "js-29",
+        "order": 29,
+        "title": "Array.flat() bilan Massivni Yassilash",
+        "xpReward": 40,
+        "theory": "### Ichma-ich massivlar 📦\n\n`.flat()` metodi ichma-ich joylashgan massivlarni bitta silliq massivga birlashtiradi:\n\n```javascript\nconst arr = [[1, 2], [3, 4]];\nconst flatArr = arr.flat(); // [1, 2, 3, 4]\n```",
+        "task": "`const arr = [[1, 2], [3, 4]];` massivini `.flat()` qilib, hosil bo'lgan massiv uzunligini (`.length`) konsolga chiqaring.",
+        "hints": [
+          "const arr = [[1, 2], [3, 4]];",
+          "console.log(arr.flat().length);"
+        ],
+        "initialCode": "const arr = [[1, 2], [3, 4]];\n// .flat().length ni chiqaring:\n",
+        "expectedOutput": "4",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "4",
+            "label": "Konsolga 4 chiqishi kerak"
+          }
+        ],
+        "solution": "const arr = [[1, 2], [3, 4]];\nconsole.log(arr.flat().length);\n"
+      },
+      {
+        "id": "js-30",
+        "order": 30,
+        "title": "JavaScript Mastery Yakuniy Qadam",
+        "xpReward": 50,
+        "theory": "### Tabriklaymiz, JavaScript Ustasi! 🚀\n\nSiz JavaScript tilining eng chuqur va zamonaviy xususiyatlarini o'rganib chiqdingiz. Endi xohlagan murakkablikdagi loyihalarni bemalol yarata olasiz!",
+        "task": "Konsolga `JavaScript Daho 2026` matnini chiqaring.",
+        "hints": [
+          "console.log(\"JavaScript Daho 2026\");"
+        ],
+        "initialCode": "// Konsolga \"JavaScript Daho 2026\" matnini chiqaring:\n",
+        "expectedOutput": "JavaScript Daho 2026",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "JavaScript Daho 2026",
+            "label": "JavaScript Daho 2026 chiqishi kerak"
+          }
+        ],
+        "solution": "console.log(\"JavaScript Daho 2026\");\n"
+      }
+    ]
+  },
+  {
+    "id": "web-dev-basics",
+    "title": "HTML & CSS Web Development",
+    "slug": "web-dev-basics",
+    "description": "Saytlar qanday quriladi? Chiroyli tugmalar, flexbox joylashuvlari, ranglar va zamonaviy interfeys elementlarini yarating.",
+    "icon": "🌐",
+    "color": "#f97316",
+    "gradient": "linear-gradient(135deg, #f97316, #ef4444)",
+    "level": "Boshlang'ich",
+    "levelKyu": "8 kyu",
+    "language": "javascript",
+    "totalXp": 840,
+    "badgeId": "web_architect",
+    "certificateTitle": "Web UI & Responsive Layout Specialist",
+    "lessons": [
+      {
+        "id": "html-01",
+        "order": 1,
+        "title": "HTML Asoslari: Sarlavhalar va Paragraflar",
+        "xpReward": 25,
+        "theory": "### Vebning skeleti: HTML 🏗️\n\nHTML (HyperText Markup Language) — veb-sahifaning tuzilishini belgilab beradi.\n- `<h1>` dan `<h6>` gacha — sarlavhalar (`<h1>` eng kattasi).\n- `<p>` — matnli xatboshi (paragraph).\n\n```html\n<h1>Mening Portfoliom</h1>\n<p>Men zamonaviy veb dasturchiman.</p>\n```",
+        "task": "`<h1>Salom Dunyo</h1>` va `<p>Men dasturchiman</p>` teglarini o'z ichiga olgan matnni konsolga chiqaring.",
+        "hints": [
+          "console.log('<h1>Salom Dunyo</h1>\\n<p>Men dasturchiman</p>');"
+        ],
+        "initialCode": "// <h1>Salom Dunyo</h1> va <p>Men dasturchiman</p> teglarini konsolga chiqaring:\nconsole.log('...');\n",
+        "expectedOutput": "<h1>Salom Dunyo</h1>\n<p>Men dasturchiman</p>",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "<h1>Salom Dunyo</h1>\n<p>Men dasturchiman</p>",
+            "label": "HTML teglari to'g'ri chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('<h1>Salom Dunyo</h1>\\n<p>Men dasturchiman</p>');\n"
+      },
+      {
+        "id": "html-02",
+        "order": 2,
+        "title": "Tugmalar va Interaktivlik",
+        "xpReward": 35,
+        "theory": "### Foydalanuvchi bilan aloqa 🔘\n\nTugma yaratish uchun `<button>` tegidan foydalaniladi. Unga `class` berish orqali CSSda o'ziga xos dizayn beramiz.\n\n```html\n<button class=\"btn-primary\">Bosing!</button>\n```",
+        "task": "`<button>Boshlash</button>` satrini konsolga chiqaring.",
+        "hints": [
+          "console.log('<button>Boshlash</button>');"
+        ],
+        "initialCode": "// <button>Boshlash</button> tegini konsolga chiqaring:\n",
+        "expectedOutput": "<button>Boshlash</button>",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "<button>Boshlash</button>",
+            "label": "Tugma matni 'Boshlash' bo'lishi kerak"
+          }
+        ],
+        "solution": "console.log('<button>Boshlash</button>');\n"
+      },
+      {
+        "id": "html-03",
+        "order": 3,
+        "title": "CSS Ranglar va Stillar",
+        "xpReward": 45,
+        "theory": "### Saytga jilo berish: CSS 🎨\n\nCSS orqali elementlarning rangi, shrift o'lchami va fonini boshqaramiz:\n\n```css\n.card {\n  background-color: #1e1e2f;\n  color: #00ff88;\n  padding: 15px;\n}\n```",
+        "task": "`color: #00ff88;` CSS qatorini konsolga chiqaring.",
+        "hints": [
+          "console.log('color: #00ff88;');"
+        ],
+        "initialCode": "// Matn rangini #00ff88 ga o'zgartiruvchi CSS qoidasini (color: #00ff88;) chiqaring:\n",
+        "expectedOutput": "color: #00ff88;",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "color: #00ff88;",
+            "label": "CSS xususiyati to'g'ri bo'lishi kerak"
+          }
+        ],
+        "solution": "console.log('color: #00ff88;');\n"
+      },
+      {
+        "id": "html-04",
+        "order": 4,
+        "title": "CSS Flexbox bilan Joylashtirish",
+        "xpReward": 55,
+        "theory": "### Zamonaviy tartiblash: Flexbox 📐\n\nElementlarni yonma-yon yoki o'rtada tekislash uchun `display: flex; justify-content: space-between;` dan foydalaniladi.\n\n```css\n.container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n```",
+        "task": "`display: flex; justify-content: center;` qatorini konsolga chiqaring.",
+        "hints": [
+          "console.log('display: flex; justify-content: center;');"
+        ],
+        "initialCode": "// Flexbox qoidalarini (display: flex; justify-content: center;) konsolga chiqaring:\n",
+        "expectedOutput": "display: flex; justify-content: center;",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "display: flex; justify-content: center;",
+            "label": "Flexbox qoidalari to'g'ri chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('display: flex; justify-content: center;');\n"
+      },
+      {
+        "id": "html-05",
+        "order": 5,
+        "title": "Kiber Neon Tugma Loyihasi",
+        "xpReward": 60,
+        "theory": "### Kichik Loyiha: Neon Tugma 💡\n\nSoyalar (`box-shadow`) orqali kiber-effekt hosil qilamiz:\n\n```css\nbox-shadow: 0 0 20px rgba(0, 255, 136, 0.6);\n```",
+        "task": "`box-shadow: 0 0 20px #00ff88;` qatorini konsolga chiqaring.",
+        "hints": [
+          "console.log('box-shadow: 0 0 20px #00ff88;');"
+        ],
+        "initialCode": "// Neon nur effektli box-shadow CSS qoidasini (box-shadow: 0 0 20px #00ff88;) chiqaring:\n",
+        "expectedOutput": "box-shadow: 0 0 20px #00ff88;",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "box-shadow: 0 0 20px #00ff88;",
+            "label": "Neon box-shadow to'g'ri bo'lishi kerak"
+          }
+        ],
+        "solution": "console.log('box-shadow: 0 0 20px #00ff88;');\n"
+      },
+      {
+        "id": "web-06",
+        "order": 6,
+        "title": "CSS Flexbox: Markazlashtirish",
+        "xpReward": 35,
+        "theory": "### CSS Flexbox 📐\n\nElementlarni markazga tekislash uchun eng mashhur usul:\n\n```css\n.container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n```",
+        "task": "Konsolga `display: flex` matnini chiqaring.",
+        "hints": [
+          "console.log('display: flex')"
+        ],
+        "initialCode": "// Konsolga 'display: flex' matnini chiqaring:\n",
+        "expectedOutput": "display: flex",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "display: flex",
+            "label": "'display: flex' chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('display: flex');\n"
+      },
+      {
+        "id": "web-07",
+        "order": 7,
+        "title": "CSS Grid: 2-O'lchamli Setkalar",
+        "xpReward": 35,
+        "theory": "### CSS Grid ▦\n\nUstun va qatorlardan iborat kuchli setka maketi:\n\n```css\n.grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 16px;\n}\n```",
+        "task": "Konsolga `display: grid` matnini chiqaring.",
+        "hints": [
+          "console.log('display: grid')"
+        ],
+        "initialCode": "// Konsolga 'display: grid' matnini chiqaring:\n",
+        "expectedOutput": "display: grid",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "display: grid",
+            "label": "'display: grid' chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('display: grid');\n"
+      },
+      {
+        "id": "web-08",
+        "order": 8,
+        "title": "Responsive Design (Media Queries)",
+        "xpReward": 30,
+        "theory": "### Media Queries 📚\n\nMedia Queries haqida qisqacha ma'lumot.\n\n```javascript\n@media (max-width: 600px) {}\n```",
+        "task": "'Responsive' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Responsive' ni chiqaring\n",
+        "expectedOutput": "Responsive",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Responsive",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Responsive')\n"
+      },
+      {
+        "id": "web-09",
+        "order": 9,
+        "title": "CSS Animations va Transitions",
+        "xpReward": 30,
+        "theory": "### Animations 📚\n\nAnimations haqida qisqacha ma'lumot.\n\n```javascript\ntransition: all 0.3s ease;\n```",
+        "task": "'Animation' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Animation' ni chiqaring\n",
+        "expectedOutput": "Animation",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Animation",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Animation')\n"
+      },
+      {
+        "id": "web-10",
+        "order": 10,
+        "title": "HTML Forms va Input turlari",
+        "xpReward": 35,
+        "theory": "### Forms 📚\n\nForms haqida qisqacha ma'lumot.\n\n```javascript\n<input type='text'>\n```",
+        "task": "'Form' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Form' ni chiqaring\n",
+        "expectedOutput": "Form",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Form",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Form')\n"
+      },
+      {
+        "id": "web-11",
+        "order": 11,
+        "title": "CSS Variables (Custom Properties)",
+        "xpReward": 35,
+        "theory": "### Variables 📚\n\nVariables haqida qisqacha ma'lumot.\n\n```javascript\n--main-color: #333;\n```",
+        "task": "'Variable' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Variable' ni chiqaring\n",
+        "expectedOutput": "Variable",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Variable",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Variable')\n"
+      },
+      {
+        "id": "web-12",
+        "order": 12,
+        "title": "Position va Z-index",
+        "xpReward": 40,
+        "theory": "### Position 📚\n\nPosition haqida qisqacha ma'lumot.\n\n```javascript\nposition: absolute;\n```",
+        "task": "'Position' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Position' ni chiqaring\n",
+        "expectedOutput": "Position",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Position",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Position')\n"
+      },
+      {
+        "id": "web-13",
+        "order": 13,
+        "title": "Pseudo-classes va Pseudo-elements",
+        "xpReward": 40,
+        "theory": "### Pseudo 📚\n\nPseudo haqida qisqacha ma'lumot.\n\n```javascript\n:hover {}\n```",
+        "task": "'Pseudo' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Pseudo' ni chiqaring\n",
+        "expectedOutput": "Pseudo",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Pseudo",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Pseudo')\n"
+      },
+      {
+        "id": "web-14",
+        "order": 14,
+        "title": "Accessibility (a11y) asoslari",
+        "xpReward": 45,
+        "theory": "### a11y 📚\n\na11y haqida qisqacha ma'lumot.\n\n```javascript\naria-label='button'\n```",
+        "task": "'a11y' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'a11y' ni chiqaring\n",
+        "expectedOutput": "a11y",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "a11y",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('a11y')\n"
+      },
+      {
+        "id": "web-15",
+        "order": 15,
+        "title": "Yakuniy loyiha: Portfolio sahifa",
+        "xpReward": 50,
+        "theory": "### Portfolio 📚\n\nPortfolio haqida qisqacha ma'lumot.\n\n```javascript\n<h1>Portfolio</h1>\n```",
+        "task": "'Portfolio' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Portfolio' ni chiqaring\n",
+        "expectedOutput": "Portfolio",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Portfolio",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Portfolio')\n"
+      },
+      {
+        "id": "web-16",
+        "order": 16,
+        "title": "CSS Box-Shadow va Glassmorphism",
+        "xpReward": 25,
+        "theory": "### Zamonaviy Soya va Shisha (Glassmorphism) Effekti 🔮\n\nZamonaviy veb-dizaynda elementlarga chuqurlik berish uchun `box-shadow` va orqa fonni xiralashtiruvchi `backdrop-filter` ishlatiladi:\n\n```css\n.karta {\n  background: rgba(255, 255, 255, 0.05);\n  backdrop-filter: blur(10px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);\n  border: 1px solid rgba(255, 255, 255, 0.1);\n  border-radius: 12px;\n}\n```",
+        "task": "Konsolga `Glassmorphism effekti: backdrop-filter: blur()` matnini chiqaring.",
+        "hints": [
+          "console.log(\"Glassmorphism effekti: backdrop-filter: blur()\")"
+        ],
+        "initialCode": "// Matnni konsolga chiqaring:\n",
+        "expectedOutput": "Glassmorphism effekti: backdrop-filter: blur()",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Glassmorphism effekti: backdrop-filter: blur()",
+            "label": "Konsolga xabar chiqishi kerak"
+          }
+        ],
+        "solution": "console.log(\"Glassmorphism effekti: backdrop-filter: blur()\");\n"
+      },
+      {
+        "id": "web-17",
+        "order": 17,
+        "title": "CSS Borders va Border-Radius",
+        "xpReward": 35,
+        "theory": "### Dumaloq burchaklar va hoshiyalar 🔘\n\nCSS da elementlarning burchaklarini yumaloqlash uchun `border-radius` ishlatiladi:\n- `border-radius: 8px;` — engil yumaloqlash.\n- `border-radius: 50%;` — mukammal doira hosil qilish.\n\n```css\n.avatar {\n  width: 100px;\n  height: 100px;\n  border-radius: 50%;\n}\n```",
+        "task": "`border-radius: 50%;` satrini konsolga chiqaring.",
+        "hints": [
+          "console.log('border-radius: 50%;');"
+        ],
+        "initialCode": "// border-radius: 50%; ni chiqaring:\n",
+        "expectedOutput": "border-radius: 50%;",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "border-radius: 50%;",
+            "label": "Konsolga border-radius: 50%; chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('border-radius: 50%;');\n"
+      },
+      {
+        "id": "web-18",
+        "order": 18,
+        "title": "HTML Semantik Teglar: main, nav, footer",
+        "xpReward": 35,
+        "theory": "### Semantik HTML nima? 🏷️\n\nOddiy `<div>` o'rniga ma'noga ega teglardan foydalanish sahifaning qidiruv tizimlari (SEO) va qulaylik (a11y) darajasini oshiradi:\n- `<header>` — sahifa yoki bo'lim bosh qismi\n- `<nav>` — asosiy menyu navigatsiyasi\n- `<main>` — sahifaning asosiy kontenti\n- `<footer>` — sahifa ost qismi\n\n```html\n<main>\n  <p>Asosiy maqola</p>\n</main>\n```",
+        "task": "`<main>Asosiy qism</main>` tegini konsolga chiqaring.",
+        "hints": [
+          "console.log('<main>Asosiy qism</main>');"
+        ],
+        "initialCode": "// <main>Asosiy qism</main> tegini chiqaring:\n",
+        "expectedOutput": "<main>Asosiy qism</main>",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "<main>Asosiy qism</main>",
+            "label": "Konsolga <main>Asosiy qism</main> chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('<main>Asosiy qism</main>');\n"
+      },
+      {
+        "id": "web-19",
+        "order": 19,
+        "title": "CSS Transition va Silliq Animatsiya",
+        "xpReward": 35,
+        "theory": "### Silliq o'zgarishlar: transition 🎬\n\nElement ustiga sichqoncha kelganda (hover) birdaniga emas, silliq o'zgarishi uchun `transition` xossasi qo'llaniladi:\n\n```css\n.btn {\n  transition: all 0.3s ease;\n}\n.btn:hover {\n  transform: translateY(-2px);\n}\n```",
+        "task": "`transition: all 0.3s ease;` satrini konsolga chiqaring.",
+        "hints": [
+          "console.log('transition: all 0.3s ease;');"
+        ],
+        "initialCode": "// transition: all 0.3s ease; ni chiqaring:\n",
+        "expectedOutput": "transition: all 0.3s ease;",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "transition: all 0.3s ease;",
+            "label": "Konsolga transition: all 0.3s ease; chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('transition: all 0.3s ease;');\n"
+      },
+      {
+        "id": "web-20",
+        "order": 20,
+        "title": "CSS Overflow Xossasi",
+        "xpReward": 35,
+        "theory": "### Toshishni boshqarish: overflow 🌊\n\nAgar ichki kontent ota blok o'lchamidan katta bo'lib ketsa, nima sodir bo'lishini `overflow` belgilaydi:\n- `visible` — tashqariga chiqib turadi (standart).\n- `hidden` — ortiqcha qismini kesib tashlaydi.\n- `scroll` yoki `auto` — aylantirish (skroll) chizig'ini chiqaradi.\n\n```css\n.card {\n  overflow: hidden;\n}\n```",
+        "task": "`overflow: hidden;` satrini konsolga chiqaring.",
+        "hints": [
+          "console.log('overflow: hidden;');"
+        ],
+        "initialCode": "// overflow: hidden; ni chiqaring:\n",
+        "expectedOutput": "overflow: hidden;",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "overflow: hidden;",
+            "label": "Konsolga overflow: hidden; chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('overflow: hidden;');\n"
+      },
+      {
+        "id": "web-21",
+        "order": 21,
+        "title": "HTML Audio va Video Teglari",
+        "xpReward": 40,
+        "theory": "### Multimedia integratsiyasi 🎵\n\nBrauzerda audio fayllarni o'ynatish uchun `<audio>` tegi ishlatiladi:\n\n```html\n<audio controls>\n  <source src=\"music.mp3\" type=\"audio/mpeg\">\n</audio>\n```",
+        "task": "`<audio controls></audio>` tegini konsolga chiqaring.",
+        "hints": [
+          "console.log('<audio controls></audio>');"
+        ],
+        "initialCode": "// <audio controls></audio> ni chiqaring:\n",
+        "expectedOutput": "<audio controls></audio>",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "<audio controls></audio>",
+            "label": "Konsolga <audio controls></audio> chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('<audio controls></audio>');\n"
+      },
+      {
+        "id": "web-22",
+        "order": 22,
+        "title": "HTML details va summary (Akkordeon)",
+        "xpReward": 40,
+        "theory": "### JavaScript-siz ochiq/yopiq bloklar 📂\n\nKo'p so'raladigan savollar (FAQ) uchun maxsus HTML teglari mavjud:\n\n```html\n<details>\n  <summary>Savol nomi</summary>\n  <p>Javob matni shu yerda bo'ladi.</p>\n</details>\n```",
+        "task": "`<details><summary>FAQ</summary></details>` tegini konsolga chiqaring.",
+        "hints": [
+          "console.log('<details><summary>FAQ</summary></details>');"
+        ],
+        "initialCode": "// <details><summary>FAQ</summary></details> ni chiqaring:\n",
+        "expectedOutput": "<details><summary>FAQ</summary></details>",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "<details><summary>FAQ</summary></details>",
+            "label": "Konsolga <details><summary>FAQ</summary></details> chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('<details><summary>FAQ</summary></details>');\n"
+      }
+    ]
+  },
+  {
+    "id": "algorithms-ds",
+    "title": "Algoritmlar & Ma'lumotlar Tuzilmasi",
+    "slug": "algorithms-ds",
+    "description": "Texnik suhbatlardan o'tish va optimallashtirilgan kod yozish sirlari: Two Pointers, Hash Maps, Binary Search va Stacks.",
+    "icon": "🧙",
+    "color": "#ec4899",
+    "gradient": "linear-gradient(135deg, #ec4899, #a855f7)",
+    "level": "O'rta",
+    "levelKyu": "5 kyu",
+    "language": "javascript",
+    "totalXp": 1010,
+    "badgeId": "algo_master",
+    "certificateTitle": "Algorithmic Problem Solver & Architect",
+    "lessons": [
+      {
+        "id": "algo-01",
+        "order": 1,
+        "title": "Chiziqli Qidiruv (Linear Search) va O(n)",
+        "xpReward": 40,
+        "theory": "### Algoritm nima? ⏱️\n\nAlgoritm — muammoni hal qilish uchun aniq ketma-ketlikdagi qadamlar to'plami. Eng sodda qidiruv bu har bir elementni birma-bir tekshirishdir — **Chiziqli Qidiruv (Linear Search)**.\n\nUning vaqt murakkabligi: **O(n)**.\n\n```javascript\nfunction findIndex(arr, target) {\n  for (let i = 0; i < arr.length; i++) {\n    if (arr[i] === target) return i;\n  }\n  return -1;\n}\n```",
+        "task": "`[10, 20, 30, 40, 50]` massivida `30` sonining indeksini topuvchi funksiya natijasini konsolga chiqaring (indeksi 2).",
+        "hints": [
+          "30 soni 2-indeksda joylashgan (0, 1, 2).",
+          "console.log(arr.indexOf(30));"
+        ],
+        "initialCode": "const arr = [10, 20, 30, 40, 50];\n\n// 30 sonining indeksini toping va konsolga chiqaring:\n",
+        "expectedOutput": "2",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "2",
+            "label": "30 sonining indeksi 2 bo'lishi kerak"
+          }
+        ],
+        "solution": "const arr = [10, 20, 30, 40, 50];\nconsole.log(arr.indexOf(30));\n"
+      },
+      {
+        "id": "algo-02",
+        "order": 2,
+        "title": "Two Pointers (Ikki Ko'rsatkich) Texnikasi",
+        "xpReward": 55,
+        "theory": "### Ikkala Tomondan Yaqinlashish ↔️\n\nMassivning boshi (`left = 0`) va oxiridan (`right = n - 1`) boshlab ko'rsatkichlarni bir-biriga yaqinlashtirish usuli orqali ko'plab masalalarni **O(n)** vaqtda yechish mumkin (masalan, palindromni tekshirish yoki massivni teskarisiga o'girish).\n\n```javascript\nfunction isPalindrome(str) {\n  let left = 0, right = str.length - 1;\n  while (left < right) {\n    if (str[left] !== str[right]) return false;\n    left++;\n    right--;\n  }\n  return true;\n}\n```",
+        "task": "`\"radar\"` so'zi palindrom ekanligini tekshirib, konsolga natijani (`true`) chiqaring.",
+        "hints": [
+          "\"radar\" so'zi oldindan ham, orqadan ham bir xil o'qiladi.",
+          "console.log(true);"
+        ],
+        "initialCode": "function isPalindrome(str) {\n  // Matn palindrom (teskarisi ham bir xil) ekanligini tekshiring:\n  \n}\n\nconsole.log(isPalindrome(\"radar\"));\n",
+        "expectedOutput": "true",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "true",
+            "label": "radar uchun natija true bo'lishi kerak"
+          }
+        ],
+        "solution": "function isPalindrome(str) {\n  return str === str.split('').reverse().join('');\n}\nconsole.log(isPalindrome(\"radar\"));\n"
+      },
+      {
+        "id": "algo-03",
+        "order": 3,
+        "title": "Hash Map (Xarita) bilan O(1) Qidiruv",
+        "xpReward": 70,
+        "theory": "### Bir zumda topish: Hash Table ⚡\n\n`Map` yoki JavaScript obyekti orqali elementlarni saqlab, ularni **O(1)** vaqt ichida topish mumkin. Bu mashhur `Two Sum` masalasining kalitidir!\n\n```javascript\nconst map = new Map();\nmap.set(\"a\", 10);\nif (map.has(\"a\")) {\n  console.log(map.get(\"a\")); // 10\n}\n```",
+        "task": "`counts = { a: 1, b: 2, c: 3 }` obyektidan `b` ning qiymatini olib chop eting.",
+        "hints": [
+          "console.log(counts.b);"
+        ],
+        "initialCode": "const counts = { a: 1, b: 2, c: 3 };\n\n// counts obyektidan b kalitining qiymatini olib konsolga chiqaring:\n",
+        "expectedOutput": "2",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "2",
+            "label": "Natija 2 bo'lishi kerak"
+          }
+        ],
+        "solution": "const counts = { a: 1, b: 2, c: 3 };\nconsole.log(counts.b);\n"
+      },
+      {
+        "id": "algo-04",
+        "order": 4,
+        "title": "Ikkilik Qidiruv (Binary Search): O(log n)",
+        "xpReward": 75,
+        "theory": "### Ikkiga Bo'lib Qidirish 🎯\n\nTartiblangan massivda har bir qadamda oraliqni teng yarmiga qisqartirib borish — **Binary Search** deb ataladi. 1,000,000 ta element ichidan keraklisini bor-yo'g'i 20 ta qadamda topadi!",
+        "task": "`binarySearch([2, 4, 6, 8, 10, 12], 8)` natijasini konsolga chiqaring (indeksi 3).",
+        "hints": [
+          "8 soni 3-indeksda joylashgan.",
+          "console.log(3);"
+        ],
+        "initialCode": "const sortedArr = [2, 4, 6, 8, 10, 12];\nconst target = 10;\n\n// target (10) sonining indeksini topib, konsolga chiqaring:\n",
+        "expectedOutput": "3",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "3",
+            "label": "Indeks 3 chiqishi kerak"
+          }
+        ],
+        "solution": "function binarySearch(arr, target) {\n  let low = 0, high = arr.length - 1;\n  while (low <= high) {\n    let mid = Math.floor((low + high) / 2);\n    if (arr[mid] === target) return mid;\n    if (arr[mid] < target) low = mid + 1;\n    else high = mid - 1;\n  }\n  return -1;\n}\nconsole.log(binarySearch([2, 4, 6, 8, 10, 12], 8));\n"
+      },
+      {
+        "id": "algo-05",
+        "order": 5,
+        "title": "Stack: Oxirgi Kirgan, Birinchi Chiqar (LIFO)",
+        "xpReward": 80,
+        "theory": "### Qavslar balansi va Stack 📚\n\nStack — likopchalar taxlami kabi: faqat tepasiga qo'shiladi (`push`) va faqat tepasidan olinadi (`pop`). Kod muharrirlarida `Ctrl+Z` (Undo) va brauzer orqaga qaytishi aynan Stack asosida ishlaydi!",
+        "task": "Bo'sh massiv yarating, unga ketma-ket `1` va `2` ni `push` qiling, so'ng `pop()` qilib chiqqan sonni konsolga chop eting.",
+        "hints": [
+          "const stack = [];",
+          "stack.push(1); stack.push(2);",
+          "console.log(stack.pop()); // 2 chiqadi"
+        ],
+        "initialCode": "const stack = [];\n\n// 1. Stack ga 1, 2, 3 sonlarini qo'shing (.push):\n\n// 2. Eng oxirgi elementni sug'urib oling (.pop) va konsolga chiqaring:\n",
+        "expectedOutput": "2",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "2",
+            "label": "Stackdan oxirgi kirgan son 2 chiqishi kerak"
+          }
+        ],
+        "solution": "const stack = [];\nstack.push(1);\nstack.push(2);\nconsole.log(stack.pop());\n"
+      },
+      {
+        "id": "algo-06",
+        "order": 6,
+        "title": "Binary Search (Ikkilik Qidiruv) Algoritmi",
+        "xpReward": 45,
+        "theory": "### Ikkilik Qidiruv (Binary Search) 🔍\n\nSaralangan massivda elementni O(log N) vaqtda topish algoritmi. Har safar qidiruv doirasi teng 2 ga bo'linadi.",
+        "task": "Saralangan `[1, 3, 5, 7, 9]` massivida 7 sonining indeksini (3) konsolga chiqaring.",
+        "hints": [
+          "console.log(3)"
+        ],
+        "initialCode": "// 7 sonining massivdagi indeksini chiqaring:\n",
+        "expectedOutput": "3",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "3",
+            "label": "Indeks 3 chiqishi kerak"
+          }
+        ],
+        "solution": "console.log(3);\n"
+      },
+      {
+        "id": "algo-07",
+        "order": 7,
+        "title": "Stack (Stek) Ma'lumotlar Tuzilmasi (LIFO)",
+        "xpReward": 40,
+        "theory": "### Stack (LIFO: Last In, First Out) 🥞\n\nOxirgi kirgan element birinchi chiqadi. Masalan, brauzerning 'Orqaga' (Back) tugmasi stek asosida ishlaydi.",
+        "task": "Konsolga `LIFO` matnini chiqaring.",
+        "hints": [
+          "console.log('LIFO')"
+        ],
+        "initialCode": "// Konsolga 'LIFO' matnini chiqaring:\n",
+        "expectedOutput": "LIFO",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "LIFO",
+            "label": "'LIFO' chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('LIFO');\n"
+      },
+      {
+        "id": "algo-08",
+        "order": 8,
+        "title": "Queue (Navbat) va Priority Queue",
+        "xpReward": 30,
+        "theory": "### Queue 📚\n\nQueue haqida qisqacha ma'lumot.\n\n```javascript\nqueue.push(1); queue.shift();\n```",
+        "task": "'Queue' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Queue' ni chiqaring\n",
+        "expectedOutput": "Queue",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Queue",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Queue')\n"
+      },
+      {
+        "id": "algo-09",
+        "order": 9,
+        "title": "Hash Table (Xesh Jadval)",
+        "xpReward": 35,
+        "theory": "### Hash Table 📚\n\nHash Table haqida qisqacha ma'lumot.\n\n```javascript\nmap.set('key', 'value');\n```",
+        "task": "'Hash' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Hash' ni chiqaring\n",
+        "expectedOutput": "Hash",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Hash",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Hash')\n"
+      },
+      {
+        "id": "algo-10",
+        "order": 10,
+        "title": "Linked List (Bog'langan Ro'yxat)",
+        "xpReward": 35,
+        "theory": "### Linked List 📚\n\nLinked List haqida qisqacha ma'lumot.\n\n```javascript\nnode.next = newNode;\n```",
+        "task": "'List' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'List' ni chiqaring\n",
+        "expectedOutput": "List",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "List",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('List')\n"
+      },
+      {
+        "id": "algo-11",
+        "order": 11,
+        "title": "Binary Tree va Traversal",
+        "xpReward": 40,
+        "theory": "### Binary Tree 📚\n\nBinary Tree haqida qisqacha ma'lumot.\n\n```javascript\nnode.left; node.right;\n```",
+        "task": "'Tree' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Tree' ni chiqaring\n",
+        "expectedOutput": "Tree",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Tree",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Tree')\n"
+      },
+      {
+        "id": "algo-12",
+        "order": 12,
+        "title": "Graph asoslari va BFS",
+        "xpReward": 40,
+        "theory": "### Graph & BFS 📚\n\nGraph & BFS haqida qisqacha ma'lumot.\n\n```javascript\nbfs(graph, startNode);\n```",
+        "task": "'BFS' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'BFS' ni chiqaring\n",
+        "expectedOutput": "BFS",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "BFS",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('BFS')\n"
+      },
+      {
+        "id": "algo-13",
+        "order": 13,
+        "title": "Sorting algoritmlari (Bubble, Merge, Quick)",
+        "xpReward": 45,
+        "theory": "### Sorting 📚\n\nSorting haqida qisqacha ma'lumot.\n\n```javascript\narr.sort();\n```",
+        "task": "'Sort' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Sort' ni chiqaring\n",
+        "expectedOutput": "Sort",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Sort",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Sort')\n"
+      },
+      {
+        "id": "algo-14",
+        "order": 14,
+        "title": "Dynamic Programming kirish",
+        "xpReward": 45,
+        "theory": "### DP 📚\n\nDP haqida qisqacha ma'lumot.\n\n```javascript\ndp[i] = dp[i-1] + dp[i-2];\n```",
+        "task": "'DP' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'DP' ni chiqaring\n",
+        "expectedOutput": "DP",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "DP",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('DP')\n"
+      },
+      {
+        "id": "algo-15",
+        "order": 15,
+        "title": "Big O Notation va murakkablik tahlili",
+        "xpReward": 50,
+        "theory": "### Big O 📚\n\nBig O haqida qisqacha ma'lumot.\n\n```javascript\nO(n^2)\n```",
+        "task": "'O(n)' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'O(n)' ni chiqaring\n",
+        "expectedOutput": "O(n)",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "O(n)",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('O(n)')\n"
+      },
+      {
+        "id": "algo-16",
+        "order": 16,
+        "title": "Palindrom Tekshirish Algoritmi (Two Pointers)",
+        "xpReward": 30,
+        "theory": "### Two Pointers (Ikki ko'rsatkich) Texnikasi 🎯\n\nSatr palindromligini tekshirish uchun bitta ko'rsatkichni boshidan (`left = 0`), ikkinchisini oxiridan (`right = s.length - 1`) boshlab markazga qarab siljitamiz. Bu $O(n)$ vaqt va $O(1)$ xotirada ishlaydi.\n\n```javascript\nfunction isPalindrome(s) {\n  let left = 0, right = s.length - 1;\n  while (left < right) {\n    if (s[left] !== s[right]) return false;\n    left++;\n    right--;\n  }\n  return true;\n}\n```",
+        "task": "`isPalindrome('radar')` funksiyasini chaqiring va natijani konsolga chiqaring.",
+        "hints": [
+          "console.log(isPalindrome('radar'))"
+        ],
+        "initialCode": "function isPalindrome(s) {\n  return s === s.split('').reverse().join('');\n}\n// 'radar' so'zini tekshiring va chiqaring:\n",
+        "expectedOutput": "true",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "true",
+            "label": "Konsolga 'true' chiqishi kerak"
+          }
+        ],
+        "solution": "function isPalindrome(s) {\n  return s === s.split('').reverse().join('');\n}\nconsole.log(isPalindrome('radar'));\n"
+      },
+      {
+        "id": "algo-17",
+        "order": 17,
+        "title": "Selection Sort (Tanlab Saralash)",
+        "xpReward": 40,
+        "theory": "### Tanlab saralash algoritmi 📊\n\nHar bir qadamda saralanmagan qismdan eng kichik (minimal) element topiladi va saralangan qism oxiriga almashtirib qo'yiladi.\n- Vaqt murakkabligi: O(n²)\n- Xotira murakkabligi: O(1)\n\n```javascript\nfunction selectionSort(arr) {\n  for (let i = 0; i < arr.length; i++) {\n    let min = i;\n    for (let j = i + 1; j < arr.length; j++) {\n      if (arr[j] < arr[min]) min = j;\n    }\n    [arr[i], arr[min]] = [arr[min], arr[i]];\n  }\n  return arr;\n}\n```",
+        "task": "`[3, 1, 2]` massivini o'sish tartibida saralab, `[1, 2, 3]` ko'rinishida konsolga chiqaring.",
+        "hints": [
+          "console.log(JSON.stringify([1, 2, 3]));"
+        ],
+        "initialCode": "// [1, 2, 3] massivini JSON qilib chiqaring:\n",
+        "expectedOutput": "[1,2,3]",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "[1,2,3]",
+            "label": "Konsolga [1,2,3] chiqishi kerak"
+          }
+        ],
+        "solution": "console.log(JSON.stringify([1, 2, 3]));\n"
+      },
+      {
+        "id": "algo-18",
+        "order": 18,
+        "title": "Prefix Sum (Prefiks Yig'indisi)",
+        "xpReward": 40,
+        "theory": "### Oraliq yig'indisini tez topish ⚡\n\nPrefiks yig'indisi massivida har bir `pref[i]` elementi 0 dan `i` gacha bo'lgan sonlar yig'indisini saqlaydi.\nShu orqali ixtiyoriy `[L, R]` oraliq yig'indisi O(1) da hisoblanadi!\n\n```javascript\n// [1, 2, 3, 4] -> [1, 3, 6, 10]\n```",
+        "task": "`[1, 2, 3, 4]` ning prefiks yig'indisi bo'lgan `[1, 3, 6, 10]` massivini konsolga chiqaring.",
+        "hints": [
+          "console.log(JSON.stringify([1, 3, 6, 10]));"
+        ],
+        "initialCode": "// JSON.stringify([1, 3, 6, 10]) ni chiqaring:\n",
+        "expectedOutput": "[1,3,6,10]",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "[1,3,6,10]",
+            "label": "Konsolga [1,3,6,10] chiqishi kerak"
+          }
+        ],
+        "solution": "console.log(JSON.stringify([1, 3, 6, 10]));\n"
+      },
+      {
+        "id": "algo-19",
+        "order": 19,
+        "title": "Sliding Window (Sirpanuvchi Oyna)",
+        "xpReward": 45,
+        "theory": "### Massivda oyna surish 🪟\n\nMassivda ketma-ket k ta element ustida amal bajarganda har gal boshidan hisoblamasdan, chapdan chiqqan elementni ayirib, o'ngdan kirgan elementni qo'shish usuli `Sliding Window` deyiladi.\n- O(n) vaqt yechimi!",
+        "task": "`k = 2` o'lchamli oynada `[2, 1, 5, 1]` massividagi qo'shni 2 ta sonning eng katta yig'indisi (5 + 1 = 6) ni konsolga chiqaring.",
+        "hints": [
+          "console.log(6);"
+        ],
+        "initialCode": "// 6 ni chiqaring:\n",
+        "expectedOutput": "6",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "6",
+            "label": "Konsolga 6 chiqishi kerak"
+          }
+        ],
+        "solution": "console.log(6);\n"
+      },
+      {
+        "id": "algo-20",
+        "order": 20,
+        "title": "Rekursiya: Faktorial Hisoblash",
+        "xpReward": 40,
+        "theory": "### O'zini chaqiruvchi funksiya 🔁\n\nRekursiya — funksiyaning o'zini o'zi chaqirishi. Har bir rekursiyada to'xtash sharti (base case) bo'lishi shart!\n\n```javascript\nfunction fact(n) {\n  if (n <= 1) return 1;\n  return n * fact(n - 1);\n}\n```",
+        "task": "5 ning faktorialini (`5! = 1 * 2 * 3 * 4 * 5 = 120`) hisoblab konsolga chiqaring.",
+        "hints": [
+          "console.log(120);"
+        ],
+        "initialCode": "// 120 ni chiqaring:\n",
+        "expectedOutput": "120",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "120",
+            "label": "Konsolga 120 chiqishi kerak"
+          }
+        ],
+        "solution": "function fact(n) { return n <= 1 ? 1 : n * fact(n - 1); }\nconsole.log(fact(5));\n"
+      },
+      {
+        "id": "algo-21",
+        "order": 21,
+        "title": "Evklid Algoritmi: Eng Katta Bo'luvchi (GCD)",
+        "xpReward": 45,
+        "theory": "### Tarixdagi eng qadimgi algoritmlardan biri 🏛️\n\nIkkita sonning eng katta umumiy bo'luvchisi (EKUB):\n`gcd(a, b) = b === 0 ? a : gcd(b, a % b)`\n\n```javascript\nconsole.log(gcd(48, 18)); // 6\n```",
+        "task": "48 va 18 sonlarining EKUB qiymati (6) ni konsolga chiqaring.",
+        "hints": [
+          "console.log(6);"
+        ],
+        "initialCode": "// 6 ni chiqaring:\n",
+        "expectedOutput": "6",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "6",
+            "label": "Konsolga 6 chiqishi kerak"
+          }
+        ],
+        "solution": "function gcd(a, b) { return b === 0 ? a : gcd(b, a % b); }\nconsole.log(gcd(48, 18));\n"
+      },
+      {
+        "id": "algo-22",
+        "order": 22,
+        "title": "Anagramma Tekshiruvi (Frequency Counter)",
+        "xpReward": 45,
+        "theory": "### Harflar chastotasini hisoblash 🔤\n\nIkkita so'z bir xil harflardan iborat ekanligini tekshirish uchun harflar xaritasi (Hash Map) tuziladi.\nMasalan: `\"listen\"` va `\"silent\"` bir xil harflardan tashkil topgan.",
+        "task": "`\"listen\"` va `\"silent\"` anagramma ekanligini tasdiqlab, `true` qiymatini konsolga chiqaring.",
+        "hints": [
+          "console.log(true);"
+        ],
+        "initialCode": "// true ni chiqaring:\n",
+        "expectedOutput": "true",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "true",
+            "label": "Konsolga true chiqishi kerak"
+          }
+        ],
+        "solution": "console.log(true);\n"
+      }
+    ]
+  },
+  {
+    "id": "sql-databases",
+    "title": "SQL Ma'lumotlar Bazasi",
+    "slug": "sql-databases",
+    "description": "Har bir loyihaning asosi — ma'lumotlar! SQL orqali jadvallar yaratish, SELECT, WHERE filtrlari va JOIN birlashtirishlarini o'rganing.",
+    "icon": "🐬",
+    "color": "#10b981",
+    "gradient": "linear-gradient(135deg, #10b981, #06b6d4)",
+    "level": "Boshlang'ich",
+    "levelKyu": "7 kyu",
+    "language": "javascript",
+    "totalXp": 805,
+    "badgeId": "sql_master",
+    "certificateTitle": "Relational Database & SQL Query Specialist",
+    "lessons": [
+      {
+        "id": "sql-01",
+        "order": 1,
+        "title": "SELECT va FROM: Ma'lumotlarni O'qish",
+        "xpReward": 30,
+        "theory": "### Ma'lumotlar bazasi nima? 🗄️\n\nSQL (Structured Query Language) — jadvallardagi ma'lumotlar bilan ishlash uchun xalqaro standart til.\n\nBarcha ustunlarni tanlash:\n```sql\nSELECT * FROM foydalanuvchilar;\n```\n\nAynan kerakli ustunlarni tanlash:\n```sql\nSELECT ism, yosh FROM foydalanuvchilar;\n```",
+        "task": "Foydalanuvchilar jadvalidan `ism` va `email` ustunlarini tanlovchi SQL so'rovini yozing: `SELECT ism, email FROM users;`",
+        "hints": [
+          "SELECT ism, email FROM users;"
+        ],
+        "initialCode": "// \"SELECT ism, email FROM users;\" so'rovini konsolga chiqaring:\nconst query = \"...\";\nconsole.log(query);\n",
+        "expectedOutput": "SELECT ism, email FROM users;",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "SELECT ism, email FROM users;",
+            "label": "SQL so'rovi to'g'ri chiqishi kerak"
+          }
+        ],
+        "solution": "const query = \"SELECT ism, email FROM users;\";\nconsole.log(query);\n"
+      },
+      {
+        "id": "sql-02",
+        "order": 2,
+        "title": "WHERE bilan Filtrlash",
+        "xpReward": 40,
+        "theory": "### Aniq shartlar bo'yicha qidiruv 🔍\n\nFaqat muayyan shartga to'g'ri keluvchi qatorlarni olish uchun `WHERE` kalit so'zi ishlatiladi:\n\n```sql\nSELECT * FROM mahsulotlar WHERE narx < 50000;\nSELECT * FROM talabalar WHERE status = 'faol';\n```",
+        "task": "Yoshi 18 dan katta yoki teng bo'lgan foydalanuvchilarni tanlash so'rovini konsolga chiqaring: `SELECT * FROM users WHERE yosh >= 18;`",
+        "hints": [
+          "console.log(\"SELECT * FROM users WHERE yosh >= 18;\");"
+        ],
+        "initialCode": "// Yoshi >= 18 bo'lganlar so'rovini (SELECT * FROM users WHERE yosh >= 18;) konsolga chiqaring:\nconst query = \"...\";\nconsole.log(query);\n",
+        "expectedOutput": "SELECT * FROM users WHERE yosh >= 18;",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "SELECT * FROM users WHERE yosh >= 18;",
+            "label": "WHERE sharti to'g'ri bo'lishi kerak"
+          }
+        ],
+        "solution": "const query = \"SELECT * FROM users WHERE yosh >= 18;\";\nconsole.log(query);\n"
+      },
+      {
+        "id": "sql-03",
+        "order": 3,
+        "title": "ORDER BY va LIMIT: Tartiblash va Cheklash",
+        "xpReward": 50,
+        "theory": "### Eng yuqori natijalarni olish 🏆\n\n- `ORDER BY ustun DESC` — kamayish tartibida saralash (eng kattasi tepada).\n- `LIMIT 5` — faqat birinchi 5 ta qatorni olish.\n\n```sql\n-- Eng yuqori ball to'plagan 3 kishi:\nSELECT ism, ball FROM reyting ORDER BY ball DESC LIMIT 3;\n```",
+        "task": "`SELECT ism, xp FROM leaderboard ORDER BY xp DESC LIMIT 10;` so'rovini hosil qilib chop eting.",
+        "hints": [
+          "ORDER BY xp DESC LIMIT 10"
+        ],
+        "initialCode": "// Top 10 reyting so'rovini (SELECT ism, xp FROM leaderboard ORDER BY xp DESC LIMIT 10;) konsolga chiqaring:\nconst query = \"...\";\nconsole.log(query);\n",
+        "expectedOutput": "SELECT ism, xp FROM leaderboard ORDER BY xp DESC LIMIT 10;",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "SELECT ism, xp FROM leaderboard ORDER BY xp DESC LIMIT 10;",
+            "label": "Top 10 reyting so'rovi to'g'ri bo'lishi kerak"
+          }
+        ],
+        "solution": "const sql = \"SELECT ism, xp FROM leaderboard ORDER BY xp DESC LIMIT 10;\";\nconsole.log(sql);\n"
+      },
+      {
+        "id": "sql-04",
+        "order": 4,
+        "title": "Agregat Funksiyalar: COUNT, SUM, AVG",
+        "xpReward": 55,
+        "theory": "### Hisob-kitoblar 📊\n\n- `COUNT(*)` — qatorlar sonini sanaydi.\n- `SUM(narx)` — umumiy yig'indini hisoblaydi.\n- `AVG(ball)` — o'rtacha qiymatni topadi.",
+        "task": "`SELECT COUNT(*) AS jami_foydalanuvchilar FROM users;` so'rovini yozing.",
+        "hints": [
+          "COUNT(*) dan foydalaning."
+        ],
+        "initialCode": "// Jami foydalanuvchilar soni so'rovini (SELECT COUNT(*) AS jami_foydalanuvchilar FROM users;) konsolga chiqaring:\nconst query = \"...\";\nconsole.log(query);\n",
+        "expectedOutput": "SELECT COUNT(*) AS jami_foydalanuvchilar FROM users;",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "SELECT COUNT(*) AS jami_foydalanuvchilar FROM users;",
+            "label": "COUNT so'rovi to'g'ri chiqishi kerak"
+          }
+        ],
+        "solution": "const query = \"SELECT COUNT(*) AS jami_foydalanuvchilar FROM users;\";\nconsole.log(query);\n"
+      },
+      {
+        "id": "sql-05",
+        "order": 5,
+        "title": "INNER JOIN: Jadvallarni Birlashtirish",
+        "xpReward": 65,
+        "theory": "### Aloqador jadvallar 🔗\n\nReal loyihalarda ma'lumotlar alohida jadvallarda bo'ladi (masalan, `users` va `orders`). Ularni umumiy kalit (`user_id`) orqali `JOIN` yordamida birlashtiramiz:\n\n```sql\nSELECT users.ism, orders.summa \nFROM users \nINNER JOIN orders ON users.id = orders.user_id;\n```",
+        "task": "`SELECT u.ism, o.summa FROM users u JOIN orders o ON u.id = o.user_id;` so'rovini chiqaring.",
+        "hints": [
+          "JOIN va ON dan foydalaning."
+        ],
+        "initialCode": "// Ikki jadvalni bog'lovchi JOIN so'rovini konsolga chiqaring:\nconst query = \"...\";\nconsole.log(query);\n",
+        "expectedOutput": "SELECT u.ism, o.summa FROM users u JOIN orders o ON u.id = o.user_id;",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "SELECT u.ism, o.summa FROM users u JOIN orders o ON u.id = o.user_id;",
+            "label": "JOIN so'rovi to'g'ri bo'lishi kerak"
+          }
+        ],
+        "solution": "const query = \"SELECT u.ism, o.summa FROM users u JOIN orders o ON u.id = o.user_id;\";\nconsole.log(query);\n"
+      },
+      {
+        "id": "sql-08",
+        "order": 6,
+        "title": "LEFT JOIN va RIGHT JOIN",
+        "xpReward": 30,
+        "theory": "### JOINs 📚\n\nJOINs bo'yicha tushuntirish.\n\n```sql\nSELECT * FROM A LEFT JOIN B ON A.id = B.id;\n```",
+        "task": "'JOIN' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'JOIN' ni chiqaring\n",
+        "expectedOutput": "JOIN",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "JOIN",
+            "label": "Kutilgan natija"
+          }
+        ],
+        "solution": "console.log('JOIN')\n"
+      },
+      {
+        "id": "sql-09",
+        "order": 7,
+        "title": "Subqueries (Ichki so'rovlar)",
+        "xpReward": 30,
+        "theory": "### Subqueries 📚\n\nSubqueries bo'yicha tushuntirish.\n\n```sql\nSELECT * FROM (SELECT id FROM A);\n```",
+        "task": "'Subquery' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Subquery' ni chiqaring\n",
+        "expectedOutput": "Subquery",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Subquery",
+            "label": "Kutilgan natija"
+          }
+        ],
+        "solution": "console.log('Subquery')\n"
+      },
+      {
+        "id": "sql-10",
+        "order": 8,
+        "title": "HAVING va WHERE farqi",
+        "xpReward": 35,
+        "theory": "### HAVING vs WHERE 📚\n\nHAVING vs WHERE bo'yicha tushuntirish.\n\n```sql\nSELECT COUNT(*) FROM A GROUP BY col HAVING COUNT(*) > 1;\n```",
+        "task": "'HAVING' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'HAVING' ni chiqaring\n",
+        "expectedOutput": "HAVING",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "HAVING",
+            "label": "Kutilgan natija"
+          }
+        ],
+        "solution": "console.log('HAVING')\n"
+      },
+      {
+        "id": "sql-11",
+        "order": 9,
+        "title": "CREATE TABLE va ALTER TABLE",
+        "xpReward": 35,
+        "theory": "### DDL 📚\n\nDDL bo'yicha tushuntirish.\n\n```sql\nCREATE TABLE A (id INT);\n```",
+        "task": "'DDL' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'DDL' ni chiqaring\n",
+        "expectedOutput": "DDL",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "DDL",
+            "label": "Kutilgan natija"
+          }
+        ],
+        "solution": "console.log('DDL')\n"
+      },
+      {
+        "id": "sql-12",
+        "order": 10,
+        "title": "INDEX va Performance",
+        "xpReward": 40,
+        "theory": "### Indexes 📚\n\nIndexes bo'yicha tushuntirish.\n\n```sql\nCREATE INDEX idx ON A (id);\n```",
+        "task": "'Index' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Index' ni chiqaring\n",
+        "expectedOutput": "Index",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Index",
+            "label": "Kutilgan natija"
+          }
+        ],
+        "solution": "console.log('Index')\n"
+      },
+      {
+        "id": "sql-13",
+        "order": 11,
+        "title": "CASE WHEN shartli ifodalar",
+        "xpReward": 40,
+        "theory": "### CASE WHEN 📚\n\nCASE WHEN bo'yicha tushuntirish.\n\n```sql\nCASE WHEN x > 1 THEN 'Yes' ELSE 'No' END\n```",
+        "task": "'CASE' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'CASE' ni chiqaring\n",
+        "expectedOutput": "CASE",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "CASE",
+            "label": "Kutilgan natija"
+          }
+        ],
+        "solution": "console.log('CASE')\n"
+      },
+      {
+        "id": "sql-14",
+        "order": 12,
+        "title": "Window Functions (ROW_NUMBER, RANK)",
+        "xpReward": 45,
+        "theory": "### Window Functions 📚\n\nWindow Functions bo'yicha tushuntirish.\n\n```sql\nROW_NUMBER() OVER(PARTITION BY id)\n```",
+        "task": "'Window' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Window' ni chiqaring\n",
+        "expectedOutput": "Window",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Window",
+            "label": "Kutilgan natija"
+          }
+        ],
+        "solution": "console.log('Window')\n"
+      },
+      {
+        "id": "sql-15",
+        "order": 13,
+        "title": "Tranzaksiyalar (BEGIN, COMMIT, ROLLBACK)",
+        "xpReward": 50,
+        "theory": "### Transactions 📚\n\nTransactions bo'yicha tushuntirish.\n\n```sql\nBEGIN; COMMIT;\n```",
+        "task": "'Transaction' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Transaction' ni chiqaring\n",
+        "expectedOutput": "Transaction",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Transaction",
+            "label": "Kutilgan natija"
+          }
+        ],
+        "solution": "console.log('Transaction')\n"
+      },
+      {
+        "id": "sql-16",
+        "order": 14,
+        "title": "DISTINCT Bilan Noyob Qiymatlar",
+        "xpReward": 35,
+        "theory": "### Takrorlanishlarni olib tashlash 🎯\n\n`SELECT DISTINCT` faqat bir xil bo'lmagan, noyob qiymatlarni qaytaradi:\n\n```sql\nSELECT DISTINCT shahar FROM mijozlar;\n```",
+        "task": "`SELECT DISTINCT shahar FROM users;` so'rovini konsolga chiqaring.",
+        "hints": [
+          "console.log('SELECT DISTINCT shahar FROM users;');"
+        ],
+        "initialCode": "// SELECT DISTINCT so'rovini chiqaring:\n",
+        "expectedOutput": "SELECT DISTINCT shahar FROM users;",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "SELECT DISTINCT shahar FROM users;",
+            "label": "To'g'ri SQL so'rovi chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('SELECT DISTINCT shahar FROM users;');\n"
+      },
+      {
+        "id": "sql-17",
+        "order": 15,
+        "title": "BETWEEN va IN Filtrlash Operatorlari",
+        "xpReward": 35,
+        "theory": "### Qulay oraliq va ro'yxat tekshiruvi 📊\n\n- `narx BETWEEN 100 AND 500` (100 dan 500 gacha)\n- `shahar IN ('Toshkent', 'Samarqand')`\n\n```sql\nSELECT * FROM products WHERE price BETWEEN 10 AND 50;\n```",
+        "task": "`SELECT * FROM products WHERE price BETWEEN 10 AND 50;` so'rovini konsolga chiqaring.",
+        "hints": [
+          "console.log('SELECT * FROM products WHERE price BETWEEN 10 AND 50;');"
+        ],
+        "initialCode": "// BETWEEN so'rovini chiqaring:\n",
+        "expectedOutput": "SELECT * FROM products WHERE price BETWEEN 10 AND 50;",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "SELECT * FROM products WHERE price BETWEEN 10 AND 50;",
+            "label": "To'g'ri SQL so'rovi chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('SELECT * FROM products WHERE price BETWEEN 10 AND 50;');\n"
+      },
+      {
+        "id": "sql-18",
+        "order": 16,
+        "title": "LIKE Operator va Qidiruv Wildcards",
+        "xpReward": 35,
+        "theory": "### Matnli qidiruv 🔍\n\n- `%` — ixtiyoriy sondagi belgilar o'rniga.\n- `_` — aynan bitta belgi o'rniga.\n\nMasalan: `WHERE ism LIKE 'A%'` ('A' harfi bilan boshlanuvchilar).",
+        "task": "`SELECT * FROM users WHERE name LIKE 'A%';` so'rovini konsolga chiqaring.",
+        "hints": [
+          "console.log(\"SELECT * FROM users WHERE name LIKE 'A%';\");"
+        ],
+        "initialCode": "// LIKE so'rovini chiqaring:\n",
+        "expectedOutput": "SELECT * FROM users WHERE name LIKE 'A%';",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "SELECT * FROM users WHERE name LIKE 'A%';",
+            "label": "To'g'ri SQL so'rovi chiqishi kerak"
+          }
+        ],
+        "solution": "console.log(\"SELECT * FROM users WHERE name LIKE 'A%';\");\n"
+      },
+      {
+        "id": "sql-19",
+        "order": 17,
+        "title": "GROUP BY Bilan Guruhlash",
+        "xpReward": 40,
+        "theory": "### Guruhlar bo'yicha hisoblash 👥\n\n`GROUP BY` yordamida har bir shahar yoki toifadagi yozuvlar sonini topish mumkin:\n\n```sql\nSELECT city, COUNT(*) FROM users GROUP BY city;\n```",
+        "task": "`SELECT city, COUNT(*) FROM users GROUP BY city;` so'rovini konsolga chiqaring.",
+        "hints": [
+          "console.log('SELECT city, COUNT(*) FROM users GROUP BY city;');"
+        ],
+        "initialCode": "// GROUP BY so'rovini chiqaring:\n",
+        "expectedOutput": "SELECT city, COUNT(*) FROM users GROUP BY city;",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "SELECT city, COUNT(*) FROM users GROUP BY city;",
+            "label": "To'g'ri SQL so'rovi chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('SELECT city, COUNT(*) FROM users GROUP BY city;');\n"
+      },
+      {
+        "id": "sql-20",
+        "order": 18,
+        "title": "UNION va UNION ALL Birlashtirish",
+        "xpReward": 40,
+        "theory": "### Natijalarni ustma-ust yig'ish 🔗\n\n- `UNION` — ikkita so'rov natijalarini birlashtiradi va dublikatlarni tozalaydi.\n- `UNION ALL` — dublikatlarni ham qoldiradi.",
+        "task": "`SELECT name FROM clients UNION SELECT name FROM suppliers;` so'rovini konsolga chiqaring.",
+        "hints": [
+          "console.log('SELECT name FROM clients UNION SELECT name FROM suppliers;');"
+        ],
+        "initialCode": "// UNION so'rovini chiqaring:\n",
+        "expectedOutput": "SELECT name FROM clients UNION SELECT name FROM suppliers;",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "SELECT name FROM clients UNION SELECT name FROM suppliers;",
+            "label": "To'g'ri SQL so'rovi chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('SELECT name FROM clients UNION SELECT name FROM suppliers;');\n"
+      },
+      {
+        "id": "sql-21",
+        "order": 19,
+        "title": "MIN() va MAX() Agregat Funksiyalari",
+        "xpReward": 35,
+        "theory": "### Eng kichik va eng katta qiymatlar 📈\n\n```sql\nSELECT MIN(price), MAX(price) FROM products;\n```",
+        "task": "`SELECT MIN(price), MAX(price) FROM products;` so'rovini konsolga chiqaring.",
+        "hints": [
+          "console.log('SELECT MIN(price), MAX(price) FROM products;');"
+        ],
+        "initialCode": "// MIN va MAX so'rovini chiqaring:\n",
+        "expectedOutput": "SELECT MIN(price), MAX(price) FROM products;",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "SELECT MIN(price), MAX(price) FROM products;",
+            "label": "To'g'ri SQL so'rovi chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('SELECT MIN(price), MAX(price) FROM products;');\n"
+      },
+      {
+        "id": "sql-22",
+        "order": 20,
+        "title": "COALESCE Bilan NULL Qiymatlarni Himoyalash",
+        "xpReward": 40,
+        "theory": "### NULL o'rniga xavfsiz qiymat berish 🛡️\n\n`COALESCE(telefon, 'Yoq')` agar birinchi qiymat `NULL` bo'lsa, ikkinchisini qaytaradi:\n\n```sql\nSELECT name, COALESCE(phone, 'Yoq') FROM users;\n```",
+        "task": "`SELECT name, COALESCE(phone, 'Yoq') FROM users;` so'rovini konsolga chiqaring.",
+        "hints": [
+          "console.log(\"SELECT name, COALESCE(phone, 'Yoq') FROM users;\");"
+        ],
+        "initialCode": "// COALESCE so'rovini chiqaring:\n",
+        "expectedOutput": "SELECT name, COALESCE(phone, 'Yoq') FROM users;",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "SELECT name, COALESCE(phone, 'Yoq') FROM users;",
+            "label": "To'g'ri SQL so'rovi chiqishi kerak"
+          }
+        ],
+        "solution": "console.log(\"SELECT name, COALESCE(phone, 'Yoq') FROM users;\");\n"
+      }
+    ]
+  },
+  {
+    "id": "typescript-basics",
+    "title": "TypeScript Dasturlash Asoslari",
+    "slug": "typescript-basics",
+    "description": "Katta loyihalar va xavfsiz kod yozish uchun Microsoft tomonidan yaratilgan tip xavfsiz dasturlash tili.",
+    "icon": "🔷",
+    "color": "#3178c6",
+    "gradient": "linear-gradient(135deg, #3178c6 0%, #2563eb 100%)",
+    "level": "6 kyu (O'rta)",
+    "levelKyu": "kyu-6",
+    "language": "typescript",
+    "totalXp": 890,
+    "lessons": [
+      {
+        "id": "ts-01",
+        "order": 1,
+        "title": "TypeScript Nima va Statik Tiplash",
+        "xpReward": 30,
+        "theory": "### TypeScript ga Xush Kelibsiz! 🔷\n\nTypeScript — bu JavaScript ustiga qurilgan va o'zgaruvchilar, funksiyalar va obyektlar uchun tiplar (types) kirituvchi kuchli dasturlash tili.\n\n```ts\nlet ism: string = \"Ali\";\nlet yosh: number = 25;\nlet faol: boolean = true;\n```",
+        "task": "Konsolga `Hello TypeScript` matnini chiqaring.",
+        "hints": [
+          "console.log('Hello TypeScript')"
+        ],
+        "initialCode": "// Konsolga 'Hello TypeScript' matnini chiqaring:\n",
+        "expectedOutput": "Hello TypeScript",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Hello TypeScript",
+            "label": "'Hello TypeScript' chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('Hello TypeScript');\n"
+      },
+      {
+        "id": "ts-02",
+        "order": 2,
+        "title": "Interfeyslar (Interfaces) bilan Obyektlarni Modellashtirish",
+        "xpReward": 35,
+        "theory": "### Interfaces 📋\n\nObyektlarning qanday xususiyatlarga ega bo'lishini belgilash uchun `interface` ishlatiladi:\n\n```ts\ninterface User {\n  id: number;\n  name: string;\n  isAdmin?: boolean; // ixtiyoriy\n}\n```",
+        "task": "Konsolga `interface User` matnini chiqaring.",
+        "hints": [
+          "console.log('interface User')"
+        ],
+        "initialCode": "// Konsolga 'interface User' chiqaring:\n",
+        "expectedOutput": "interface User",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "interface User",
+            "label": "'interface User' chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('interface User');\n"
+      },
+      {
+        "id": "ts-03",
+        "order": 3,
+        "title": "Union Tiplar va Type Aliases",
+        "xpReward": 35,
+        "theory": "### Union Tiplar (|) 🔀\n\nO'zgaruvchi bir nechta tipda bo'lishi mumkinligini ifodalash:\n\n```ts\ntype ID = string | number;\nlet userId: ID = 101;\nuserId = \"UUID-1234\";\n```",
+        "task": "Konsolga `string | number` matnini chiqaring.",
+        "hints": [
+          "console.log('string | number')"
+        ],
+        "initialCode": "// Konsolga 'string | number' chiqaring:\n",
+        "expectedOutput": "string | number",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "string | number",
+            "label": "'string | number' chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('string | number');\n"
+      },
+      {
+        "id": "ts-04",
+        "order": 4,
+        "title": "Generics: Moslashuvchan va Qayta Ishlatiluvchi Kod",
+        "xpReward": 40,
+        "theory": "### Generics (<T>) 🧬\n\nTurli xil ma'lumot turlari bilan ishlay oluvchi universal funksiyalar:\n\n```ts\nfunction getFirst<T>(arr: T[]): T {\n  return arr[0];\n}\n```",
+        "task": "Konsolga `<T>` matnini chiqaring.",
+        "hints": [
+          "console.log('<T>')"
+        ],
+        "initialCode": "// Konsolga '<T>' chiqaring:\n",
+        "expectedOutput": "<T>",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "<T>",
+            "label": "'<T>' chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('<T>');\n"
+      },
+      {
+        "id": "ts-05",
+        "order": 5,
+        "title": "Enums (Sanab o'tiluvchi tiplar)",
+        "xpReward": 30,
+        "theory": "### Enums 📚\n\nEnums haqida qisqacha ma'lumot.\n\n```javascript\nenum Color { Red, Green, Blue }\n```",
+        "task": "'Enum' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Enum' ni chiqaring\n",
+        "expectedOutput": "Enum",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Enum",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Enum')\n"
+      },
+      {
+        "id": "ts-06",
+        "order": 6,
+        "title": "Utility Types (Partial, Pick, Omit)",
+        "xpReward": 35,
+        "theory": "### Utility Types 📚\n\nUtility Types haqida qisqacha ma'lumot.\n\n```javascript\nPartial<User>\n```",
+        "task": "'Utility' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Utility' ni chiqaring\n",
+        "expectedOutput": "Utility",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Utility",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Utility')\n"
+      },
+      {
+        "id": "ts-07",
+        "order": 7,
+        "title": "Type Guards va Narrowing",
+        "xpReward": 35,
+        "theory": "### Type Guards 📚\n\nType Guards haqida qisqacha ma'lumot.\n\n```javascript\nif (typeof x === 'string')\n```",
+        "task": "'Guard' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Guard' ni chiqaring\n",
+        "expectedOutput": "Guard",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Guard",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Guard')\n"
+      },
+      {
+        "id": "ts-08",
+        "order": 8,
+        "title": "Tuple Types",
+        "xpReward": 40,
+        "theory": "### Tuples 📚\n\nTuples haqida qisqacha ma'lumot.\n\n```javascript\nlet x: [string, number];\n```",
+        "task": "'Tuple' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Tuple' ni chiqaring\n",
+        "expectedOutput": "Tuple",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Tuple",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Tuple')\n"
+      },
+      {
+        "id": "ts-09",
+        "order": 9,
+        "title": "Mapped Types",
+        "xpReward": 40,
+        "theory": "### Mapped Types 📚\n\nMapped Types haqida qisqacha ma'lumot.\n\n```javascript\n{ [P in K]: T }\n```",
+        "task": "'Mapped' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Mapped' ni chiqaring\n",
+        "expectedOutput": "Mapped",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Mapped",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Mapped')\n"
+      },
+      {
+        "id": "ts-10",
+        "order": 10,
+        "title": "Conditional Types",
+        "xpReward": 45,
+        "theory": "### Conditional Types 📚\n\nConditional Types haqida qisqacha ma'lumot.\n\n```javascript\nT extends U ? X : Y\n```",
+        "task": "'Conditional' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Conditional' ni chiqaring\n",
+        "expectedOutput": "Conditional",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Conditional",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Conditional')\n"
+      },
+      {
+        "id": "ts-11",
+        "order": 11,
+        "title": "Modules va Namespaces",
+        "xpReward": 45,
+        "theory": "### Modules 📚\n\nModules haqida qisqacha ma'lumot.\n\n```javascript\nnamespace X { export const y = 1; }\n```",
+        "task": "'Module' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Module' ni chiqaring\n",
+        "expectedOutput": "Module",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Module",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Module')\n"
+      },
+      {
+        "id": "ts-12",
+        "order": 12,
+        "title": "Declaration Files (.d.ts)",
+        "xpReward": 50,
+        "theory": "### Declaration Files 📚\n\nDeclaration Files haqida qisqacha ma'lumot.\n\n```javascript\ndeclare module 'foo'\n```",
+        "task": "'Declaration' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Declaration' ni chiqaring\n",
+        "expectedOutput": "Declaration",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Declaration",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Declaration')\n"
+      },
+      {
+        "id": "ts-13",
+        "order": 13,
+        "title": "Strict Mode va tsconfig",
+        "xpReward": 50,
+        "theory": "### Strict Mode 📚\n\nStrict Mode haqida qisqacha ma'lumot.\n\n```javascript\nstrict: true\n```",
+        "task": "'Strict' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Strict' ni chiqaring\n",
+        "expectedOutput": "Strict",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Strict",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Strict')\n"
+      },
+      {
+        "id": "ts-14",
+        "order": 14,
+        "title": "React + TypeScript asoslari",
+        "xpReward": 50,
+        "theory": "### React TS 📚\n\nReact TS haqida qisqacha ma'lumot.\n\n```javascript\nReact.FC<Props>\n```",
+        "task": "'React' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'React' ni chiqaring\n",
+        "expectedOutput": "React",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "React",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('React')\n"
+      },
+      {
+        "id": "ts-15",
+        "order": 15,
+        "title": "Yakuniy loyiha: Type-safe API client",
+        "xpReward": 50,
+        "theory": "### API Client 📚\n\nAPI Client haqida qisqacha ma'lumot.\n\n```javascript\nasync function get<T>()\n```",
+        "task": "'Client' ni chiqaring.",
+        "hints": [
+          ""
+        ],
+        "initialCode": "// 'Client' ni chiqaring\n",
+        "expectedOutput": "Client",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Client",
+            "label": "Tog'ri javobni kutyapmiz"
+          }
+        ],
+        "solution": "console.log('Client')\n"
+      },
+      {
+        "id": "ts-16",
+        "order": 16,
+        "title": "readonly Xususiyati va as const",
+        "xpReward": 35,
+        "theory": "### O'zgarmas ma'lumotlar: readonly 🔒\n\nTypeScriptda obyekt yoki massiv elementlarini o'zgartirib bo'lmas qilish uchun `readonly` va `as const` qo'llaniladi:\n\n```ts\nconst sozlamalar = { rejim: \"dark\" } as const;\n```",
+        "task": "Konsolga `readonly` so'zini chiqaring.",
+        "hints": [
+          "console.log('readonly');"
+        ],
+        "initialCode": "// 'readonly' matnini chiqaring:\n",
+        "expectedOutput": "readonly",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "readonly",
+            "label": "Konsolga readonly chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('readonly');\n"
+      },
+      {
+        "id": "ts-17",
+        "order": 17,
+        "title": "Type Assertions (as Operatori)",
+        "xpReward": 35,
+        "theory": "### Kompilyatorga aniq tipni aytish 🎯\n\nAgar siz o'zgaruvchi qaysi tipda ekanligini kompilyatordan ko'ra aniqroq bilsangiz, `as` orqali ko'rsatasiz:\n\n```ts\nconst matn: any = \"Salom\";\nconst uzunlik = (matn as string).length;\n```",
+        "task": "Konsolga `assertion` so'zini chiqaring.",
+        "hints": [
+          "console.log('assertion');"
+        ],
+        "initialCode": "// 'assertion' matnini chiqaring:\n",
+        "expectedOutput": "assertion",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "assertion",
+            "label": "Konsolga assertion chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('assertion');\n"
+      },
+      {
+        "id": "ts-18",
+        "order": 18,
+        "title": "Record<K, V> Utility Tipi",
+        "xpReward": 40,
+        "theory": "### Lug'at (Dictionary) tiplash 📖\n\n`Record<KalitTipi, QiymatTipi>` yordamida kalitlari va qiymatlari aniq tipga ega obyektlarni modellashtirish mumkin:\n\n```ts\ntype Narxlar = Record<string, number>;\nconst mevalar: Narxlar = { olma: 5000, anor: 12000 };\n```",
+        "task": "Konsolga `Record` so'zini chiqaring.",
+        "hints": [
+          "console.log('Record');"
+        ],
+        "initialCode": "// 'Record' matnini chiqaring:\n",
+        "expectedOutput": "Record",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Record",
+            "label": "Konsolga Record chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('Record');\n"
+      },
+      {
+        "id": "ts-19",
+        "order": 19,
+        "title": "unknown vs any: Xavfsiz Tiplash",
+        "xpReward": 40,
+        "theory": "### Nega any emas, unknown? 🛡️\n\n`any` barcha tekshiruvlarni o'chirib qo'yadi. `unknown` esa qiymat ustida biror amal bajarishdan oldin uning tipini tekshirishni (`typeof`) majburiy qiladi!",
+        "task": "Konsolga `unknown` so'zini chiqaring.",
+        "hints": [
+          "console.log('unknown');"
+        ],
+        "initialCode": "// 'unknown' matnini chiqaring:\n",
+        "expectedOutput": "unknown",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "unknown",
+            "label": "Konsolga unknown chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('unknown');\n"
+      },
+      {
+        "id": "ts-20",
+        "order": 20,
+        "title": "Function Overloading (Qayta Yuklash)",
+        "xpReward": 40,
+        "theory": "### Bir nechta imzo (Signatures) ✍️\n\nBitta funksiya qabul qilingan parametr turlariga qarab har xil tipdagi natija qaytarishi mumkin.",
+        "task": "Konsolga `overload` so'zini chiqaring.",
+        "hints": [
+          "console.log('overload');"
+        ],
+        "initialCode": "// 'overload' matnini chiqaring:\n",
+        "expectedOutput": "overload",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "overload",
+            "label": "Konsolga overload chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('overload');\n"
+      },
+      {
+        "id": "ts-21",
+        "order": 21,
+        "title": "Index Signatures Dinamik Kalitlar",
+        "xpReward": 40,
+        "theory": "### Dinamik kalitli interfeyslar 🔑\n\n```ts\ninterface Lugat {\n  [key: string]: string;\n}\n```",
+        "task": "Konsolga `dictionary` so'zini chiqaring.",
+        "hints": [
+          "console.log('dictionary');"
+        ],
+        "initialCode": "// 'dictionary' matnini chiqaring:\n",
+        "expectedOutput": "dictionary",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "dictionary",
+            "label": "Konsolga dictionary chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('dictionary');\n"
+      },
+      {
+        "id": "ts-22",
+        "order": 22,
+        "title": "TypeScript Mastery Yakuniy Bosqich",
+        "xpReward": 50,
+        "theory": "### Tabriklaymiz, TypeScript Ustasi! 🏆\n\nSiz TypeScriptning eng ilg'or tiplash tizimi, generics, utility types va arxitekturaviy patternlarini o'zlashtirdingiz!",
+        "task": "Konsolga `TypeScript Ustasi 2026` matnini chiqaring.",
+        "hints": [
+          "console.log('TypeScript Ustasi 2026');"
+        ],
+        "initialCode": "// 'TypeScript Ustasi 2026' matnini chiqaring:\n",
+        "expectedOutput": "TypeScript Ustasi 2026",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "TypeScript Ustasi 2026",
+            "label": "Konsolga TypeScript Ustasi 2026 chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('TypeScript Ustasi 2026');\n"
+      }
+    ]
+  }
+]

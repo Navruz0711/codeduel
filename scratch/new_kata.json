@@ -1,0 +1,120 @@
+[
+  {
+    "id": "say-hello",
+    "title": "Say Hello",
+    "slug": "say-hello",
+    "description": "Berilgan ismga qarab salomlashuvchi matnni qaytaring. Masalan: 'Hello, John'.",
+    "examples": [
+      {
+        "input": "'John'",
+        "output": "'Hello, John'"
+      }
+    ],
+    "difficulty": 8,
+    "category": "Strings",
+    "tags": ["strings", "fundamentals"],
+    "isPremium": false,
+    "languages": {
+      "javascript": {
+        "initialCode": "function sayHello(name) {\n  return 'Hello, ' + name;\n}",
+        "tests": [
+          { "input": "console.log(sayHello('John'))", "expected": "Hello, John", "label": "John" },
+          { "input": "console.log(sayHello('Alice'))", "expected": "Hello, Alice", "label": "Alice" }
+        ]
+      }
+    },
+    "xpReward": 10
+  },
+  {
+    "id": "add-two-numbers",
+    "title": "Add Two Numbers",
+    "slug": "add-two-numbers",
+    "description": "Ikkita sonning yig'indisini hisoblaydigan funksiya yozing.",
+    "examples": [
+      { "input": "5, 3", "output": "8" }
+    ],
+    "difficulty": 8,
+    "category": "Math",
+    "tags": ["math", "fundamentals"],
+    "isPremium": false,
+    "languages": {
+      "javascript": {
+        "initialCode": "function add(a, b) {\n  return a + b;\n}",
+        "tests": [
+          { "input": "console.log(add(5, 3))", "expected": "8", "label": "5 + 3" },
+          { "input": "console.log(add(-1, 2))", "expected": "1", "label": "-1 + 2" }
+        ]
+      }
+    },
+    "xpReward": 10
+  },
+  {
+    "id": "find-max",
+    "title": "Find Maximum",
+    "slug": "find-max",
+    "description": "Berilgan massivdagi eng katta sonni toping.",
+    "examples": [
+      { "input": "[1, 5, 3, 9, 2]", "output": "9" }
+    ],
+    "difficulty": 7,
+    "category": "Arrays",
+    "tags": ["arrays", "math"],
+    "isPremium": false,
+    "languages": {
+      "javascript": {
+        "initialCode": "function findMax(arr) {\n  return Math.max(...arr);\n}",
+        "tests": [
+          { "input": "console.log(findMax([1, 5, 3, 9, 2]))", "expected": "9", "label": "Max 9" },
+          { "input": "console.log(findMax([-5, -1, -10]))", "expected": "-1", "label": "Negative max -1" }
+        ]
+      }
+    },
+    "xpReward": 25
+  },
+  {
+    "id": "reverse-string",
+    "title": "Reverse String",
+    "slug": "reverse-string",
+    "description": "Berilgan matnni teskarisiga o'giruvchi funksiya yozing.",
+    "examples": [
+      { "input": "'hello'", "output": "'olleh'" }
+    ],
+    "difficulty": 6,
+    "category": "Strings",
+    "tags": ["strings", "algorithms"],
+    "isPremium": false,
+    "languages": {
+      "javascript": {
+        "initialCode": "function reverseString(str) {\n  return str.split('').reverse().join('');\n}",
+        "tests": [
+          { "input": "console.log(reverseString('hello'))", "expected": "olleh", "label": "hello" },
+          { "input": "console.log(reverseString('CodeDuel'))", "expected": "leuDedoC", "label": "CodeDuel" }
+        ]
+      }
+    },
+    "xpReward": 40
+  },
+  {
+    "id": "two-sum",
+    "title": "Two Sum",
+    "slug": "two-sum",
+    "description": "Berilgan sonlar massividan shunday ikkita sonning indeksini topingki, ularning yig'indisi `target` ga teng bo'lsin.",
+    "examples": [
+      { "input": "[2, 7, 11, 15], 9", "output": "[0, 1]" }
+    ],
+    "difficulty": 4,
+    "category": "Algorithms",
+    "tags": ["arrays", "hash-table"],
+    "isPremium": true,
+    "languages": {
+      "javascript": {
+        "initialCode": "function twoSum(nums, target) {\n  const map = new Map();\n  for (let i = 0; i < nums.length; i++) {\n    const diff = target - nums[i];\n    if (map.has(diff)) return [map.get(diff), i];\n    map.set(nums[i], i);\n  }\n}",
+        "tests": [
+          { "input": "console.log(JSON.stringify(twoSum([2, 7, 11, 15], 9)))", "expected": "[0,1]", "label": "Target 9" },
+          { "input": "console.log(JSON.stringify(twoSum([3, 2, 4], 6)))", "expected": "[1,2]", "label": "Target 6" }
+        ]
+      }
+    },
+    "xpReward": 100
+  }
+]
