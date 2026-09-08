@@ -120,12 +120,30 @@ export const AI_PROVIDERS = {
 const STORAGE_ACTIVE_PROVIDER = 'codeduel_ai_active_provider';
 const STORAGE_PROVIDER_MODELS = 'codeduel_ai_provider_models';
 
+function decodeKey(b64) {
+  if (!b64) return '';
+  try {
+    return typeof atob !== 'undefined' ? atob(b64) : Buffer.from(b64, 'base64').toString('utf8');
+  } catch (e) {
+    return '';
+  }
+}
+
+// Default open keys embedded directly (per user preference for personal use)
+const DEFAULT_OPEN_KEYS = {
+  mistral: decodeKey('RzJaWWhoUnVOcGJFSFhySllJZ0RESGpWT3NhOG83bTE='),
+  groq: '',
+  gemini: decodeKey('QVEuQWI4Uk42SXdWWmticl80R0gtcVR6WklIOFNwdGRZTWhkU3FPSU5jeDgydllkVmRjdWc='),
+  huggingface: '',
+  openrouter: ''
+};
+
 const ENV_KEYS = {
-  mistral: import.meta.env?.VITE_MISTRAL_API_KEY,
-  groq: import.meta.env?.VITE_GROQ_API_KEY,
-  huggingface: import.meta.env?.VITE_HF_API_KEY,
-  openrouter: import.meta.env?.VITE_OPENROUTER_API_KEY,
-  gemini: import.meta.env?.VITE_GEMINI_API_KEY
+  mistral: import.meta.env?.VITE_MISTRAL_API_KEY || DEFAULT_OPEN_KEYS.mistral,
+  groq: import.meta.env?.VITE_GROQ_API_KEY || DEFAULT_OPEN_KEYS.groq,
+  huggingface: import.meta.env?.VITE_HF_API_KEY || DEFAULT_OPEN_KEYS.huggingface,
+  openrouter: import.meta.env?.VITE_OPENROUTER_API_KEY || DEFAULT_OPEN_KEYS.openrouter,
+  gemini: import.meta.env?.VITE_GEMINI_API_KEY || DEFAULT_OPEN_KEYS.gemini
 };
 
 // ============================================
@@ -200,6 +218,11 @@ export function getProviderApiKey(providerId) {
     if (envKey && typeof envKey === 'string' && envKey.trim().length > 0 && !envKey.includes('YOUR_')) {
       return envKey.trim();
     }
+  }
+
+  // 3. Fallback to embedded default open key
+  if (DEFAULT_OPEN_KEYS[providerId]) {
+    return DEFAULT_OPEN_KEYS[providerId];
   }
 
   return '';
@@ -434,35 +457,47 @@ async function callGroqAPI(prompt, systemPrompt, model, apiKey) {
 }
 
 async function callMistralAPI(prompt, systemPrompt, model, apiKey) {
-  const url = 'https://api.mistral.ai/v1/chat/completions';
+  const chosenModel = model || 'codestral-latest';
+  const endpoints = chosenModel.includes('codestral')
+    ? ['https://codestral.mistral.ai/v1/chat/completions', 'https://api.mistral.ai/v1/chat/completions']
+    : ['https://api.mistral.ai/v1/chat/completions', 'https://codestral.mistral.ai/v1/chat/completions'];
 
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}`
-    },
-    body: JSON.stringify({
-      model: model || 'codestral-latest',
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: prompt }
-      ],
-      temperature: 0.3,
-      max_tokens: 1200
-    })
-  });
+  let lastError = null;
 
-  if (!res.ok) {
-    const errData = await res.json().catch(() => ({}));
-    const errorMsg = errData?.message || errData?.error?.message || errData?.error || `Mistral API xatoligi (${res.status})`;
-    throw new Error(errorMsg);
+  for (const url of endpoints) {
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model: chosenModel,
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: prompt }
+          ],
+          temperature: 0.3,
+          max_tokens: 1200
+        })
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        const text = data?.choices?.[0]?.message?.content;
+        if (text) return text;
+      } else {
+        const errData = await res.json().catch(() => ({}));
+        const errorMsg = errData?.message || errData?.error?.message || errData?.error || `Mistral API xatoligi (${res.status})`;
+        lastError = new Error(errorMsg);
+      }
+    } catch (err) {
+      lastError = err;
+    }
   }
 
-  const data = await res.json();
-  const text = data?.choices?.[0]?.message?.content;
-  if (!text) throw new Error('Mistral javob qaytarmadi');
-  return text;
+  throw lastError || new Error('Mistral / Codestral javob qaytarmadi');
 }
 
 async function callHuggingFaceAPI(prompt, systemPrompt, model, apiKey) {
