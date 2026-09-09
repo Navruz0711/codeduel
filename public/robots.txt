@@ -1,0 +1,13 @@
+# ============================================
+# Robots.txt for CodeDuel Platform
+# ============================================
+User-agent: *
+Allow: /
+
+# Disallow private user states
+Disallow: /api/
+Disallow: /*?*token=*
+
+# Host & Sitemap definition
+Host: https://codeduel.tech
+Sitemap: https://codeduel.tech/sitemap.xml
