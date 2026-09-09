@@ -9,5 +9,5 @@ Disallow: /api/
 Disallow: /*?*token=*
 
 # Host & Sitemap definition
-Host: https://codeduel.tech
-Sitemap: https://codeduel.tech/sitemap.xml
+Host: https://codeduel-sigma.vercel.app
+Sitemap: https://codeduel-sigma.vercel.app/sitemap.xml
