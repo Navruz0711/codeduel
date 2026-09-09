@@ -1474,11 +1474,62 @@ export function renderLessonPlayer(course, lesson, user, handlers) {
   const runBtn = document.getElementById('btn-lesson-run');
   const checkBtn = document.getElementById('btn-lesson-check');
   const resetBtn = document.getElementById('btn-lesson-reset');
+  const formatBtn = document.getElementById('btn-lesson-format');
+  const copyBtn = document.getElementById('btn-lesson-copy');
   const clearConsoleBtn = document.getElementById('btn-lesson-clear-console');
   const consoleOutput = document.getElementById('lesson-console-output');
 
+  // Output tabs (Console vs Live Preview)
+  const tabConsole = document.getElementById('tab-lesson-console');
+  const tabPreview = document.getElementById('tab-lesson-preview');
+  const contentConsole = document.getElementById('lesson-console-tab-content');
+  const contentPreview = document.getElementById('lesson-preview-tab-content');
+
+  const isHtml = (course.language === 'html' || lesson.language === 'html' || lesson.language === 'css' || course.id === 'web-dev-basics');
+
+  if (tabPreview) {
+    tabPreview.style.display = isHtml ? 'inline-block' : 'none';
+  }
+
+  function switchOutputTab(view) {
+    if (view === 'preview') {
+      tabPreview?.classList.add('active');
+      tabConsole?.classList.remove('active');
+      if (contentPreview) contentPreview.style.display = 'block';
+      if (contentConsole) contentConsole.style.display = 'none';
+    } else {
+      tabConsole?.classList.add('active');
+      tabPreview?.classList.remove('active');
+      if (contentConsole) contentConsole.style.display = 'block';
+      if (contentPreview) contentPreview.style.display = 'none';
+    }
+  }
+
+  if (tabConsole) {
+    tabConsole.onclick = () => {
+      sound.playClick();
+      switchOutputTab('console');
+    };
+  }
+
+  if (tabPreview) {
+    tabPreview.onclick = () => {
+      sound.playClick();
+      switchOutputTab('preview');
+    };
+  }
+
+  // Default tab selection: Preview for HTML, Console for others
+  if (isHtml) {
+    switchOutputTab('preview');
+  } else {
+    switchOutputTab('console');
+  }
+
   if (consoleOutput) {
-    consoleOutput.textContent = 'Kodingizni yozib, "Tekshirish" tugmasini bosing...';
+    consoleOutput.textContent = isHtml 
+      ? 'HTML & CSS darsiga xush kelibsiz! Kodingizni yozib, "Kodni Ishga Tushirish" yoki "Tekshirish" tugmasini bosing.'
+      : 'Kodingizni yozib, "Tekshirish" tugmasini bosing...';
     consoleOutput.style.color = 'var(--text-secondary)';
   }
 
@@ -1498,6 +1549,20 @@ export function renderLessonPlayer(course, lesson, user, handlers) {
     resetBtn.onclick = () => {
       sound.playClick();
       if (handlers.onResetCode) handlers.onResetCode();
+    };
+  }
+
+  if (formatBtn) {
+    formatBtn.onclick = () => {
+      sound.playClick();
+      if (handlers.onFormatCode) handlers.onFormatCode();
+    };
+  }
+
+  if (copyBtn) {
+    copyBtn.onclick = () => {
+      sound.playClick();
+      if (handlers.onCopyCode) handlers.onCopyCode();
     };
   }
 

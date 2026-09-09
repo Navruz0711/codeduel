@@ -3,7 +3,9 @@
 // ============================================
 
 const USER_STORAGE_KEY = 'codeduel_user';
+const USER_BACKUP_KEY = 'codeduel_user_backup';
 const SOLUTIONS_STORAGE_KEY = 'codeduel_solutions';
+const SOLUTIONS_BACKUP_KEY = 'codeduel_solutions_backup';
 
 export const AVATARS = [
   '🥷', '🧙', '🦊', '⚔️', '🔥', '🧙‍♂️', '🐛', '📚', 
@@ -61,19 +63,34 @@ function getDefaultUser() {
 export function loadUser() {
   try {
     if (typeof localStorage !== 'undefined') {
-      const data = localStorage.getItem(USER_STORAGE_KEY);
-      if (data) {
-        const user = { ...getDefaultUser(), ...JSON.parse(data) };
+      let raw = localStorage.getItem(USER_STORAGE_KEY);
+      if (!raw) {
+        raw = localStorage.getItem(USER_BACKUP_KEY);
+      }
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        const user = { ...getDefaultUser(), ...parsed };
         if (user.gems === undefined) user.gems = 150;
         if (!user.completedLessons) user.completedLessons = [];
         if (!user.completedCourses) user.completedCourses = [];
+        if (!user.solvedChallenges) user.solvedChallenges = [];
         if (!user.courseProgress) user.courseProgress = {};
         updateStreak(user);
+        saveUser(user);
         return user;
       }
     }
   } catch (e) {
     console.error('Error loading user:', e);
+    try {
+      const backupRaw = localStorage.getItem(USER_BACKUP_KEY);
+      if (backupRaw) {
+        const backupUser = { ...getDefaultUser(), ...JSON.parse(backupRaw) };
+        return backupUser;
+      }
+    } catch (e2) {}
+    // DO NOT overwrite existing corrupted localStorage key!
+    return getDefaultUser();
   }
   const user = getDefaultUser();
   saveUser(user);
@@ -82,11 +99,85 @@ export function loadUser() {
 
 export function saveUser(user) {
   try {
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+    if (typeof localStorage !== 'undefined' && user) {
+      const json = JSON.stringify(user);
+      localStorage.setItem(USER_STORAGE_KEY, json);
+      localStorage.setItem(USER_BACKUP_KEY, json);
     }
   } catch (e) {
     console.error('Error saving user:', e);
+  }
+}
+
+/**
+ * Export all progress, challenges, lessons, and solutions into portable JSON
+ */
+export function exportAllUserData() {
+  const exportData = {
+    version: '2.0',
+    exportedAt: new Date().toISOString(),
+    user: loadUser(),
+    solutions: {},
+    lessonsCode: {}
+  };
+
+  try {
+    if (typeof localStorage !== 'undefined') {
+      exportData.solutions = JSON.parse(localStorage.getItem(SOLUTIONS_STORAGE_KEY) || '{}');
+
+      // Export all lesson code entries
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('lesson_code_')) {
+          exportData.lessonsCode[key] = localStorage.getItem(key);
+        }
+      }
+    }
+  } catch (e) {
+    console.error('Error gathering backup data:', e);
+  }
+
+  return exportData;
+}
+
+/**
+ * Import all progress, challenges, lessons, and solutions from JSON
+ */
+export function importAllUserData(jsonInput) {
+  try {
+    const data = typeof jsonInput === 'string' ? JSON.parse(jsonInput) : jsonInput;
+    if (!data || !data.user) {
+      throw new Error("Noto'g'ri zaxira fayl formati (user topilmadi)");
+    }
+
+    if (typeof localStorage !== 'undefined') {
+      // 1. Restore user
+      const mergedUser = { ...getDefaultUser(), ...data.user };
+      saveUser(mergedUser);
+
+      // 2. Restore solutions
+      if (data.solutions) {
+        const existingSolutions = JSON.parse(localStorage.getItem(SOLUTIONS_STORAGE_KEY) || '{}');
+        const mergedSolutions = { ...existingSolutions, ...data.solutions };
+        localStorage.setItem(SOLUTIONS_STORAGE_KEY, JSON.stringify(mergedSolutions));
+        localStorage.setItem(SOLUTIONS_BACKUP_KEY, JSON.stringify(mergedSolutions));
+      }
+
+      // 3. Restore lesson code
+      if (data.lessonsCode) {
+        Object.entries(data.lessonsCode).forEach(([k, val]) => {
+          if (val !== undefined && val !== null) {
+            localStorage.setItem(k, String(val));
+          }
+        });
+      }
+
+      return { success: true, user: mergedUser };
+    }
+    return { success: false, error: 'localStorage mavjud emas' };
+  } catch (err) {
+    console.error('Import error:', err);
+    return { success: false, error: err.message };
   }
 }
 

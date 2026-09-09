@@ -2,13 +2,12 @@
 // CodeDuel — Main Application Orchestrator
 // Supercharged with 3D Tilt, Particle Canvas, Themes, Daily Loot, and Leagues
 // ============================================
-
 import { initI18n, getLanguage, setLanguage, t } from './i18n.js';
 import { sound } from './audio.js';
-import { loadUser, saveUser, getUserRank, getNextRank, getXPProgress, addXP, markSolved, isSolved, saveSolution, getSolution, recordDuelResult } from './user.js';
+import { loadUser, saveUser, getUserRank, getNextRank, getXPProgress, addXP, markSolved, isSolved, saveSolution, getSolution, recordDuelResult, exportAllUserData, importAllUserData } from './user.js';
 import { checkBadges, getAllBadges, launchConfetti, getLeaderboardData } from './gamification.js';
 import { loadChallenges, getChallenges, getChallenge, filterChallenges, getNextChallenge, getDifficultyColor, parseMarkdown } from './challenges.js';
-import { loadMonaco, createEditor, getEditorValue, setEditorValue, setEditorLanguage, focusEditor, formatCode } from './editor.js';
+import { loadMonaco, createEditor, getEditorValue, setEditorValue, setEditorLanguage, focusEditor, formatCode, MONACO_LANG_MAP } from './editor.js';
 import { runTests, runCustomTest } from './executor.js';
 import {
   AI_PROVIDERS,
@@ -93,6 +92,7 @@ async function init() {
   setupLeaderboardTabs();
   setupCyberDrawer();
   setupAvatarPicker();
+  setupBackupHandlers();
   setupSeasonTicker();
 
   // 8. Initialize 3D Card Tilt on loaded elements
@@ -1369,6 +1369,77 @@ function setupAvatarPicker() {
   });
 }
 
+function setupBackupHandlers() {
+  // 1. Export JSON backup file
+  document.getElementById('btn-backup-export')?.addEventListener('click', () => {
+    sound.playClick();
+    const data = exportAllUserData();
+    const jsonStr = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const dateStr = new Date().toISOString().slice(0, 10);
+    a.href = url;
+    a.download = `codeduel-backup-${dateStr}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast("Zaxira nusxasi yuklab olindi! 💾", "success");
+
+    const statusEl = document.getElementById('backup-status-msg');
+    if (statusEl) {
+      statusEl.style.display = 'block';
+      statusEl.textContent = `✅ Zaxira fayli yaratildi (${data.user.xp} XP, ${data.user.completedLessons.length} dars, ${data.user.solvedChallenges.length} masala saqlandi)`;
+    }
+  });
+
+  // 2. Import JSON backup file
+  document.getElementById('input-backup-import')?.addEventListener('change', (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const res = importAllUserData(ev.target.result);
+      if (res.success) {
+        user = res.user;
+        updateNavbar(user, getUserRank(user));
+        renderProfilePage();
+        sound.playVictory();
+        launchConfetti();
+        showToast("Barcha ma'lumotlar va yechimlar muvaffaqiyatli tiklandi! 🎉", "success");
+        const statusEl = document.getElementById('backup-status-msg');
+        if (statusEl) {
+          statusEl.style.display = 'block';
+          statusEl.textContent = `✅ Muvaffaqiyatli tiklandi: ${user.xp} XP, ${user.completedLessons.length} dars, ${user.solvedChallenges.length} masala!`;
+        }
+      } else {
+        sound.playFail();
+        showToast(`Xatolik: ${res.error}`, "error");
+      }
+    };
+    reader.readAsText(file);
+    // Reset file input value so same file can be re-uploaded if needed
+    e.target.value = '';
+  });
+
+  // 3. Quick Copy JSON to Clipboard
+  document.getElementById('btn-backup-copy-str')?.addEventListener('click', () => {
+    sound.playClick();
+    const data = exportAllUserData();
+    const jsonStr = JSON.stringify(data);
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(jsonStr);
+      showToast("Zaxira matni xotiraga nusxalandi! 📋", "success");
+      const statusEl = document.getElementById('backup-status-msg');
+      if (statusEl) {
+        statusEl.style.display = 'block';
+        statusEl.textContent = "📋 Zaxira JSON matni nusxalandi. Istalgan joyda saqlab qo'yishingiz mumkin.";
+      }
+    }
+  });
+}
+
 // ---- Leaderboard Page ----
 function renderLeaderboardPage() {
   const data = getLeaderboardData();
@@ -1468,7 +1539,7 @@ function renderCoursesPage() {
 
       const filtered = filter === 'all' 
         ? allCourses 
-        : allCourses.filter(c => c.language === filter || c.id.includes(filter));
+        : allCourses.filter(c => c.language === filter || c.id.includes(filter) || (filter === 'html' && (c.language === 'html' || c.id.includes('web'))));
       
       renderCoursesCatalog(filtered, user, (course) => openCourseRoadmap(course));
     };
@@ -1493,7 +1564,7 @@ function openCourseRoadmap(course) {
   );
 }
 
-function openLesson(course, lesson) {
+async function openLesson(course, lesson) {
   currentCourse = course;
   currentLesson = lesson;
   navigateTo('lesson', false);
@@ -1502,18 +1573,29 @@ function openLesson(course, lesson) {
   const fallback = document.getElementById('lesson-fallback-editor');
 
   const rawSaved = localStorage.getItem(`lesson_code_${course.id}_${lesson.id}`);
-  const solCode = lesson.solution || '';
-  const savedCode = (rawSaved && rawSaved.trim() !== solCode.trim())
-    ? rawSaved
-    : lesson.initialCode;
+  const savedCode = rawSaved !== null ? rawSaved : lesson.initialCode;
+
+  // Safely dispose old Monaco instance
+  if (courseEditorInstance) {
+    try {
+      courseEditorInstance.dispose();
+    } catch (e) {}
+    courseEditorInstance = null;
+  }
+
+  const lessonLang = lesson.language || course.language || 'javascript';
+  const monacoLang = MONACO_LANG_MAP[lessonLang] || (lessonLang === 'html' ? 'html' : lessonLang === 'python' ? 'python' : 'javascript');
 
   try {
+    if (!window.monaco) {
+      await loadMonaco();
+    }
+
     if (window.monaco && container) {
       container.innerHTML = '';
-      const lessonLang = lesson.language || course.language || 'javascript';
       courseEditorInstance = monaco.editor.create(container, {
         value: savedCode,
-        language: lessonLang === 'html' ? 'html' : lessonLang === 'python' ? 'python' : 'javascript',
+        language: monacoLang,
         theme: 'codeduel-dark',
         fontFamily: "'JetBrains Mono', monospace",
         fontSize: 14,
@@ -1526,6 +1608,10 @@ function openLesson(course, lesson) {
         const val = courseEditorInstance.getValue();
         localStorage.setItem(`lesson_code_${course.id}_${lesson.id}`, val);
       });
+
+      setTimeout(() => {
+        if (courseEditorInstance) courseEditorInstance.layout();
+      }, 50);
     } else if (fallback) {
       fallback.value = savedCode;
       fallback.oninput = () => {
@@ -1533,7 +1619,13 @@ function openLesson(course, lesson) {
       };
     }
   } catch (err) {
+    console.error('Monaco editor error in lesson:', err);
     if (fallback) fallback.value = savedCode;
+  }
+
+  const isHtml = (course.language === 'html' || lesson.language === 'html' || lesson.language === 'css' || course.id === 'web-dev-basics');
+  if (isHtml) {
+    updateLessonPreview(savedCode);
   }
 
   renderLessonPlayer(course, lesson, user, {
@@ -1544,7 +1636,21 @@ function openLesson(course, lesson) {
       if (courseEditorInstance) courseEditorInstance.setValue(code);
       if (fallback) fallback.value = code;
       localStorage.removeItem(`lesson_code_${course.id}_${lesson.id}`);
+      if (isHtml) updateLessonPreview(code);
       showToast("Kod dastlabki holatiga qaytarildi", "info");
+    },
+    onFormatCode: () => {
+      if (courseEditorInstance) {
+        courseEditorInstance.getAction('editor.action.formatDocument')?.run();
+        showToast("Kod formatlandi ✨", "info");
+      }
+    },
+    onCopyCode: () => {
+      const code = getLessonCurrentCode();
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(code);
+        showToast("Kod nusxalandi 📋", "success");
+      }
     },
     onBackToRoadmap: () => {
       navigateTo('courses', false);
@@ -1565,6 +1671,40 @@ function openLesson(course, lesson) {
   });
 }
 
+function updateLessonPreview(code) {
+  const iframe = document.getElementById('lesson-preview-frame');
+  if (!iframe) return;
+
+  let fullHtml = code;
+  if (!code.includes('<html') && !code.includes('<!DOCTYPE')) {
+    fullHtml = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 16px;
+      color: #1e293b;
+      background: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  ${code}
+</body>
+</html>`;
+  }
+
+  const doc = iframe.contentDocument || iframe.contentWindow?.document;
+  if (doc) {
+    doc.open();
+    doc.write(fullHtml);
+    doc.close();
+  }
+}
+
 function getLessonCurrentCode() {
   if (courseEditorInstance) {
     return courseEditorInstance.getValue();
@@ -1579,9 +1719,10 @@ async function runLessonCode(isCheck = false) {
   const code = getLessonCurrentCode();
   const consoleOutput = document.getElementById('lesson-console-output');
   const lang = currentLesson.language || currentCourse.language;
+  const isHtml = (lang === 'html' || lang === 'css' || currentCourse.id === 'web-dev-basics');
 
   if (consoleOutput) {
-    consoleOutput.textContent = '⏳ Kod bajarilmoqda...';
+    consoleOutput.textContent = '⏳ Kod tekshirilmoqda...';
     consoleOutput.style.color = 'var(--text-secondary)';
   }
 
@@ -1591,7 +1732,16 @@ async function runLessonCode(isCheck = false) {
   let error = null;
 
   try {
-    if (lang === 'javascript' || lang === 'js') {
+    if (isHtml) {
+      updateLessonPreview(code);
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(code, 'text/html');
+      const allElements = Array.from(doc.body.querySelectorAll('*')).map(el => `<${el.tagName.toLowerCase()}>`);
+      const uniqueTags = [...new Set(allElements)];
+      output = `🌐 Jonli veb sahifasi muvaffaqiyatli render qilindi!\n` +
+               `📄 Topilgan elementlar: ${uniqueTags.length ? uniqueTags.join(', ') : 'Matn yoki maxsus stillar'}\n` +
+               `💡 Vizual ko'rinishni "Jonli Ko'rinish" tabida ko'rishingiz mumkin.`;
+    } else if (lang === 'javascript' || lang === 'js') {
       let logs = [];
       const mockConsole = {
         log: (...args) => logs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ')),
@@ -1599,7 +1749,10 @@ async function runLessonCode(isCheck = false) {
         warn: (...args) => logs.push(args.join(' '))
       };
       const fn = new Function('console', code);
-      fn(mockConsole);
+      const returnedVal = fn(mockConsole);
+      if (returnedVal !== undefined && logs.length === 0) {
+        logs.push(typeof returnedVal === 'object' ? JSON.stringify(returnedVal) : String(returnedVal));
+      }
       output = logs.join('\n').trim();
     } else {
       const execResult = await executeCode(code, lang);
@@ -1627,16 +1780,48 @@ async function runLessonCode(isCheck = false) {
   const tests = currentLesson.tests || [];
   let allPassed = true;
 
+  let parsedDoc = null;
+  if (isHtml) {
+    try {
+      parsedDoc = new DOMParser().parseFromString(code, 'text/html');
+    } catch (e) {}
+  }
+
   tests.forEach((t, idx) => {
     const chkEl = document.getElementById(`chk-test-${idx}`);
     let passed = false;
 
-    if (t.type === 'output') {
-      passed = output.includes(t.expected) || output === t.expected;
-    } else if (t.type === 'html') {
-      passed = code.includes(t.expected) || output.includes(t.expected);
+    if (isHtml) {
+      const exp = t.expected;
+      const normalizedCode = code.replace(/\s+/g, ' ').toLowerCase();
+      const normalizedExp = String(exp).replace(/\s+/g, ' ').toLowerCase();
+
+      if (t.type === 'html' || t.type === 'selector') {
+        if (parsedDoc && t.selector) {
+          const el = parsedDoc.querySelector(t.selector);
+          if (el) {
+            passed = t.text ? el.textContent.trim().toLowerCase().includes(String(t.text).toLowerCase()) : true;
+          }
+        } else {
+          passed = normalizedCode.includes(normalizedExp) || (parsedDoc && parsedDoc.body.innerHTML.toLowerCase().includes(normalizedExp));
+        }
+      } else if (t.type === 'css') {
+        passed = normalizedCode.includes(normalizedExp);
+      } else {
+        passed = normalizedCode.includes(normalizedExp) || output.toLowerCase().includes(normalizedExp);
+      }
     } else {
-      passed = output.includes(t.expected);
+      if (t.type === 'output') {
+        const normOut = output.replace(/\s+/g, ' ').trim();
+        const normExp = String(t.expected).replace(/\s+/g, ' ').trim();
+        passed = normOut.includes(normExp) || normOut === normExp;
+      } else if (t.type === 'code') {
+        passed = code.includes(t.expected);
+      } else {
+        const normOut = output.replace(/\s+/g, ' ').trim();
+        const normExp = String(t.expected).replace(/\s+/g, ' ').trim();
+        passed = normOut.includes(normExp) || code.includes(t.expected);
+      }
     }
 
     if (chkEl) {
@@ -1654,7 +1839,7 @@ async function runLessonCode(isCheck = false) {
   });
 
   if (tests.length === 0) {
-    allPassed = !error && output.length > 0;
+    allPassed = !error && (output.length > 0 || isHtml);
   }
 
   if (allPassed && !error) {

@@ -11,7 +11,8 @@
     <!-- Premium Vector Icons: RemixIcon & Devicon -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <!-- Background Ambient & Particle Effects -->
@@ -495,19 +496,20 @@
                         <h2 class="courses-hero-title">Dasturlashni Bosqichma-Bosqich O'rganing</h2>
                         <p class="courses-hero-desc">Quruq videolarsiz, 100% amaliyotga asoslangan darslar. Har bir bosqichda kod yozing, AI murabbiy yordamidan foydalaning va rasmiy sertifikatlarga ega bo'ling!</p>
                         <div class="courses-hero-stats">
-                            <div class="c-stat"><span>5</span> Kurslar</div>
-                            <div class="c-stat"><span>27+</span> Interaktiv Darslar</div>
-                            <div class="c-stat"><span>1,300+</span> Umumiy XP</div>
+                            <div class="c-stat"><span>6</span> Kurslar</div>
+                            <div class="c-stat"><span>180+</span> Interaktiv Darslar</div>
+                            <div class="c-stat"><span>5,000+</span> Umumiy XP</div>
                             <div class="c-stat"><span>🏆</span> Rasmiy Sertifikatlar</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="courses-filter-bar">
-                    <button class="course-filter-btn active" data-filter="all">Barchasi (5)</button>
-                    <button class="course-filter-btn" data-filter="python">🐍 Python</button>
+                    <button class="course-filter-btn active" data-filter="all">Barchasi (6)</button>
                     <button class="course-filter-btn" data-filter="javascript">⚡ JavaScript</button>
                     <button class="course-filter-btn" data-filter="html">🌐 Veb (HTML/CSS)</button>
+                    <button class="course-filter-btn" data-filter="python">🐍 Python</button>
+                    <button class="course-filter-btn" data-filter="typescript">🔷 TypeScript</button>
                     <button class="course-filter-btn" data-filter="algorithms">🧙 Algoritmlar</button>
                     <button class="course-filter-btn" data-filter="sql">🐬 SQL Baza</button>
                 </div>
@@ -611,6 +613,8 @@
                     <div class="lesson-editor-topbar">
                         <div class="editor-lang-tag" id="lesson-editor-lang">Python</div>
                         <div class="editor-controls-group">
+                            <button class="btn btn-ghost btn-xs" id="btn-lesson-format" title="Kodni chiroyli formatlash">🧹 Formatlash</button>
+                            <button class="btn btn-ghost btn-xs" id="btn-lesson-copy" title="Kodni nusxalash">📋 Nusxalash</button>
                             <button class="btn btn-ghost btn-xs" id="btn-lesson-reset" title="Kodni boshlang'ich holatga qaytarish">🔄 Qayta tiklash</button>
                         </div>
                     </div>
@@ -625,11 +629,31 @@
                     </div>
 
                     <div class="lesson-console-panel">
-                        <div class="console-panel-header">
-                            <span>🖥️ Natija & Konsol</span>
-                            <button class="console-clear-btn" id="btn-lesson-clear-console">Tozalash</button>
+                        <div class="lesson-output-tabs-bar">
+                            <div class="lesson-output-tabs">
+                                <button class="lesson-out-tab active" id="tab-lesson-console" data-view="console">🖥️ Natija & Konsol</button>
+                                <button class="lesson-out-tab" id="tab-lesson-preview" data-view="preview" style="display: none;">🌐 Jonli Ko'rinish (Live Web)</button>
+                            </div>
+                            <div class="console-tools">
+                                <button class="console-clear-btn" id="btn-lesson-clear-console">Tozalash</button>
+                            </div>
                         </div>
-                        <pre class="lesson-console-output" id="lesson-console-output">Kodingizni yozib, "Tekshirish" tugmasini bosing...</pre>
+
+                        <div class="lesson-out-content" id="lesson-console-tab-content">
+                            <pre class="lesson-console-output" id="lesson-console-output">Kodingizni yozib, "Tekshirish" tugmasini bosing...</pre>
+                        </div>
+
+                        <div class="lesson-out-content" id="lesson-preview-tab-content" style="display: none;">
+                            <div class="lesson-preview-container">
+                                <div class="lesson-preview-browser-bar">
+                                    <span class="browser-dot dot-red"></span>
+                                    <span class="browser-dot dot-yellow"></span>
+                                    <span class="browser-dot dot-green"></span>
+                                    <span class="browser-address">🌐 codeduel.preview/lesson</span>
+                                </div>
+                                <iframe id="lesson-preview-frame" class="lesson-preview-frame" sandbox="allow-scripts allow-same-origin"></iframe>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1190,6 +1214,30 @@
                         <!-- Generated by JS -->
                     </div>
                 </div>
+
+                <!-- Data Backup & Migration Section (Xavfsiz Saqlash & Zaxira) -->
+                <div class="backup-section tilt-card">
+                    <div class="backup-header">
+                        <div class="backup-icon">💾</div>
+                        <div class="backup-title-box">
+                            <h3>Ma'lumotlarni Saqlash & Zaxira Nusxa (Data Backup)</h3>
+                            <p class="backup-desc">Barcha bajargan darslaringiz, yechilgan masalalar, to'plangan XP va yechim kodingiz doimo xavfsiz. Yangi domen, brauzer yoki GitHub sahifasiga ko'chishda bitta tugma bilan zaxira oling va qayta tiklang!</p>
+                        </div>
+                    </div>
+                    <div class="backup-actions-row">
+                        <button class="btn btn-primary btn-glow btn-sm" id="btn-backup-export">
+                            📥 Zaxira Faylini Yuklab Olish (.json)
+                        </button>
+                        <label class="btn btn-outline btn-sm" for="input-backup-import" style="cursor: pointer; margin: 0;">
+                            📤 Zaxiradan Tiklash (Import JSON)
+                        </label>
+                        <input type="file" id="input-backup-import" accept=".json" style="display: none;">
+                        <button class="btn btn-ghost btn-sm" id="btn-backup-copy-str" title="Kodni xotiraga nusxalash">
+                            📋 Tezkor Nusxa (Clipboard)
+                        </button>
+                    </div>
+                    <div class="backup-status-text" id="backup-status-msg" style="display: none; margin-top: 10px; font-size: 13px; color: var(--accent-green);"></div>
+                </div>
             </div>
         </section>
 
@@ -1672,6 +1720,6 @@
         </button>
     </div>
 
-    <script type="module" src="/src/app.js"></script>
+    <script type="module" src="./src/app.js"></script>
 </body>
 </html>

@@ -14,10 +14,16 @@ let isProgrammaticChange = false;
 
 const MONACO_CDN = 'https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min';
 
-const MONACO_LANG_MAP = {
+export const MONACO_LANG_MAP = {
   javascript: 'javascript',
+  js: 'javascript',
   python: 'python',
+  py: 'python',
   typescript: 'typescript',
+  ts: 'typescript',
+  html: 'html',
+  css: 'css',
+  sql: 'sql',
   cpp: 'cpp',
   java: 'java',
   go: 'go',

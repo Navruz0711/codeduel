@@ -675,7 +675,7 @@
     "level": "Boshlang'ich - O'rta",
     "levelKyu": "7 kyu",
     "language": "javascript",
-    "totalXp": 1155,
+    "totalXp": 1695,
     "badgeId": "js_ninja",
     "certificateTitle": "JavaScript Logic & Modern ES6 Developer",
     "lessons": [
@@ -880,191 +880,191 @@
       {
         "id": "js-10",
         "order": 10,
-        "title": "Closures va Scope",
-        "xpReward": 30,
-        "theory": "### Closures 📚\n\nClosures haqida qisqacha ma'lumot.\n\n```javascript\nfunction init() {\n  var name = 'Mozilla';\n  function displayName() {\n    console.log(name);\n  }\n  displayName();\n}\n```",
-        "task": "'Mozilla' so'zini console orqali chiqaring.",
+        "title": "Closures va Leksik Scope (Qamrov)",
+        "xpReward": 40,
+        "theory": "### Closure (Yopiqlik) Nima? 🔒\nClosure — ichki funksiya o'zi yaratilgan tashqi funksiyaning o'zgaruvchilarini tashqi funksiya tugaganidan keyin ham eslab qolish xususiyatidir.\n\n```javascript\nfunction createGreeter(name) {\n  return function() {\n    return 'Salom ' + name;\n  };\n}\nconst greetAli = createGreeter('Ali');\nconsole.log(greetAli()); // 'Salom Ali'\n```",
+        "task": "`createCounter()` nomli funksiya yozing. U chaqirilganda har gal `count` o'zgaruvchisini 1 ga oshirib boruvchi ichki funksiyani return qilsin (boshlang'ich qiymati 0 bo'lsin). Hosil bo'lgan `counter` ni 2 marta chaqirib natijasini chiqaring.",
         "hints": [
-          "console.log() ishlating"
+          "function createCounter() {\n  let count = 0;\n  return function() {\n    count++;\n    return count;\n  };\n}\nconst counter = createCounter();\ncounter();\nconsole.log(counter());"
         ],
-        "initialCode": "// 'Mozilla' ni chiqaring\n",
-        "expectedOutput": "Mozilla",
+        "initialCode": "function createCounter() {\n  let count = 0;\n  // Ichki funksiyani return qiling\n}\n\nconst counter = createCounter();\ncounter();\nconsole.log(counter());\n",
+        "expectedOutput": "2",
         "tests": [
           {
             "type": "output",
-            "expected": "Mozilla",
-            "label": "Tog'ri javobni kutyapmiz"
+            "expected": "2",
+            "label": "Counter ikkinchi chaqiruvda 2 ni chiqarishi kerak"
           }
         ],
-        "solution": "console.log('Mozilla')\n"
+        "solution": "function createCounter() {\n  let count = 0;\n  return function() {\n    count++;\n    return count;\n  };\n}\n\nconst counter = createCounter();\ncounter();\nconsole.log(counter());\n"
       },
       {
         "id": "js-11",
         "order": 11,
-        "title": "Prototype va this",
-        "xpReward": 35,
-        "theory": "### Prototype & this 📚\n\nPrototype & this haqida qisqacha ma'lumot.\n\n```javascript\nfunction Person(name) { this.name = name; }\n```",
-        "task": "'Ali' ni chiqaring.",
+        "title": "this Kalit So'zi va Obyekt Metodlari",
+        "xpReward": 40,
+        "theory": "### Kontekst Egasini Aniqlash: this 🎯\nObyekt metodlari ichida `this` shu metod tegishli bo'lgan obyektning o'ziga ishora qiladi.\n\n```javascript\nconst user = {\n  name: 'Bobur',\n  greet() {\n    return 'Salom, men ' + this.name;\n  }\n};\nconsole.log(user.greet()); // 'Salom, men Bobur'\n```",
+        "task": "`robot` obyekti yarating. Unda `nom: 'CyberBot'` xossasi va `gapir()` metodi bo'lsin. Metod 'Salom, men CyberBot' matnini `this.nom` orqali hosil qilsin va konsolga chiqaring.",
         "hints": [
-          "console.log"
+          "const robot = {\n  nom: 'CyberBot',\n  gapir() {\n    return 'Salom, men ' + this.nom;\n  }\n};\nconsole.log(robot.gapir());"
         ],
-        "initialCode": "// 'Ali' ni chiqaring\n",
-        "expectedOutput": "Ali",
+        "initialCode": "const robot = {\n  nom: 'CyberBot',\n  gapir() {\n    // this.nom dan foydalaning\n  }\n};\n\nconsole.log(robot.gapir());\n",
+        "expectedOutput": "Salom, men CyberBot",
         "tests": [
           {
             "type": "output",
-            "expected": "Ali",
-            "label": "Tog'ri javobni kutyapmiz"
+            "expected": "Salom, men CyberBot",
+            "label": "Konsolga 'Salom, men CyberBot' chiqishi kerak"
           }
         ],
-        "solution": "console.log('Ali')\n"
+        "solution": "const robot = {\n  nom: 'CyberBot',\n  gapir() {\n    return 'Salom, men ' + this.nom;\n  }\n};\n\nconsole.log(robot.gapir());\n"
       },
       {
         "id": "js-12",
         "order": 12,
-        "title": "Error Handling (try/catch)",
-        "xpReward": 35,
-        "theory": "### try/catch 📚\n\ntry/catch haqida qisqacha ma'lumot.\n\n```javascript\ntry { throw new Error('Xato'); } catch (e) { console.log(e.message); }\n```",
-        "task": "try/catch dan foydalanib 'Xato' ni chiqaring.",
+        "title": "Xatolarni Boshqarish: try / catch / finally",
+        "xpReward": 40,
+        "theory": "### Dasturning Qulashini Oldini Olish 🛡️\n`try / catch` bloki kutilmagan xatoliklarni xavfsiz ushlab qolish va dastur ishlashda davom etishini ta'minlaydi.\n\n```javascript\ntry {\n  // Xatolik yuz berishi mumkin bo'lgan kod\n  throw new Error('Server javob bermadi');\n} catch (error) {\n  console.log('Ushlandi: ' + error.message);\n}\n```",
+        "task": "try ichida `throw new Error('Baza xatosi');` qiling va catch blokida `console.log('Xatolik: ' + err.message);` chiqaring.",
         "hints": [
-          "catch (e)"
+          "try {\n  throw new Error('Baza xatosi');\n} catch (err) {\n  console.log('Xatolik: ' + err.message);\n}"
         ],
-        "initialCode": "// Xato ni chiqaring\n",
-        "expectedOutput": "Xato",
+        "initialCode": "try {\n  // throw new Error() yozing\n} catch (err) {\n  // Xatolikni konsolga chiqaring\n}\n",
+        "expectedOutput": "Xatolik: Baza xatosi",
         "tests": [
           {
             "type": "output",
-            "expected": "Xato",
-            "label": "Tog'ri javobni kutyapmiz"
+            "expected": "Xatolik: Baza xatosi",
+            "label": "'Xatolik: Baza xatosi' chiqishi kerak"
           }
         ],
-        "solution": "console.log('Xato')\n"
+        "solution": "try {\n  throw new Error('Baza xatosi');\n} catch (err) {\n  console.log('Xatolik: ' + err.message);\n}\n"
       },
       {
         "id": "js-13",
         "order": 13,
-        "title": "DOM manipulation asoslari",
+        "title": "Dinamik HTML String Yaratish (DOM Helper)",
         "xpReward": 40,
-        "theory": "### DOM 📚\n\nDOM haqida qisqacha ma'lumot.\n\n```javascript\ndocument.getElementById('id')\n```",
-        "task": "Tasavvur qiling DOM bilan ishlayapsiz. 'DOM' ni chiqaring.",
+        "theory": "### JS orqali HTML Hosil Qilish 🧱\nFront-end dasturlashda massivdagi ma'lumotlarni HTML teglari bilan o'rab chiqish (shablonlashtirish) juda keng qo'llaniladi.\n\n```javascript\nconst items = ['Olma', 'Banan'];\nconst html = items.map(item => '<li>' + item + '</li>').join('');\nconsole.log(html); // '<li>Olma</li><li>Banan</li>'\n```",
+        "task": "Berilgan `kurslar` massividan `.map()` va `.join('')` orqali `<li>HTML</li><li>CSS</li><li>JS</li>` satrini hosil qilib, konsolga chiqaring.",
         "hints": [
-          ""
+          "const kurslar = ['HTML', 'CSS', 'JS'];\nconst html = kurslar.map(k => `<li>${k}</li>`).join('');\nconsole.log(html);"
         ],
-        "initialCode": "// 'DOM' ni chiqaring\n",
-        "expectedOutput": "DOM",
+        "initialCode": "const kurslar = ['HTML', 'CSS', 'JS'];\n// HTML ro'yxat qatorini hosil qilib chiqaring:\n",
+        "expectedOutput": "<li>HTML</li><li>CSS</li><li>JS</li>",
         "tests": [
           {
             "type": "output",
-            "expected": "DOM",
-            "label": "Tog'ri javobni kutyapmiz"
+            "expected": "<li>HTML</li><li>CSS</li><li>JS</li>",
+            "label": "HTML ro'yxati to'g'ri chiqishi kerak"
           }
         ],
-        "solution": "console.log('DOM')\n"
+        "solution": "const kurslar = ['HTML', 'CSS', 'JS'];\nconst html = kurslar.map(k => `<li>${k}</li>`).join('');\nconsole.log(html);\n"
       },
       {
         "id": "js-14",
         "order": 14,
-        "title": "Event Loop va microtasks",
-        "xpReward": 40,
-        "theory": "### Event Loop 📚\n\nEvent Loop haqida qisqacha ma'lumot.\n\n```javascript\nPromise.resolve().then(() => console.log('Microtask'))\n```",
-        "task": "'Microtask' so'zini chiqaring.",
+        "title": "Asinxron Dasturlash: Promise Yaratish",
+        "xpReward": 45,
+        "theory": "### Kelajakdagi Natija: Promise ⏱️\nPromise — kelajakda yakunlanadigan asinxron operatsiya natijasini ifodalovchi obyektdir.\n- `resolve(qiymat)` — muvaffaqiyatli yakun.\n- `reject(xato)` — xatolik bilan yakun.\n- `.then(callback)` — natijani qabul qilish.\n\n```javascript\nconst p = new Promise(resolve => resolve('Muvaffaqiyat'));\np.then(res => console.log(res));\n```",
+        "task": "`Bajarildi` degan qiymat bilan resolve bo'ladigan Promise yarating va uning `.then()` orqali natijasini konsolga chiqaring.",
         "hints": [
-          ""
+          "const p = new Promise(resolve => resolve('Bajarildi'));\np.then(res => console.log(res));"
         ],
-        "initialCode": "// 'Microtask' ni chiqaring\n",
-        "expectedOutput": "Microtask",
+        "initialCode": "const myPromise = new Promise((resolve) => {\n  // resolve chaqiring\n});\n\nmyPromise.then((natija) => {\n  console.log(natija);\n});\n",
+        "expectedOutput": "Bajarildi",
         "tests": [
           {
             "type": "output",
-            "expected": "Microtask",
-            "label": "Tog'ri javobni kutyapmiz"
+            "expected": "Bajarildi",
+            "label": "Konsolga 'Bajarildi' chiqishi kerak"
           }
         ],
-        "solution": "console.log('Microtask')\n"
+        "solution": "const myPromise = new Promise((resolve) => {\n  resolve('Bajarildi');\n});\n\nmyPromise.then((natija) => {\n  console.log(natija);\n});\n"
       },
       {
         "id": "js-15",
         "order": 15,
-        "title": "ES6 modules (import/export)",
-        "xpReward": 45,
-        "theory": "### Modules 📚\n\nModules haqida qisqacha ma'lumot.\n\n```javascript\nimport { name } from './module.js'\n```",
-        "task": "'ES6' so'zini chiqaring.",
+        "title": "Chuqur Destrukturizatsiya va Default Qiymat",
+        "xpReward": 40,
+        "theory": "### Ichma-ich Obyektlarni Ajratish 📦\nObyekt ichidagi obyekt xossalarini bir yo'la ajratib olish va agar mavjud bo'lmasa, sukut bo'yicha qiymat berish:\n\n```javascript\nconst sozlamalar = { mavzu: 'dark' };\nconst { mavzu, til = 'uz' } = sozlamalar;\nconsole.log(til); // 'uz' (chunki yo'q edi)\n```",
+        "task": "`profil` obyektidan `shahar` (mavjud bo'lmagani uchun sukut bo'yicha 'Toshkent') qiymatini ajratib oling va konsolga chiqaring.",
         "hints": [
-          ""
+          "const profil = { ism: 'Anvar' };\nconst { ism, shahar = 'Toshkent' } = profil;\nconsole.log(shahar);"
         ],
-        "initialCode": "// 'ES6' ni chiqaring\n",
-        "expectedOutput": "ES6",
+        "initialCode": "const profil = { ism: 'Anvar' };\n// shahar = 'Toshkent' destrukturizatsiya qiling:\nconst { shahar = 'Toshkent' } = profil;\nconsole.log(shahar);\n",
+        "expectedOutput": "Toshkent",
         "tests": [
           {
             "type": "output",
-            "expected": "ES6",
-            "label": "Tog'ri javobni kutyapmiz"
+            "expected": "Toshkent",
+            "label": "Sukut bo'yicha 'Toshkent' chiqishi kerak"
           }
         ],
-        "solution": "console.log('ES6')\n"
+        "solution": "const profil = { ism: 'Anvar' };\nconst { shahar = 'Toshkent' } = profil;\nconsole.log(shahar);\n"
       },
       {
         "id": "js-16",
         "order": 16,
-        "title": "Regular Expressions",
+        "title": "Regular Expressions (RegExp): Matn Tekshiruvi",
         "xpReward": 45,
-        "theory": "### Regex 📚\n\nRegex haqida qisqacha ma'lumot.\n\n```javascript\nconst re = /ab+c/;\n```",
-        "task": "'Match' so'zini chiqaring.",
+        "theory": "### Shablonga Moslikni Tekshirish: RegExp 🔍\nRegExp orqali matnning kerakli qolipga (masalan, faqat raqamlardan iboratlik yoki email) mosligini `.test()` metodi bilan tekshirish mumkin.\n\n```javascript\nconst raqamlar = /^[0-9]+$/;\nconsole.log(raqamlar.test('12345')); // true\nconsole.log(raqamlar.test('12a45')); // false\n```",
+        "task": "Faqat sonlardan iborat ekanligini tekshiruvchi `/^\\d+$/` regulyar ifodasi orqali '99890' matnini `.test()` qilib, natijasini konsolga chiqaring.",
         "hints": [
-          ""
+          "const reg = /^\\d+$/;\nconsole.log(reg.test('99890'));"
         ],
-        "initialCode": "// 'Match' ni chiqaring\n",
-        "expectedOutput": "Match",
+        "initialCode": "const reg = /^\\d+$/;\n// '99890' ni tekshirib konsolga chiqaring:\n",
+        "expectedOutput": "true",
         "tests": [
           {
             "type": "output",
-            "expected": "Match",
-            "label": "Tog'ri javobni kutyapmiz"
+            "expected": "true",
+            "label": "Konsolga true chiqishi kerak"
           }
         ],
-        "solution": "console.log('Match')\n"
+        "solution": "const reg = /^\\d+$/;\nconsole.log(reg.test('99890'));\n"
       },
       {
         "id": "js-17",
         "order": 17,
-        "title": "Fetch API va JSON",
-        "xpReward": 50,
-        "theory": "### Fetch API 📚\n\nFetch API haqida qisqacha ma'lumot.\n\n```javascript\nfetch('url').then(r => r.json())\n```",
-        "task": "'JSON' so'zini chiqaring.",
+        "title": "JSON bilan Ishlash: stringify va parse",
+        "xpReward": 40,
+        "theory": "### Ma'lumotlarni Saqlash va Uzatish: JSON 📄\n- `JSON.stringify(obyekt)` — JavaScript obyektini matn (string) ko'rinishiga o'tkazadi.\n- `JSON.parse(matn)` — JSON matnini qayta JavaScript obyektiga aylantiradi.\n\n```javascript\nconst jsonStr = '{\"id\": 1, \"status\": \"active\"}';\nconst parsed = JSON.parse(jsonStr);\nconsole.log(parsed.status); // 'active'\n```",
+        "task": "`'{\"status\": 200, \"ok\": true}'` matnini `JSON.parse()` qiling va uning `status` xossasini konsolga chiqaring.",
         "hints": [
-          ""
+          "const data = JSON.parse('{\"status\": 200, \"ok\": true}');\nconsole.log(data.status);"
         ],
-        "initialCode": "// 'JSON' ni chiqaring\n",
-        "expectedOutput": "JSON",
+        "initialCode": "const raw = '{\"status\": 200, \"ok\": true}';\n// JSON.parse qilib status qiymatini chiqaring:\n",
+        "expectedOutput": "200",
         "tests": [
           {
             "type": "output",
-            "expected": "JSON",
-            "label": "Tog'ri javobni kutyapmiz"
+            "expected": "200",
+            "label": "Status 200 chiqishi kerak"
           }
         ],
-        "solution": "console.log('JSON')\n"
+        "solution": "const raw = '{\"status\": 200, \"ok\": true}';\nconst data = JSON.parse(raw);\nconsole.log(data.status);\n"
       },
       {
         "id": "js-18",
         "order": 18,
-        "title": "Yakuniy loyiha: Todo App logikasi",
+        "title": "Amaliy Loyiha: Todo App Logikasi",
         "xpReward": 50,
-        "theory": "### Todo App 📚\n\nTodo App haqida qisqacha ma'lumot.\n\n```javascript\nconst todos = [];\n```",
-        "task": "'Todo' so'zini chiqaring.",
+        "theory": "### Amaliyot: Vazifalar Ro'yxatini Boshqarish 📝\nDasturchining eng birinchi klassik loyihasi — Todo ro'yxatidir.\nUnda massivga yangi obyekt qo'shish, filtrlash va o'chirish amallari bajariladi.",
+        "task": "`todos` massiviga yangi `{ id: 3, text: 'CSS o\\'rganish', done: false }` obyektini qo'shing va `todos.length` ni konsolga chiqaring.",
         "hints": [
-          ""
+          "const todos = [\n  { id: 1, text: 'JS', done: true },\n  { id: 2, text: 'HTML', done: true }\n];\ntodos.push({ id: 3, text: \"CSS o'rganish\", done: false });\nconsole.log(todos.length);"
         ],
-        "initialCode": "// 'Todo' ni chiqaring\n",
-        "expectedOutput": "Todo",
+        "initialCode": "const todos = [\n  { id: 1, text: 'JS', done: true },\n  { id: 2, text: 'HTML', done: true }\n];\n\n// Yangi todo qo'shing va todos.length ni chiqaring:\n",
+        "expectedOutput": "3",
         "tests": [
           {
             "type": "output",
-            "expected": "Todo",
-            "label": "Tog'ri javobni kutyapmiz"
+            "expected": "3",
+            "label": "Massiv uzunligi 3 bo'lishi kerak"
           }
         ],
-        "solution": "console.log('Todo')\n"
+        "solution": "const todos = [\n  { id: 1, text: 'JS', done: true },\n  { id: 2, text: 'HTML', done: true }\n];\ntodos.push({ id: 3, text: \"CSS o'rganish\", done: false });\nconsole.log(todos.length);\n"
       },
       {
         "id": "js-19",
@@ -1324,6 +1324,216 @@
           }
         ],
         "solution": "console.log(\"JavaScript Daho 2026\");\n"
+      },
+      {
+        "id": "js-31",
+        "order": 31,
+        "title": "Massivlarni Saralash: Array.prototype.sort()",
+        "xpReward": 45,
+        "theory": "### Raqamlar va Matnlarni Tartiblash 🔢\nDiqqat: Oddiy `.sort()` sonlarni satr sifatida taqqoslaydi (`[10, 2, 5]` -> `[10, 2, 5]`).\nSonlarni to'g'ri o'sish tartibida saralash uchun taqqoslash funksiyasi beriladi:\n```javascript\nconst sonlar = [40, 100, 1, 5, 25];\nsonlar.sort((a, b) => a - b); // o'sish tartibida\n```",
+        "task": "Berilgan `[15, 3, 99, 1, 24]` sonlar massivini o'sish tartibida saralab, eng kichik birinchi sonini konsolga chiqaring.",
+        "hints": [
+          "const arr = [15, 3, 99, 1, 24];\narr.sort((a, b) => a - b);\nconsole.log(arr[0]);"
+        ],
+        "initialCode": "const sonlar = [15, 3, 99, 1, 24];\n// O'sish tartibida saralab, birinchi sonni chiqaring:\n",
+        "expectedOutput": "1",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "1",
+            "label": "Eng kichik son 1 chiqishi kerak"
+          }
+        ],
+        "solution": "const sonlar = [15, 3, 99, 1, 24];\nsonlar.sort((a, b) => a - b);\nconsole.log(sonlar[0]);\n"
+      },
+      {
+        "id": "js-32",
+        "order": 32,
+        "title": "Chuqur Nusxa Olish: structuredClone()",
+        "xpReward": 45,
+        "theory": "### Sayoz (Shallow) vs Chuqur (Deep) Nusxa 🧬\n`{ ...obj }` spread operatori faqat 1-qavatdagi xossalardan nusxa oladi. Ichki obyektlar esa havola (reference) bo'lib qoladi.\nZamonaviy JavaScriptda to'liq mustaqil chuqur nusxa olish uchun `structuredClone()` funksiyasi qo'shildi!\n\n```javascript\nconst asl = { user: { role: 'admin' } };\nconst nusxa = structuredClone(asl);\nnusxa.user.role = 'user';\nconsole.log(asl.user.role); // 'admin' (o'zgarmadi!)\n```",
+        "task": "`asl` obyektining `structuredClone()` orqali nusxasini oling, uning `settings.theme` qiymatini 'light' qiling va `asl.settings.theme` qiymatini konsolga chiqaring.",
+        "hints": [
+          "const asl = { settings: { theme: 'dark' } };\nconst copy = structuredClone(asl);\ncopy.settings.theme = 'light';\nconsole.log(asl.settings.theme);"
+        ],
+        "initialCode": "const asl = { settings: { theme: 'dark' } };\n// structuredClone orqali nusxa oling va sinab ko'ring:\n",
+        "expectedOutput": "dark",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "dark",
+            "label": "Asl obyekt 'dark' bo'lib qolishi kerak"
+          }
+        ],
+        "solution": "const asl = { settings: { theme: 'dark' } };\nconst copy = structuredClone(asl);\ncopy.settings.theme = 'light';\nconsole.log(asl.settings.theme);\n"
+      },
+      {
+        "id": "js-33",
+        "order": 33,
+        "title": "Debounce Konsepsiyasi: Chaqiruvlarni Cheklash",
+        "xpReward": 50,
+        "theory": "### Qidiruv Maydonlarini Optimallash ⏱️\nFoydalanuvchi har bir harf kiritganda API ga so'rov yuboravermaslik uchun, yozish to'xtaganidan keyingina funksiyani chaqiruvchi usul **Debounce** deb ataladi.\n\n```javascript\nfunction debounce(fn, delay) {\n  let timer;\n  return function(...args) {\n    clearTimeout(timer);\n    timer = setTimeout(() => fn(...args), delay);\n  };\n}\n```",
+        "task": "Debounce logikasini ifodalovchi sodda funksiya tuzing va 'Debounce Tayyor' matnini konsolga chiqaring.",
+        "hints": [
+          "console.log('Debounce Tayyor');"
+        ],
+        "initialCode": "// Debounce mexanizmi konsepsiyasini sinang:\nconsole.log('Debounce Tayyor');\n",
+        "expectedOutput": "Debounce Tayyor",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Debounce Tayyor",
+            "label": "Konsolga 'Debounce Tayyor' chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('Debounce Tayyor');\n"
+      },
+      {
+        "id": "js-34",
+        "order": 34,
+        "title": "Map Ma'lumotlar Tuzilmasi",
+        "xpReward": 45,
+        "theory": "### Obyektdan Kuchliroq: Map 🗺️\nOddiy obyektlarda kalit faqat satr yoki belgi bo'lishi mumkin. `Map` da esa kalit sifatida istalgan turdagi ma'lumot (hatto obyekt yoki funksiya) ham bo'la oladi!\n- `.set(kalit, qiymat)` — qo'shish.\n- `.get(kalit)` — olish.\n- `.has(kalit)` — borligini tekshirish.\n\n```javascript\nconst xarita = new Map();\nxarita.set('id', 42);\nconsole.log(xarita.get('id')); // 42\n```",
+        "task": "Yangi `new Map()` yarating, unda 'kurs' kalitiga 'JavaScript' qiymatini qo'ying va `.get('kurs')` ni konsolga chiqaring.",
+        "hints": [
+          "const map = new Map();\nmap.set('kurs', 'JavaScript');\nconsole.log(map.get('kurs'));"
+        ],
+        "initialCode": "// new Map() yarating va 'kurs' qiymatini chiqaring:\n",
+        "expectedOutput": "JavaScript",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "JavaScript",
+            "label": "Konsolga 'JavaScript' chiqishi kerak"
+          }
+        ],
+        "solution": "const map = new Map();\nmap.set('kurs', 'JavaScript');\nconsole.log(map.get('kurs'));\n"
+      },
+      {
+        "id": "js-35",
+        "order": 35,
+        "title": "Rekursiya (Recursion) Asoslari",
+        "xpReward": 45,
+        "theory": "### O'zini-o'zi Chaqiruvchi Funksiya 🔄\nRekursiya — funksiya o'zining tanasida o'zini qayta chaqirishi.\nEng muhim qoida: to'xtash sharti (**base case**) bo'lishi shart, aks holda dastur cheksiz aylanib xotirani to'ldiradi (Stack Overflow).\n\n```javascript\nfunction faktorial(n) {\n  if (n <= 1) return 1;\n  return n * faktorial(n - 1);\n}\nconsole.log(faktorial(5)); // 120\n```",
+        "task": "5 ning faktorialini (`faktorial(5)`) hisoblovchi rekursiv funksiya yozing va natijasini (120) konsolga chiqaring.",
+        "hints": [
+          "function faktorial(n) {\n  if (n <= 1) return 1;\n  return n * faktorial(n - 1);\n}\nconsole.log(faktorial(5));"
+        ],
+        "initialCode": "function faktorial(n) {\n  // Rekursiv to'xtash sharti va chaqiruv\n}\n\nconsole.log(faktorial(5));\n",
+        "expectedOutput": "120",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "120",
+            "label": "5 ning faktoriali 120 chiqishi kerak"
+          }
+        ],
+        "solution": "function faktorial(n) {\n  if (n <= 1) return 1;\n  return n * faktorial(n - 1);\n}\nconsole.log(faktorial(5));\n"
+      },
+      {
+        "id": "js-36",
+        "order": 36,
+        "title": "Natijalarni Keshlash (Memoization)",
+        "xpReward": 50,
+        "theory": "### Hisob-kitobni Takrorlamaslik: Memoization ⚡\nQimmat amallarni qayta bajarmaslik uchun ularning natijasini xotirada (keshda) saqlab qo'yish tezlikni yuzlab barobarga oshiradi.\n\n```javascript\nconst cache = {};\nfunction kvadrat(n) {\n  if (cache[n]) return cache[n];\n  cache[n] = n * n;\n  return cache[n];\n}\n```",
+        "task": "Kesh obyekti orqali `kvadrat(10)` natijasini hisoblab, konsolga chiqaring.",
+        "hints": [
+          "const cache = {};\nfunction kvadrat(n) {\n  if (cache[n]) return cache[n];\n  return cache[n] = n * n;\n}\nconsole.log(kvadrat(10));"
+        ],
+        "initialCode": "const cache = {};\nfunction kvadrat(n) {\n  // Keshdan tekshiring yoki hisoblang\n}\n\nconsole.log(kvadrat(10));\n",
+        "expectedOutput": "100",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "100",
+            "label": "Natija 100 chiqishi kerak"
+          }
+        ],
+        "solution": "const cache = {};\nfunction kvadrat(n) {\n  if (cache[n]) return cache[n];\n  return cache[n] = n * n;\n}\nconsole.log(kvadrat(10));\n"
+      },
+      {
+        "id": "js-37",
+        "order": 37,
+        "title": "Generator Funksiyalar va yield Operatori",
+        "xpReward": 50,
+        "theory": "### To'xtatib-Davom Ettiriluvchi Funksiyalar ⏸️▶️\nOddiy funksiya boshlanganidan so'ng `return` gacha to'xtovsiz ishlaydi.\n`function*` (generator) esa har safar `yield` da to'xtab, navbatdagi qiymatni qaytaradi va keyingi `.next()` chaqirilishini kutadi.\n\n```javascript\nfunction* sanoq() {\n  yield 1;\n  yield 2;\n}\nconst gen = sanoq();\nconsole.log(gen.next().value); // 1\n```",
+        "task": "Ketma-ket 10 va 20 qiymatlarini yield qiluvchi generator yozing va uning birinchi qiymatini (`.next().value`) chiqaring.",
+        "hints": [
+          "function* raqamlar() {\n  yield 10;\n  yield 20;\n}\nconst g = raqamlar();\nconsole.log(g.next().value);"
+        ],
+        "initialCode": "function* generator() {\n  yield 10;\n  yield 20;\n}\n\nconst g = generator();\nconsole.log(g.next().value);\n",
+        "expectedOutput": "10",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "10",
+            "label": "Birinchi qiymat 10 chiqishi kerak"
+          }
+        ],
+        "solution": "function* generator() {\n  yield 10;\n  yield 20;\n}\nconst g = generator();\nconsole.log(g.next().value);\n"
+      },
+      {
+        "id": "js-38",
+        "order": 38,
+        "title": "Proxy Obyekti va Validatsiya",
+        "xpReward": 50,
+        "theory": "### Obyektni Nazorat Qilish: Proxy 🕵️\nProxy obyekti orqali uning xossalarini o'qish (`get`) yoki yangi qiymat yozish (`set`) jarayonini to'liq nazorat qilish (tutib olish) mumkin.\n\n```javascript\nconst user = { yosh: 20 };\nconst proxy = new Proxy(user, {\n  set(target, prop, val) {\n    if (prop === 'yosh' && val < 0) throw new Error('Yosh manfiy bo\\'lmaydi');\n    target[prop] = val;\n    return true;\n  }\n});\n```",
+        "task": "Proxy orqali manfiy son yozishga urinilganda 'Xatolik' deb chiqaradigan himoyani sinang va konsolga 'Himoyalangan' matnini chiqaring.",
+        "hints": [
+          "console.log('Himoyalangan');"
+        ],
+        "initialCode": "// Proxy orqali obyekt xavfsizligini ta'minlang:\nconsole.log('Himoyalangan');\n",
+        "expectedOutput": "Himoyalangan",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "Himoyalangan",
+            "label": "Konsolga 'Himoyalangan' chiqishi kerak"
+          }
+        ],
+        "solution": "console.log('Himoyalangan');\n"
+      },
+      {
+        "id": "js-39",
+        "order": 39,
+        "title": "Metodlar Zanjiri (Method Chaining / Fluent API)",
+        "xpReward": 50,
+        "theory": "### Ketma-ket Chaqirish: Chaining ⛓️\nObyekt metodlari o'z tanasining oxirida `return this;` qaytarsa, metodlarni zanjir kabi ketma-ket ulash mumkin bo'ladi.\n\n```javascript\nconst kalkulyator = {\n  qiymat: 0,\n  qoshish(n) {\n    this.qiymat += n;\n    return this;\n  },\n  olish() {\n    return this.qiymat;\n  }\n};\n\nconsole.log(kalkulyator.qoshish(5).qoshish(10).olish()); // 15\n```",
+        "task": "`kalkulyator` obyekti tuzing: `qoshish(n)` metodi `this.qiymat += n; return this;` qilsin. 0 dan boshlab 10 va 5 ni qo'shib, `.olish()` orqali 15 natijani chiqaring.",
+        "hints": [
+          "const calc = {\n  val: 0,\n  add(n) { this.val += n; return this; },\n  get() { return this.val; }\n};\nconsole.log(calc.add(10).add(5).get());"
+        ],
+        "initialCode": "const kalkulyator = {\n  qiymat: 0,\n  qoshish(n) {\n    this.qiymat += n;\n    return this;\n  },\n  olish() {\n    return this.qiymat;\n  }\n};\n\nconsole.log(kalkulyator.qoshish(10).qoshish(5).olish());\n",
+        "expectedOutput": "15",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "15",
+            "label": "Chaining natijasi 15 chiqishi kerak"
+          }
+        ],
+        "solution": "const kalkulyator = {\n  qiymat: 0,\n  qoshish(n) {\n    this.qiymat += n;\n    return this;\n  },\n  olish() {\n    return this.qiymat;\n  }\n};\nconsole.log(kalkulyator.qoshish(10).qoshish(5).olish());\n"
+      },
+      {
+        "id": "js-40",
+        "order": 40,
+        "title": "Yakuniy Loyiha: E-Commerce Savat (Cart) Logikasi",
+        "xpReward": 100,
+        "theory": "### Tabriklaymiz! JavaScript Daho Yakuniy Bosqichi 🏆\nHaqiqiy internet-do'konlarda xarid savatini boshqarish eng asosiy vazifalardan biridir.\nUnda:\n- Mahsulotlar ro'yxatini saqlash\n- Umumiy summani `.reduce()` orqali hisoblash\n- Chegirma kuponini qo'llash",
+        "task": "`savat` massividagi mahsulotlar narxini `.reduce()` orqali hisoblang: `[ { narx: 100 }, { narx: 250 } ]` va jami summani (350) konsolga chiqaring.",
+        "hints": [
+          "const savat = [{ narx: 100 }, { narx: 250 }];\nconst jami = savat.reduce((sum, item) => sum + item.narx, 0);\nconsole.log(jami);"
+        ],
+        "initialCode": "const savat = [\n  { nom: 'Klaviatura', narx: 100 },\n  { nom: 'Sichqoncha', narx: 250 }\n];\n\n// .reduce() bilan jami summani hisoblab chiqaring:\n",
+        "expectedOutput": "350",
+        "tests": [
+          {
+            "type": "output",
+            "expected": "350",
+            "label": "Jami summa 350 chiqishi kerak"
+          }
+        ],
+        "solution": "const savat = [\n  { nom: 'Klaviatura', narx: 100 },\n  { nom: 'Sichqoncha', narx: 250 }\n];\nconst jami = savat.reduce((sum, item) => sum + item.narx, 0);\nconsole.log(jami);\n"
       }
     ]
   },
@@ -1337,8 +1547,8 @@
     "gradient": "linear-gradient(135deg, #f97316, #ef4444)",
     "level": "Boshlang'ich",
     "levelKyu": "8 kyu",
-    "language": "javascript",
-    "totalXp": 840,
+    "language": "html",
+    "totalXp": 1520,
     "badgeId": "web_architect",
     "certificateTitle": "Web UI & Responsive Layout Specialist",
     "lessons": [
@@ -1346,463 +1556,956 @@
         "id": "html-01",
         "order": 1,
         "title": "HTML Asoslari: Sarlavhalar va Paragraflar",
-        "xpReward": 25,
-        "theory": "### Vebning skeleti: HTML 🏗️\n\nHTML (HyperText Markup Language) — veb-sahifaning tuzilishini belgilab beradi.\n- `<h1>` dan `<h6>` gacha — sarlavhalar (`<h1>` eng kattasi).\n- `<p>` — matnli xatboshi (paragraph).\n\n```html\n<h1>Mening Portfoliom</h1>\n<p>Men zamonaviy veb dasturchiman.</p>\n```",
-        "task": "`<h1>Salom Dunyo</h1>` va `<p>Men dasturchiman</p>` teglarini o'z ichiga olgan matnni konsolga chiqaring.",
+        "xpReward": 30,
+        "theory": "### Veb Sahifaning Asosi: HTML 🏗️\nHTML (HyperText Markup Language) — veb-sahifaning tuzilishini, skeletini belgilaydi.\n- `<h1>` dan `<h6>` gacha — sarlavhalar teglari (`<h1>` eng asosiy va katta sarlavha).\n- `<p>` — oddiy matnli xatboshi (paragraf).\n\n```html\n<h1>Mening Saytim</h1>\n<p>Dasturlash olamiga xush kelibsiz!</p>\n```",
+        "task": "Sahifaga <h1> tegi orqali 'Salom Dunyo' sarlavhasini va <p> tegi orqali 'Men dasturchiman' matnini yozing.",
         "hints": [
-          "console.log('<h1>Salom Dunyo</h1>\\n<p>Men dasturchiman</p>');"
+          "<h1>Salom Dunyo</h1> va <p>Men dasturchiman</p> yozing."
         ],
-        "initialCode": "// <h1>Salom Dunyo</h1> va <p>Men dasturchiman</p> teglarini konsolga chiqaring:\nconsole.log('...');\n",
+        "initialCode": "<!-- Sarlavha va paragraf yozing: -->\n",
         "expectedOutput": "<h1>Salom Dunyo</h1>\n<p>Men dasturchiman</p>",
         "tests": [
           {
-            "type": "output",
-            "expected": "<h1>Salom Dunyo</h1>\n<p>Men dasturchiman</p>",
-            "label": "HTML teglari to'g'ri chiqishi kerak"
+            "type": "html",
+            "expected": "<h1>salom dunyo</h1>",
+            "label": "<h1>Salom Dunyo</h1> tegi bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "<p>men dasturchiman</p>",
+            "label": "<p>Men dasturchiman</p> tegi bo'lishi kerak"
           }
         ],
-        "solution": "console.log('<h1>Salom Dunyo</h1>\\n<p>Men dasturchiman</p>');\n"
+        "solution": "<h1>Salom Dunyo</h1>\n<p>Men dasturchiman</p>"
       },
       {
         "id": "html-02",
         "order": 2,
-        "title": "Tugmalar va Interaktivlik",
-        "xpReward": 35,
-        "theory": "### Foydalanuvchi bilan aloqa 🔘\n\nTugma yaratish uchun `<button>` tegidan foydalaniladi. Unga `class` berish orqali CSSda o'ziga xos dizayn beramiz.\n\n```html\n<button class=\"btn-primary\">Bosing!</button>\n```",
-        "task": "`<button>Boshlash</button>` satrini konsolga chiqaring.",
+        "title": "Matnni Formatlash: Qalin va Kursiv",
+        "xpReward": 30,
+        "theory": "### Matnlarni Ajratib Ko'rsatish ✍️\n- `<strong>` — muhim, qalin (bold) matn.\n- `<em>` — urg'uli, kursiv (italic) matn.\n- `<mark>` — sariq fon bilan ajratilgan (highlight) matn.\n\n```html\n<p>Bu <strong>juda muhim</strong> va <em>qiziqarli</em> so'z.</p>\n```",
+        "task": "Paragraf ichida <strong> tegi orqali 'Cyber' va <em> tegi orqali 'Security' so'zlarini yozing.",
         "hints": [
-          "console.log('<button>Boshlash</button>');"
+          "<p><strong>Cyber</strong> <em>Security</em></p>"
         ],
-        "initialCode": "// <button>Boshlash</button> tegini konsolga chiqaring:\n",
-        "expectedOutput": "<button>Boshlash</button>",
+        "initialCode": "<p>\n  <!-- Bu yerga yozing -->\n</p>",
+        "expectedOutput": "<strong>Cyber</strong> <em>Security</em>",
         "tests": [
           {
-            "type": "output",
-            "expected": "<button>Boshlash</button>",
-            "label": "Tugma matni 'Boshlash' bo'lishi kerak"
+            "type": "html",
+            "expected": "<strong>cyber</strong>",
+            "label": "<strong>Cyber</strong> tegi bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "<em>security</em>",
+            "label": "<em>Security</em> tegi bo'lishi kerak"
           }
         ],
-        "solution": "console.log('<button>Boshlash</button>');\n"
+        "solution": "<p>\n  <strong>Cyber</strong> <em>Security</em>\n</p>"
       },
       {
         "id": "html-03",
         "order": 3,
-        "title": "CSS Ranglar va Stillar",
-        "xpReward": 45,
-        "theory": "### Saytga jilo berish: CSS 🎨\n\nCSS orqali elementlarning rangi, shrift o'lchami va fonini boshqaramiz:\n\n```css\n.card {\n  background-color: #1e1e2f;\n  color: #00ff88;\n  padding: 15px;\n}\n```",
-        "task": "`color: #00ff88;` CSS qatorini konsolga chiqaring.",
+        "title": "Ro'yxatlar: Tartiblangan va Tartibsiz",
+        "xpReward": 35,
+        "theory": "### Vebda Ro'yxatlar Tuzish 📋\n- `<ul>` (Unordered List) — nuqtali, tartibsiz ro'yxat.\n- `<ol>` (Ordered List) — raqamlangan, tartibli ro'yxat.\n- `<li>` (List Item) — ro'yxatning har bir elementi.\n\n```html\n<ul>\n  <li>JavaScript</li>\n  <li>Python</li>\n</ul>\n```",
+        "task": "<ul> tegi ochib, uning ichida ikkita <li> yarating: 'HTML5' va 'CSS3'.",
         "hints": [
-          "console.log('color: #00ff88;');"
+          "<ul>\n  <li>HTML5</li>\n  <li>CSS3</li>\n</ul>"
         ],
-        "initialCode": "// Matn rangini #00ff88 ga o'zgartiruvchi CSS qoidasini (color: #00ff88;) chiqaring:\n",
-        "expectedOutput": "color: #00ff88;",
+        "initialCode": "<!-- Tartibsiz ro'yxat yarating: -->\n",
+        "expectedOutput": "<ul><li>HTML5</li><li>CSS3</li></ul>",
         "tests": [
           {
-            "type": "output",
-            "expected": "color: #00ff88;",
-            "label": "CSS xususiyati to'g'ri bo'lishi kerak"
+            "type": "html",
+            "expected": "<ul>",
+            "label": "<ul> tegi ochilgan bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "<li>html5</li>",
+            "label": "<li>HTML5</li> elementi bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "<li>css3</li>",
+            "label": "<li>CSS3</li> elementi bo'lishi kerak"
           }
         ],
-        "solution": "console.log('color: #00ff88;');\n"
+        "solution": "<ul>\n  <li>HTML5</li>\n  <li>CSS3</li>\n</ul>"
       },
       {
         "id": "html-04",
         "order": 4,
-        "title": "CSS Flexbox bilan Joylashtirish",
-        "xpReward": 55,
-        "theory": "### Zamonaviy tartiblash: Flexbox 📐\n\nElementlarni yonma-yon yoki o'rtada tekislash uchun `display: flex; justify-content: space-between;` dan foydalaniladi.\n\n```css\n.container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n```",
-        "task": "`display: flex; justify-content: center;` qatorini konsolga chiqaring.",
+        "title": "Giperhavolalar: <a> Tegi va Manzillar",
+        "xpReward": 35,
+        "theory": "### Sahifalararo Bog'lanish: Havolalar 🔗\n`<a>` (anchor) tegi boshqa sahifaga havola yaratish uchun ishlatiladi.\n- `href` atributi boradigan manzilni bildiradi.\n- `target=\"_blank\"` sahifani yangi oynada ochadi.\n\n```html\n<a href=\"https://google.com\" target=\"_blank\">Google qidiruv</a>\n```",
+        "task": "href atributi 'https://codeduel.tech' bo'lgan va ichida 'CodeDuel Saytiga O'tish' matni bo'lgan <a> tegi yarating.",
         "hints": [
-          "console.log('display: flex; justify-content: center;');"
+          "<a href=\"https://codeduel.tech\">CodeDuel Saytiga O'tish</a>"
         ],
-        "initialCode": "// Flexbox qoidalarini (display: flex; justify-content: center;) konsolga chiqaring:\n",
-        "expectedOutput": "display: flex; justify-content: center;",
+        "initialCode": "<!-- Havola yarating: -->\n",
+        "expectedOutput": "<a href=\"https://codeduel.tech\">CodeDuel Saytiga O'tish</a>",
         "tests": [
           {
-            "type": "output",
-            "expected": "display: flex; justify-content: center;",
-            "label": "Flexbox qoidalari to'g'ri chiqishi kerak"
+            "type": "html",
+            "expected": "<a href=\"https://codeduel.tech\"",
+            "label": "href atributi to'g'ri ko'rsatilgan bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "codeduel saytiga o'tish",
+            "label": "Havola matni to'g'ri bo'lishi kerak"
           }
         ],
-        "solution": "console.log('display: flex; justify-content: center;');\n"
+        "solution": "<a href=\"https://codeduel.tech\">CodeDuel Saytiga O'tish</a>"
       },
       {
         "id": "html-05",
         "order": 5,
-        "title": "Kiber Neon Tugma Loyihasi",
-        "xpReward": 60,
-        "theory": "### Kichik Loyiha: Neon Tugma 💡\n\nSoyalar (`box-shadow`) orqali kiber-effekt hosil qilamiz:\n\n```css\nbox-shadow: 0 0 20px rgba(0, 255, 136, 0.6);\n```",
-        "task": "`box-shadow: 0 0 20px #00ff88;` qatorini konsolga chiqaring.",
+        "title": "Rasmlar Joylashtirish: <img> Tegi",
+        "xpReward": 35,
+        "theory": "### Sahifaga Rasm Qo'shish 🖼️\n`<img>` tegi yopiluvchi tegga ega emas (self-closing).\n- `src` — rasm fayli manzili yoki URL.\n- `alt` — rasm yuklanmay qolsa yoki ko'zi ojizlar ekranni o'qiganda chiqadigan matn (Accessibility).\n\n```html\n<img src=\"logo.png\" alt=\"Kompaniya logotipi\" width=\"200\">\n```",
+        "task": "src='https://via.placeholder.com/150' va alt='Avatar' bo'lgan <img> tegi yarating.",
         "hints": [
-          "console.log('box-shadow: 0 0 20px #00ff88;');"
+          "<img src=\"https://via.placeholder.com/150\" alt=\"Avatar\">"
         ],
-        "initialCode": "// Neon nur effektli box-shadow CSS qoidasini (box-shadow: 0 0 20px #00ff88;) chiqaring:\n",
-        "expectedOutput": "box-shadow: 0 0 20px #00ff88;",
+        "initialCode": "<!-- Rasm tegi yozing: -->\n",
+        "expectedOutput": "<img src=\"https://via.placeholder.com/150\" alt=\"Avatar\">",
         "tests": [
           {
-            "type": "output",
-            "expected": "box-shadow: 0 0 20px #00ff88;",
+            "type": "html",
+            "expected": "<img",
+            "label": "<img> tegi bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "src=\"https://via.placeholder.com/150\"",
+            "label": "src atributi to'g'ri bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "alt=\"avatar\"",
+            "label": "alt atributi 'Avatar' bo'lishi kerak"
+          }
+        ],
+        "solution": "<img src=\"https://via.placeholder.com/150\" alt=\"Avatar\">"
+      },
+      {
+        "id": "html-06",
+        "order": 6,
+        "title": "HTML Tugmalar: <button> Tegi",
+        "xpReward": 35,
+        "theory": "### Interaktivlikning Asosi: Tugmalar 🔘\nFoydalanuvchi bosishi va amal bajarishi uchun `<button>` tegi xizmat qiladi.\n\n```html\n<button type=\"button\" class=\"btn\">Meni Bosing</button>\n```",
+        "task": "Matni 'Darsni Boshlash' bo'lgan va class='btn-primary' atributiga ega <button> yarating.",
+        "hints": [
+          "<button class=\"btn-primary\">Darsni Boshlash</button>"
+        ],
+        "initialCode": "<!-- Tugma yarating: -->\n",
+        "expectedOutput": "<button class=\"btn-primary\">Darsni Boshlash</button>",
+        "tests": [
+          {
+            "type": "html",
+            "expected": "<button",
+            "label": "<button> tegi bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "class=\"btn-primary\"",
+            "label": "class='btn-primary' atributi bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "darsni boshlash",
+            "label": "Tugma matni 'Darsni Boshlash' bo'lishi kerak"
+          }
+        ],
+        "solution": "<button class=\"btn-primary\">Darsni Boshlash</button>"
+      },
+      {
+        "id": "html-07",
+        "order": 7,
+        "title": "Formalar va Matnli Inputlar",
+        "xpReward": 35,
+        "theory": "### Foydalanuvchidan Ma'lumot Olish 📝\n`<input>` tegi orqali foydalanuvchi matn, raqam va boshqa ma'lumotlarni kiritadi.\n- `type=\"text\"` — bir qatorli matn maydoni.\n- `placeholder` — maydon bo'shligida ko'rinib turadigan yordamchi matn.\n\n```html\n<input type=\"text\" placeholder=\"Ismingizni kiriting...\">\n```",
+        "task": "type='text' va placeholder='Foydalanuvchi nomi' bo'lgan <input> elementini yozing.",
+        "hints": [
+          "<input type=\"text\" placeholder=\"Foydalanuvchi nomi\">"
+        ],
+        "initialCode": "<!-- Matnli input kiriting: -->\n",
+        "expectedOutput": "<input type=\"text\" placeholder=\"Foydalanuvchi nomi\">",
+        "tests": [
+          {
+            "type": "html",
+            "expected": "type=\"text\"",
+            "label": "type='text' bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "placeholder=\"foydalanuvchi nomi\"",
+            "label": "placeholder to'g'ri kiritilishi kerak"
+          }
+        ],
+        "solution": "<input type=\"text\" placeholder=\"Foydalanuvchi nomi\">"
+      },
+      {
+        "id": "html-08",
+        "order": 8,
+        "title": "Email va Parol Inputlari",
+        "xpReward": 35,
+        "theory": "### Xavfsiz va Maxsus Input Turlari 🔒\nHTML5 kiritish maydonlarining o'rnatilgan tekshiruvlariga ega:\n- `type=\"email\"` — kiritilgan matn email formatida ekanligini (@ belgisi) tekshiradi.\n- `type=\"password\"` — kiritilgan belgilarni yashiradi (nuqtalar shaklida).\n\n```html\n<input type=\"email\" placeholder=\"email@example.com\">\n<input type=\"password\" placeholder=\"Parol\">\n```",
+        "task": "Ketma-ket ikkita input yarating: biri type='email', ikkinchisi type='password'.",
+        "hints": [
+          "<input type=\"email\">\n<input type=\"password\">"
+        ],
+        "initialCode": "<!-- Email va parol inputlarini yozing: -->\n",
+        "expectedOutput": "<input type=\"email\">\n<input type=\"password\">",
+        "tests": [
+          {
+            "type": "html",
+            "expected": "type=\"email\"",
+            "label": "type='email' inputi bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "type=\"password\"",
+            "label": "type='password' inputi bo'lishi kerak"
+          }
+        ],
+        "solution": "<input type=\"email\" placeholder=\"Emailingiz\">\n<input type=\"password\" placeholder=\"Parolingiz\">"
+      },
+      {
+        "id": "html-09",
+        "order": 9,
+        "title": "Checkbox va Radio Tanlovlar",
+        "xpReward": 35,
+        "theory": "### Tanlash Imkoniyatlari: Checkbox & Radio ☑️\n- `type=\"checkbox\"` — ko'p variantlarni tanlash (belgilash).\n- `type=\"radio\"` — faqat bitta variantni tanlash.\n- `<label>` tegi orqali matnni inputga bog'lash mumkin.\n\n```html\n<label>\n  <input type=\"checkbox\" checked> Qoidalarga roziman\n</label>\n```",
+        "task": "type='checkbox' atributiga ega input va yonida 'Qoidalarga roziman' matnini yozing.",
+        "hints": [
+          "<input type=\"checkbox\"> Qoidalarga roziman"
+        ],
+        "initialCode": "<!-- Checkbox yarating: -->\n",
+        "expectedOutput": "<input type=\"checkbox\"> Qoidalarga roziman",
+        "tests": [
+          {
+            "type": "html",
+            "expected": "type=\"checkbox\"",
+            "label": "type='checkbox' bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "qoidalarga roziman",
+            "label": "'Qoidalarga roziman' matni bo'lishi kerak"
+          }
+        ],
+        "solution": "<label>\n  <input type=\"checkbox\"> Qoidalarga roziman\n</label>"
+      },
+      {
+        "id": "html-10",
+        "order": 10,
+        "title": "Textarea va Select Menyusi",
+        "xpReward": 35,
+        "theory": "### Ko'p qatorli matn va Ro'yxatdan tanlash 📜\n- `<textarea rows=\"4\">` — uzun fikr, izoh yoki xabar yozish uchun.\n- `<select>` va `<option>` — ochiluvchi menyu (dropdown).\n\n```html\n<select>\n  <option value=\"uz\">O'zbekcha</option>\n  <option value=\"en\">English</option>\n</select>\n```",
+        "task": "<select> ochib, uning ichida ikkita <option> joylashtiring: 'Toshkent' va 'Samarqand'.",
+        "hints": [
+          "<select>\n  <option>Toshkent</option>\n  <option>Samarqand</option>\n</select>"
+        ],
+        "initialCode": "<!-- Shaharlar tanlash menyusi: -->\n",
+        "expectedOutput": "<select><option>Toshkent</option><option>Samarqand</option></select>",
+        "tests": [
+          {
+            "type": "html",
+            "expected": "<select",
+            "label": "<select> tegi ochilgan bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "toshkent",
+            "label": "Toshkent varianti bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "samarqand",
+            "label": "Samarqand varianti bo'lishi kerak"
+          }
+        ],
+        "solution": "<select>\n  <option>Toshkent</option>\n  <option>Samarqand</option>\n</select>"
+      },
+      {
+        "id": "html-11",
+        "order": 11,
+        "title": "HTML5 Semantik Teglar",
+        "xpReward": 40,
+        "theory": "### Nima uchun Semantika Muhim? 🧭\nHTML5 dagi semantik teglar qidiruv tizimlari (SEO) va brauzerlarga sahifa qismlarini to'g'ri tushunishga yordam beradi.\n- `<header>` — sahifa yoki bo'lim bosh qismi.\n- `<nav>` — navigatsiya menyusi.\n- `<main>` — asosiy kontent.\n- `<footer>` — pastki qism (mualliflik huquqi, ijtimoiy tarmoqlar).\n\n```html\n<header>\n  <nav><a href=\"/\">Bosh sahifa</a></nav>\n</header>\n<main>\n  <p>Asosiy kontent</p>\n</main>\n```",
+        "task": "<header> ichida <nav> tegi va uning ichida <a href='/'>Bosh Sahifa</a> joylashtiring.",
+        "hints": [
+          "<header>\n  <nav>\n    <a href=\"/\">Bosh Sahifa</a>\n  </nav>\n</header>"
+        ],
+        "initialCode": "<!-- Semantik menyu yarating: -->\n",
+        "expectedOutput": "<header><nav><a href=\"/\">Bosh Sahifa</a></nav></header>",
+        "tests": [
+          {
+            "type": "html",
+            "expected": "<header>",
+            "label": "<header> tegi bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "<nav>",
+            "label": "<nav> tegi bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "bosh sahifa",
+            "label": "Bosh Sahifa havolasi bo'lishi kerak"
+          }
+        ],
+        "solution": "<header>\n  <nav>\n    <a href=\"/\">Bosh Sahifa</a>\n  </nav>\n</header>"
+      },
+      {
+        "id": "html-12",
+        "order": 12,
+        "title": "HTML Jadvallar: <table>, <tr>, <td>",
+        "xpReward": 40,
+        "theory": "### Ma'lumotlarni Jadvalda Aks Ettirish 📊\n- `<table>` — jadval konteyneri.\n- `<tr>` (table row) — jadval qatori.\n- `<th>` (table header) — qalin ustun sarlavhasi.\n- `<td>` (table data) — oddiy jadval katakchasi.\n\n```html\n<table>\n  <tr>\n    <th>Ism</th>\n    <th>Ball</th>\n  </tr>\n  <tr>\n    <td>Ali</td>\n    <td>95</td>\n  </tr>\n</table>\n```",
+        "task": "Bitta <tr> qatorida ikkita <td> katakcha yarating: 'HTML' va '100%'.",
+        "hints": [
+          "<table>\n  <tr>\n    <td>HTML</td>\n    <td>100%</td>\n  </tr>\n</table>"
+        ],
+        "initialCode": "<table>\n  <!-- Qator va katakchalarni yozing: -->\n</table>",
+        "expectedOutput": "<table><tr><td>HTML</td><td>100%</td></tr></table>",
+        "tests": [
+          {
+            "type": "html",
+            "expected": "<tr>",
+            "label": "<tr> qatori bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "<td>html</td>",
+            "label": "<td>HTML</td> katakchasi bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "<td>100%</td>",
+            "label": "<td>100%</td> katakchasi bo'lishi kerak"
+          }
+        ],
+        "solution": "<table>\n  <tr>\n    <td>HTML</td>\n    <td>100%</td>\n  </tr>\n</table>"
+      },
+      {
+        "id": "html-13",
+        "order": 13,
+        "title": "HTML Media: Audio va Video",
+        "xpReward": 40,
+        "theory": "### Ovoz va Videolarni Joylashtirish 🎬\nZamonaviy brauzerlar hech qanday plaginlarsiz media fayllarni o'ynata oladi.\n- `<video controls width=\"320\">` — video pleyer, `controls` atributi boshqaruv tugmalarini (play, pause, ovoz) chiqaradi.\n- `<audio controls>` — ovoz pleyeri.\n\n```html\n<video controls width=\"300\" src=\"movie.mp4\"></video>\n```",
+        "task": "controls atributiga ega bo'lgan va src='intro.mp4' ko'rsatilgan <video> tegi yarating.",
+        "hints": [
+          "<video controls src=\"intro.mp4\"></video>"
+        ],
+        "initialCode": "<!-- Video tegi yarating: -->\n",
+        "expectedOutput": "<video controls src=\"intro.mp4\"></video>",
+        "tests": [
+          {
+            "type": "html",
+            "expected": "<video",
+            "label": "<video> tegi bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "controls",
+            "label": "controls atributi bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "src=\"intro.mp4\"",
+            "label": "src='intro.mp4' bo'lishi kerak"
+          }
+        ],
+        "solution": "<video controls src=\"intro.mp4\"></video>"
+      },
+      {
+        "id": "html-14",
+        "order": 14,
+        "title": "Akkordeon: <details> va <summary>",
+        "xpReward": 40,
+        "theory": "### JS-siz Ochiluvchi Bloklar 💡\nHTML5 da JavaScript yozmasdan ham ochilib-yopiluvchi savol-javob (FAQ) bloklarini yasash mumkin!\n- `<details>` — yashirin ma'lumotlar bloki.\n- `<summary>` — sarlavha (boshlang'ichda ko'rinib turadigan qism).\n\n```html\n<details>\n  <summary>Savol: Dasturlash qiyinmi?</summary>\n  <p>Javob: Muntazam amaliyot bilan juda qiziqarli!</p>\n</details>\n```",
+        "task": "<details> tegi ichida <summary>Ko'proq ma'lumot</summary> va uning ostida <p>Bu yashirin matn</p> yozing.",
+        "hints": [
+          "<details>\n  <summary>Ko'proq ma'lumot</summary>\n  <p>Bu yashirin matn</p>\n</details>"
+        ],
+        "initialCode": "<!-- Details va summary yarating: -->\n",
+        "expectedOutput": "<details><summary>Ko'proq ma'lumot</summary><p>Bu yashirin matn</p></details>",
+        "tests": [
+          {
+            "type": "html",
+            "expected": "<details>",
+            "label": "<details> tegi bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "ko'proq ma'lumot",
+            "label": "<summary> sarlavhasi to'g'ri bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "bu yashirin matn",
+            "label": "Yashirin matn kiritilgan bo'lishi kerak"
+          }
+        ],
+        "solution": "<details>\n  <summary>Ko'proq ma'lumot</summary>\n  <p>Bu yashirin matn</p>\n</details>"
+      },
+      {
+        "id": "css-15",
+        "order": 15,
+        "title": "CSS Boshlash: Ranglar va Orqa Fon",
+        "xpReward": 40,
+        "theory": "### Sahifaga Jon Kiritish: CSS 🎨\nCSS (Cascading Style Sheets) — sahifaning dizayni, ranglari va ko'rinishini belgilaydi.\n- `color` — matn rangi.\n- `background-color` — orqa fon rangi.\n\nRanglarni nomlar bilan (`red`), Hex kodi (`#00ff88`) yoki RGB (`rgb(0, 255, 136)`) orqali berish mumkin.\n\n```html\n<style>\n  h1 {\n    color: #00ff88;\n    background-color: #0d0d1a;\n  }\n</style>\n<h1>Yashil Matn</h1>\n```",
+        "task": "<style> tegi ichida h1 uchun color: #00ff88; va background-color: #111; stillarini yozing.",
+        "hints": [
+          "<style>\n  h1 {\n    color: #00ff88;\n    background-color: #111;\n  }\n</style>\n<h1>Kiber Sarlavha</h1>"
+        ],
+        "initialCode": "<style>\n  /* CSS qoidalarini yozing */\n</style>\n<h1>Kiber Sarlavha</h1>",
+        "expectedOutput": "color: #00ff88; background-color: #111;",
+        "tests": [
+          {
+            "type": "css",
+            "expected": "color: #00ff88",
+            "label": "color: #00ff88 bo'lishi kerak"
+          },
+          {
+            "type": "css",
+            "expected": "background-color: #111",
+            "label": "background-color: #111 bo'lishi kerak"
+          }
+        ],
+        "solution": "<style>\n  h1 {\n    color: #00ff88;\n    background-color: #111;\n  }\n</style>\n<h1>Kiber Sarlavha</h1>"
+      },
+      {
+        "id": "css-16",
+        "order": 16,
+        "title": "CSS Shriftlar va Matn Stillari",
+        "xpReward": 40,
+        "theory": "### Matn Tipografiyasi 🔤\n- `font-size` — shrift o'lchami (masalan, `24px`, `1.5rem`).\n- `font-family` — shrift oilasi (masalan, `sans-serif`, `monospace`).\n- `text-align` — matnni tekislash (`center`, `left`, `right`).\n\n```css\np {\n  font-size: 18px;\n  text-align: center;\n}\n```",
+        "task": ".intro klassi uchun font-size: 20px; va text-align: center; qoidalarini yozing.",
+        "hints": [
+          ".intro {\n  font-size: 20px;\n  text-align: center;\n}"
+        ],
+        "initialCode": "<style>\n  .intro {\n    /* Shrift va tekislash stillari */\n  }\n</style>\n<p class=\"intro\">Dasturlash sirlari</p>",
+        "expectedOutput": "font-size: 20px; text-align: center;",
+        "tests": [
+          {
+            "type": "css",
+            "expected": "font-size: 20px",
+            "label": "font-size: 20px bo'lishi kerak"
+          },
+          {
+            "type": "css",
+            "expected": "text-align: center",
+            "label": "text-align: center bo'lishi kerak"
+          }
+        ],
+        "solution": "<style>\n  .intro {\n    font-size: 20px;\n    text-align: center;\n  }\n</style>\n<p class=\"intro\">Dasturlash sirlari</p>"
+      },
+      {
+        "id": "css-17",
+        "order": 17,
+        "title": "CSS Box Model: Padding va Margin",
+        "xpReward": 40,
+        "theory": "### Vebning Eng Muhim Qoidasi: Box Model 📦\nHar bir HTML element quti (box) hisoblanadi:\n- **Content** — element ichidagi asosiy matn yoki rasm.\n- **Padding** — kontent va hoshiya orasidagi ichki bo'shliq.\n- **Border** — element hoshiyasi (chegarasi).\n- **Margin** — boshqa elementlar bilan oradagi tashqi bo'shliq.\n\n```css\n.card {\n  padding: 20px;\n  margin: 15px;\n}\n```",
+        "task": ".box klassi uchun padding: 20px; va margin: 10px; qoidalarini qo'llang.",
+        "hints": [
+          ".box {\n  padding: 20px;\n  margin: 10px;\n}"
+        ],
+        "initialCode": "<style>\n  .box {\n    background: #222;\n    /* padding va margin yozing */\n  }\n</style>\n<div class=\"box\">Box Model Sinovi</div>",
+        "expectedOutput": "padding: 20px; margin: 10px;",
+        "tests": [
+          {
+            "type": "css",
+            "expected": "padding: 20px",
+            "label": "padding: 20px bo'lishi kerak"
+          },
+          {
+            "type": "css",
+            "expected": "margin: 10px",
+            "label": "margin: 10px bo'lishi kerak"
+          }
+        ],
+        "solution": "<style>\n  .box {\n    background: #222;\n    padding: 20px;\n    margin: 10px;\n  }\n</style>\n<div class=\"box\">Box Model Sinovi</div>"
+      },
+      {
+        "id": "css-18",
+        "order": 18,
+        "title": "CSS Chegaralar va Border-Radius",
+        "xpReward": 40,
+        "theory": "### Dumaloq Burchaklar va Ramkalar 🔲\n- `border: 2px solid #00ff88;` — qalinligi, turi va rangi.\n- `border-radius: 12px;` — burchaklarni silliq dumaloq qilish.\n- `border-radius: 50%;` — mukammal doira hosil qiladi.\n\n```css\n.avatar {\n  width: 80px;\n  height: 80px;\n  border: 3px solid #38bdf8;\n  border-radius: 50%;\n}\n```",
+        "task": ".badge uchun border: 2px solid #00ff88; va border-radius: 8px; yozing.",
+        "hints": [
+          ".badge {\n  border: 2px solid #00ff88;\n  border-radius: 8px;\n}"
+        ],
+        "initialCode": "<style>\n  .badge {\n    padding: 8px 16px;\n    /* border va radius yozing */\n  }\n</style>\n<span class=\"badge\">PRO DEV</span>",
+        "expectedOutput": "border: 2px solid #00ff88; border-radius: 8px;",
+        "tests": [
+          {
+            "type": "css",
+            "expected": "border: 2px solid #00ff88",
+            "label": "border to'g'ri bo'lishi kerak"
+          },
+          {
+            "type": "css",
+            "expected": "border-radius: 8px",
+            "label": "border-radius: 8px bo'lishi kerak"
+          }
+        ],
+        "solution": "<style>\n  .badge {\n    padding: 8px 16px;\n    border: 2px solid #00ff88;\n    border-radius: 8px;\n  }\n</style>\n<span class=\"badge\">PRO DEV</span>"
+      },
+      {
+        "id": "css-19",
+        "order": 19,
+        "title": "CSS Soya va Neon Effekt: Box-Shadow",
+        "xpReward": 45,
+        "theory": "### Neon Nur va Soyalar 🌟\n`box-shadow` yordamida chuqurlik va kiber neon nurlanish effektini yaratish mumkin:\n- Sintaksis: `box-shadow: x-offset y-offset blur spread color;`\n\n```css\n.glow-btn {\n  background: #000;\n  color: #00ff88;\n  box-shadow: 0 0 20px #00ff88;\n}\n```",
+        "task": ".neon-card uchun box-shadow: 0 0 20px #00ff88; stilini yozing.",
+        "hints": [
+          ".neon-card {\n  box-shadow: 0 0 20px #00ff88;\n}"
+        ],
+        "initialCode": "<style>\n  .neon-card {\n    padding: 20px;\n    background: #0a0a14;\n    /* Neon nur soyasini yozing */\n  }\n</style>\n<div class=\"neon-card\">Kiber Karta</div>",
+        "expectedOutput": "box-shadow: 0 0 20px #00ff88",
+        "tests": [
+          {
+            "type": "css",
+            "expected": "box-shadow: 0 0 20px #00ff88",
             "label": "Neon box-shadow to'g'ri bo'lishi kerak"
           }
         ],
-        "solution": "console.log('box-shadow: 0 0 20px #00ff88;');\n"
+        "solution": "<style>\n  .neon-card {\n    padding: 20px;\n    background: #0a0a14;\n    box-shadow: 0 0 20px #00ff88;\n  }\n</style>\n<div class=\"neon-card\">Kiber Karta</div>"
       },
       {
-        "id": "web-06",
-        "order": 6,
-        "title": "CSS Flexbox: Markazlashtirish",
-        "xpReward": 35,
-        "theory": "### CSS Flexbox 📐\n\nElementlarni markazga tekislash uchun eng mashhur usul:\n\n```css\n.container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n```",
-        "task": "Konsolga `display: flex` matnini chiqaring.",
-        "hints": [
-          "console.log('display: flex')"
-        ],
-        "initialCode": "// Konsolga 'display: flex' matnini chiqaring:\n",
-        "expectedOutput": "display: flex",
-        "tests": [
-          {
-            "type": "output",
-            "expected": "display: flex",
-            "label": "'display: flex' chiqishi kerak"
-          }
-        ],
-        "solution": "console.log('display: flex');\n"
-      },
-      {
-        "id": "web-07",
-        "order": 7,
-        "title": "CSS Grid: 2-O'lchamli Setkalar",
-        "xpReward": 35,
-        "theory": "### CSS Grid ▦\n\nUstun va qatorlardan iborat kuchli setka maketi:\n\n```css\n.grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 16px;\n}\n```",
-        "task": "Konsolga `display: grid` matnini chiqaring.",
-        "hints": [
-          "console.log('display: grid')"
-        ],
-        "initialCode": "// Konsolga 'display: grid' matnini chiqaring:\n",
-        "expectedOutput": "display: grid",
-        "tests": [
-          {
-            "type": "output",
-            "expected": "display: grid",
-            "label": "'display: grid' chiqishi kerak"
-          }
-        ],
-        "solution": "console.log('display: grid');\n"
-      },
-      {
-        "id": "web-08",
-        "order": 8,
-        "title": "Responsive Design (Media Queries)",
-        "xpReward": 30,
-        "theory": "### Media Queries 📚\n\nMedia Queries haqida qisqacha ma'lumot.\n\n```javascript\n@media (max-width: 600px) {}\n```",
-        "task": "'Responsive' ni chiqaring.",
-        "hints": [
-          ""
-        ],
-        "initialCode": "// 'Responsive' ni chiqaring\n",
-        "expectedOutput": "Responsive",
-        "tests": [
-          {
-            "type": "output",
-            "expected": "Responsive",
-            "label": "Tog'ri javobni kutyapmiz"
-          }
-        ],
-        "solution": "console.log('Responsive')\n"
-      },
-      {
-        "id": "web-09",
-        "order": 9,
-        "title": "CSS Animations va Transitions",
-        "xpReward": 30,
-        "theory": "### Animations 📚\n\nAnimations haqida qisqacha ma'lumot.\n\n```javascript\ntransition: all 0.3s ease;\n```",
-        "task": "'Animation' ni chiqaring.",
-        "hints": [
-          ""
-        ],
-        "initialCode": "// 'Animation' ni chiqaring\n",
-        "expectedOutput": "Animation",
-        "tests": [
-          {
-            "type": "output",
-            "expected": "Animation",
-            "label": "Tog'ri javobni kutyapmiz"
-          }
-        ],
-        "solution": "console.log('Animation')\n"
-      },
-      {
-        "id": "web-10",
-        "order": 10,
-        "title": "HTML Forms va Input turlari",
-        "xpReward": 35,
-        "theory": "### Forms 📚\n\nForms haqida qisqacha ma'lumot.\n\n```javascript\n<input type='text'>\n```",
-        "task": "'Form' ni chiqaring.",
-        "hints": [
-          ""
-        ],
-        "initialCode": "// 'Form' ni chiqaring\n",
-        "expectedOutput": "Form",
-        "tests": [
-          {
-            "type": "output",
-            "expected": "Form",
-            "label": "Tog'ri javobni kutyapmiz"
-          }
-        ],
-        "solution": "console.log('Form')\n"
-      },
-      {
-        "id": "web-11",
-        "order": 11,
-        "title": "CSS Variables (Custom Properties)",
-        "xpReward": 35,
-        "theory": "### Variables 📚\n\nVariables haqida qisqacha ma'lumot.\n\n```javascript\n--main-color: #333;\n```",
-        "task": "'Variable' ni chiqaring.",
-        "hints": [
-          ""
-        ],
-        "initialCode": "// 'Variable' ni chiqaring\n",
-        "expectedOutput": "Variable",
-        "tests": [
-          {
-            "type": "output",
-            "expected": "Variable",
-            "label": "Tog'ri javobni kutyapmiz"
-          }
-        ],
-        "solution": "console.log('Variable')\n"
-      },
-      {
-        "id": "web-12",
-        "order": 12,
-        "title": "Position va Z-index",
-        "xpReward": 40,
-        "theory": "### Position 📚\n\nPosition haqida qisqacha ma'lumot.\n\n```javascript\nposition: absolute;\n```",
-        "task": "'Position' ni chiqaring.",
-        "hints": [
-          ""
-        ],
-        "initialCode": "// 'Position' ni chiqaring\n",
-        "expectedOutput": "Position",
-        "tests": [
-          {
-            "type": "output",
-            "expected": "Position",
-            "label": "Tog'ri javobni kutyapmiz"
-          }
-        ],
-        "solution": "console.log('Position')\n"
-      },
-      {
-        "id": "web-13",
-        "order": 13,
-        "title": "Pseudo-classes va Pseudo-elements",
-        "xpReward": 40,
-        "theory": "### Pseudo 📚\n\nPseudo haqida qisqacha ma'lumot.\n\n```javascript\n:hover {}\n```",
-        "task": "'Pseudo' ni chiqaring.",
-        "hints": [
-          ""
-        ],
-        "initialCode": "// 'Pseudo' ni chiqaring\n",
-        "expectedOutput": "Pseudo",
-        "tests": [
-          {
-            "type": "output",
-            "expected": "Pseudo",
-            "label": "Tog'ri javobni kutyapmiz"
-          }
-        ],
-        "solution": "console.log('Pseudo')\n"
-      },
-      {
-        "id": "web-14",
-        "order": 14,
-        "title": "Accessibility (a11y) asoslari",
-        "xpReward": 45,
-        "theory": "### a11y 📚\n\na11y haqida qisqacha ma'lumot.\n\n```javascript\naria-label='button'\n```",
-        "task": "'a11y' ni chiqaring.",
-        "hints": [
-          ""
-        ],
-        "initialCode": "// 'a11y' ni chiqaring\n",
-        "expectedOutput": "a11y",
-        "tests": [
-          {
-            "type": "output",
-            "expected": "a11y",
-            "label": "Tog'ri javobni kutyapmiz"
-          }
-        ],
-        "solution": "console.log('a11y')\n"
-      },
-      {
-        "id": "web-15",
-        "order": 15,
-        "title": "Yakuniy loyiha: Portfolio sahifa",
-        "xpReward": 50,
-        "theory": "### Portfolio 📚\n\nPortfolio haqida qisqacha ma'lumot.\n\n```javascript\n<h1>Portfolio</h1>\n```",
-        "task": "'Portfolio' ni chiqaring.",
-        "hints": [
-          ""
-        ],
-        "initialCode": "// 'Portfolio' ni chiqaring\n",
-        "expectedOutput": "Portfolio",
-        "tests": [
-          {
-            "type": "output",
-            "expected": "Portfolio",
-            "label": "Tog'ri javobni kutyapmiz"
-          }
-        ],
-        "solution": "console.log('Portfolio')\n"
-      },
-      {
-        "id": "web-16",
-        "order": 16,
-        "title": "CSS Box-Shadow va Glassmorphism",
-        "xpReward": 25,
-        "theory": "### Zamonaviy Soya va Shisha (Glassmorphism) Effekti 🔮\n\nZamonaviy veb-dizaynda elementlarga chuqurlik berish uchun `box-shadow` va orqa fonni xiralashtiruvchi `backdrop-filter` ishlatiladi:\n\n```css\n.karta {\n  background: rgba(255, 255, 255, 0.05);\n  backdrop-filter: blur(10px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);\n  border: 1px solid rgba(255, 255, 255, 0.1);\n  border-radius: 12px;\n}\n```",
-        "task": "Konsolga `Glassmorphism effekti: backdrop-filter: blur()` matnini chiqaring.",
-        "hints": [
-          "console.log(\"Glassmorphism effekti: backdrop-filter: blur()\")"
-        ],
-        "initialCode": "// Matnni konsolga chiqaring:\n",
-        "expectedOutput": "Glassmorphism effekti: backdrop-filter: blur()",
-        "tests": [
-          {
-            "type": "output",
-            "expected": "Glassmorphism effekti: backdrop-filter: blur()",
-            "label": "Konsolga xabar chiqishi kerak"
-          }
-        ],
-        "solution": "console.log(\"Glassmorphism effekti: backdrop-filter: blur()\");\n"
-      },
-      {
-        "id": "web-17",
-        "order": 17,
-        "title": "CSS Borders va Border-Radius",
-        "xpReward": 35,
-        "theory": "### Dumaloq burchaklar va hoshiyalar 🔘\n\nCSS da elementlarning burchaklarini yumaloqlash uchun `border-radius` ishlatiladi:\n- `border-radius: 8px;` — engil yumaloqlash.\n- `border-radius: 50%;` — mukammal doira hosil qilish.\n\n```css\n.avatar {\n  width: 100px;\n  height: 100px;\n  border-radius: 50%;\n}\n```",
-        "task": "`border-radius: 50%;` satrini konsolga chiqaring.",
-        "hints": [
-          "console.log('border-radius: 50%;');"
-        ],
-        "initialCode": "// border-radius: 50%; ni chiqaring:\n",
-        "expectedOutput": "border-radius: 50%;",
-        "tests": [
-          {
-            "type": "output",
-            "expected": "border-radius: 50%;",
-            "label": "Konsolga border-radius: 50%; chiqishi kerak"
-          }
-        ],
-        "solution": "console.log('border-radius: 50%;');\n"
-      },
-      {
-        "id": "web-18",
-        "order": 18,
-        "title": "HTML Semantik Teglar: main, nav, footer",
-        "xpReward": 35,
-        "theory": "### Semantik HTML nima? 🏷️\n\nOddiy `<div>` o'rniga ma'noga ega teglardan foydalanish sahifaning qidiruv tizimlari (SEO) va qulaylik (a11y) darajasini oshiradi:\n- `<header>` — sahifa yoki bo'lim bosh qismi\n- `<nav>` — asosiy menyu navigatsiyasi\n- `<main>` — sahifaning asosiy kontenti\n- `<footer>` — sahifa ost qismi\n\n```html\n<main>\n  <p>Asosiy maqola</p>\n</main>\n```",
-        "task": "`<main>Asosiy qism</main>` tegini konsolga chiqaring.",
-        "hints": [
-          "console.log('<main>Asosiy qism</main>');"
-        ],
-        "initialCode": "// <main>Asosiy qism</main> tegini chiqaring:\n",
-        "expectedOutput": "<main>Asosiy qism</main>",
-        "tests": [
-          {
-            "type": "output",
-            "expected": "<main>Asosiy qism</main>",
-            "label": "Konsolga <main>Asosiy qism</main> chiqishi kerak"
-          }
-        ],
-        "solution": "console.log('<main>Asosiy qism</main>');\n"
-      },
-      {
-        "id": "web-19",
-        "order": 19,
-        "title": "CSS Transition va Silliq Animatsiya",
-        "xpReward": 35,
-        "theory": "### Silliq o'zgarishlar: transition 🎬\n\nElement ustiga sichqoncha kelganda (hover) birdaniga emas, silliq o'zgarishi uchun `transition` xossasi qo'llaniladi:\n\n```css\n.btn {\n  transition: all 0.3s ease;\n}\n.btn:hover {\n  transform: translateY(-2px);\n}\n```",
-        "task": "`transition: all 0.3s ease;` satrini konsolga chiqaring.",
-        "hints": [
-          "console.log('transition: all 0.3s ease;');"
-        ],
-        "initialCode": "// transition: all 0.3s ease; ni chiqaring:\n",
-        "expectedOutput": "transition: all 0.3s ease;",
-        "tests": [
-          {
-            "type": "output",
-            "expected": "transition: all 0.3s ease;",
-            "label": "Konsolga transition: all 0.3s ease; chiqishi kerak"
-          }
-        ],
-        "solution": "console.log('transition: all 0.3s ease;');\n"
-      },
-      {
-        "id": "web-20",
+        "id": "css-20",
         "order": 20,
-        "title": "CSS Overflow Xossasi",
-        "xpReward": 35,
-        "theory": "### Toshishni boshqarish: overflow 🌊\n\nAgar ichki kontent ota blok o'lchamidan katta bo'lib ketsa, nima sodir bo'lishini `overflow` belgilaydi:\n- `visible` — tashqariga chiqib turadi (standart).\n- `hidden` — ortiqcha qismini kesib tashlaydi.\n- `scroll` yoki `auto` — aylantirish (skroll) chizig'ini chiqaradi.\n\n```css\n.card {\n  overflow: hidden;\n}\n```",
-        "task": "`overflow: hidden;` satrini konsolga chiqaring.",
+        "title": "CSS Display Xususiyatlari",
+        "xpReward": 40,
+        "theory": "### Elementlarni Qanday Ko'rsatish: Display 🖥️\n- `display: block;` — butun qatorni egallaydi (masalan, `<div>`, `<p>`).\n- `display: inline;` — faqat matn sig'adigan joyni oladi (`<span>`, `<a>`).\n- `display: inline-block;` — yonma-yon turadi, lekin width/height qabul qiladi.\n- `display: none;` — elementni ko'rinmas qiladi va joyini bo'shatadi.\n\n```css\n.menu-item {\n  display: inline-block;\n  padding: 10px;\n}\n```",
+        "task": ".tag klassi uchun display: inline-block; xususiyatini yozing.",
         "hints": [
-          "console.log('overflow: hidden;');"
+          ".tag {\n  display: inline-block;\n}"
         ],
-        "initialCode": "// overflow: hidden; ni chiqaring:\n",
-        "expectedOutput": "overflow: hidden;",
+        "initialCode": "<style>\n  .tag {\n    /* display xususiyati */\n    padding: 4px 8px;\n  }\n</style>\n<span class=\"tag\">HTML</span>\n<span class=\"tag\">CSS</span>",
+        "expectedOutput": "display: inline-block",
         "tests": [
           {
-            "type": "output",
-            "expected": "overflow: hidden;",
-            "label": "Konsolga overflow: hidden; chiqishi kerak"
+            "type": "css",
+            "expected": "display: inline-block",
+            "label": "display: inline-block bo'lishi kerak"
           }
         ],
-        "solution": "console.log('overflow: hidden;');\n"
+        "solution": "<style>\n  .tag {\n    display: inline-block;\n    padding: 4px 8px;\n  }\n</style>\n<span class=\"tag\">HTML</span>\n<span class=\"tag\">CSS</span>"
       },
       {
-        "id": "web-21",
+        "id": "css-21",
         "order": 21,
-        "title": "HTML Audio va Video Teglari",
-        "xpReward": 40,
-        "theory": "### Multimedia integratsiyasi 🎵\n\nBrauzerda audio fayllarni o'ynatish uchun `<audio>` tegi ishlatiladi:\n\n```html\n<audio controls>\n  <source src=\"music.mp3\" type=\"audio/mpeg\">\n</audio>\n```",
-        "task": "`<audio controls></audio>` tegini konsolga chiqaring.",
+        "title": "CSS Flexbox Asoslari va Markazlashtirish",
+        "xpReward": 45,
+        "theory": "### Zamonaviy Joylashtirish: Flexbox 🎯\nFlexbox — elementlarni gorizontal va vertikal joylashtirishning eng qulay usuli.\n- `display: flex;` — ota elementni moslashuvchan konteyner qiladi.\n- `justify-content: center;` — elementlarni asosiy o'q bo'yicha markazga suradi.\n- `align-items: center;` — elementlarni perpendikulyar o'q bo'yicha markazga keltiradi.\n\n```css\n.container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n```",
+        "task": ".flex-center konteyneri uchun display: flex; va justify-content: center; stillarini yozing.",
         "hints": [
-          "console.log('<audio controls></audio>');"
+          ".flex-center {\n  display: flex;\n  justify-content: center;\n}"
         ],
-        "initialCode": "// <audio controls></audio> ni chiqaring:\n",
-        "expectedOutput": "<audio controls></audio>",
+        "initialCode": "<style>\n  .flex-center {\n    /* flex va justify-content yozing */\n  }\n</style>\n<div class=\"flex-center\">\n  <button>Markazdagi Tugma</button>\n</div>",
+        "expectedOutput": "display: flex; justify-content: center;",
         "tests": [
           {
-            "type": "output",
-            "expected": "<audio controls></audio>",
-            "label": "Konsolga <audio controls></audio> chiqishi kerak"
+            "type": "css",
+            "expected": "display: flex",
+            "label": "display: flex bo'lishi kerak"
+          },
+          {
+            "type": "css",
+            "expected": "justify-content: center",
+            "label": "justify-content: center bo'lishi kerak"
           }
         ],
-        "solution": "console.log('<audio controls></audio>');\n"
+        "solution": "<style>\n  .flex-center {\n    display: flex;\n    justify-content: center;\n  }\n</style>\n<div class=\"flex-center\">\n  <button>Markazdagi Tugma</button>\n</div>"
       },
       {
-        "id": "web-22",
+        "id": "css-22",
         "order": 22,
-        "title": "HTML details va summary (Akkordeon)",
-        "xpReward": 40,
-        "theory": "### JavaScript-siz ochiq/yopiq bloklar 📂\n\nKo'p so'raladigan savollar (FAQ) uchun maxsus HTML teglari mavjud:\n\n```html\n<details>\n  <summary>Savol nomi</summary>\n  <p>Javob matni shu yerda bo'ladi.</p>\n</details>\n```",
-        "task": "`<details><summary>FAQ</summary></details>` tegini konsolga chiqaring.",
+        "title": "Flexbox Yo'nalishlari va Gap Oralig'i",
+        "xpReward": 45,
+        "theory": "### Ustun shaklida va oraliqlar bilan 📐\n- `flex-direction: column;` — bolalarni ustun shaklida (tepadan pastga) tizadi.\n- `gap: 16px;` — flex elementlar orasiga toza oraliq qo'shadi (margin shart emas!).\n\n```css\n.column-box {\n  display: flex;\n  flex-direction: column;\n  gap: 12px;\n}\n```",
+        "task": ".sidebar uchun display: flex;, flex-direction: column; va gap: 16px; qoidalarini yozing.",
         "hints": [
-          "console.log('<details><summary>FAQ</summary></details>');"
+          ".sidebar {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n}"
         ],
-        "initialCode": "// <details><summary>FAQ</summary></details> ni chiqaring:\n",
-        "expectedOutput": "<details><summary>FAQ</summary></details>",
+        "initialCode": "<style>\n  .sidebar {\n    /* Flexbox ustun va gap stillari */\n  }\n</style>\n<div class=\"sidebar\">\n  <a>Profil</a>\n  <a>Sozlamalar</a>\n</div>",
+        "expectedOutput": "display: flex; flex-direction: column; gap: 16px;",
         "tests": [
           {
-            "type": "output",
-            "expected": "<details><summary>FAQ</summary></details>",
-            "label": "Konsolga <details><summary>FAQ</summary></details> chiqishi kerak"
+            "type": "css",
+            "expected": "display: flex",
+            "label": "display: flex bo'lishi kerak"
+          },
+          {
+            "type": "css",
+            "expected": "flex-direction: column",
+            "label": "flex-direction: column bo'lishi kerak"
+          },
+          {
+            "type": "css",
+            "expected": "gap: 16px",
+            "label": "gap: 16px bo'lishi kerak"
           }
         ],
-        "solution": "console.log('<details><summary>FAQ</summary></details>');\n"
+        "solution": "<style>\n  .sidebar {\n    display: flex;\n    flex-direction: column;\n    gap: 16px;\n  }\n</style>\n<div class=\"sidebar\">\n  <a>Profil</a>\n  <a>Sozlamalar</a>\n</div>"
+      },
+      {
+        "id": "css-23",
+        "order": 23,
+        "title": "CSS Grid Asoslari: 2 O'lchamli Setka",
+        "xpReward": 45,
+        "theory": "### Murakkab Setkalar Qiroli: CSS Grid 🏁\nFlexbox bir o'lchamli (satr yoki ustun) bo'lsa, Grid ikkala o'lchamda bir vaqtda ishlaydi.\n- `display: grid;` — grid konteyner yaratadi.\n- `grid-template-columns: repeat(3, 1fr);` — 3 ta teng ustun ochadi (`1fr` = 1 erkin qism).\n- `gap: 20px;` — kataklar orasi masofasi.\n\n```css\n.gallery {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 15px;\n}\n```",
+        "task": ".grid-box uchun display: grid; va grid-template-columns: repeat(3, 1fr); yozing.",
+        "hints": [
+          ".grid-box {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n}"
+        ],
+        "initialCode": "<style>\n  .grid-box {\n    /* CSS Grid qoidalari */\n  }\n</style>\n<div class=\"grid-box\">\n  <div>1</div>\n  <div>2</div>\n  <div>3</div>\n</div>",
+        "expectedOutput": "display: grid; grid-template-columns: repeat(3, 1fr);",
+        "tests": [
+          {
+            "type": "css",
+            "expected": "display: grid",
+            "label": "display: grid bo'lishi kerak"
+          },
+          {
+            "type": "css",
+            "expected": "grid-template-columns: repeat(3, 1fr)",
+            "label": "grid-template-columns to'g'ri bo'lishi kerak"
+          }
+        ],
+        "solution": "<style>\n  .grid-box {\n    display: grid;\n    grid-template-columns: repeat(3, 1fr);\n  }\n</style>\n<div class=\"grid-box\">\n  <div>1</div>\n  <div>2</div>\n  <div>3</div>\n</div>"
+      },
+      {
+        "id": "css-24",
+        "order": 24,
+        "title": "CSS Position: Relative va Absolute",
+        "xpReward": 45,
+        "theory": "### Elementlarni Istalgan Joyga Surish: Position 📍\n- `position: relative;` — element o'z joyida qoladi, lekin ichidagi absolute bolalarga koordinata asosi (boshlang'ich nuqta) bo'ladi.\n- `position: absolute;` — eng yaqin relative ota elementga nisbatan aniq joylashadi (`top`, `right`, `bottom`, `left`).\n\n```css\n.parent {\n  position: relative;\n}\n.badge {\n  position: absolute;\n  top: 0;\n  right: 0;\n}\n```",
+        "task": ".badge elementi uchun position: absolute; va top: 0; yozing.",
+        "hints": [
+          ".badge {\n  position: absolute;\n  top: 0;\n}"
+        ],
+        "initialCode": "<style>\n  .badge {\n    /* Absolute joylashuv yozing */\n    background: red;\n    color: #fff;\n  }\n</style>\n<div style=\"position: relative; width: 100px; height: 100px; background: #333;\">\n  <span class=\"badge\">Yangi</span>\n</div>",
+        "expectedOutput": "position: absolute; top: 0;",
+        "tests": [
+          {
+            "type": "css",
+            "expected": "position: absolute",
+            "label": "position: absolute bo'lishi kerak"
+          },
+          {
+            "type": "css",
+            "expected": "top: 0",
+            "label": "top: 0 bo'lishi kerak"
+          }
+        ],
+        "solution": "<style>\n  .badge {\n    position: absolute;\n    top: 0;\n    background: red;\n    color: #fff;\n  }\n</style>\n<div style=\"position: relative; width: 100px; height: 100px; background: #333;\">\n  <span class=\"badge\">Yangi</span>\n</div>"
+      },
+      {
+        "id": "css-25",
+        "order": 25,
+        "title": "CSS Z-Index: Qatlamlar Ierarxiyasi",
+        "xpReward": 45,
+        "theory": "### Qaysi Element Tepada Turadi? 🥞\n`z-index` elementi ekranning uchinchi (chuqurlik) o'qi bo'ylab qaysi qatlamda turishini belgilaydi.\n- Faqat `position` qiymati `relative`, `absolute` yoki `fixed` bo'lgan elementlarda ishlaydi.\n- Yuqoriroq raqam pastroq raqam ustiga chiqadi.\n\n```css\n.modal {\n  position: fixed;\n  z-index: 999;\n}\n```",
+        "task": ".modal qatlamiga z-index: 100; qiymatini bering.",
+        "hints": [
+          ".modal {\n  position: fixed;\n  z-index: 100;\n}"
+        ],
+        "initialCode": "<style>\n  .modal {\n    position: fixed;\n    /* z-index yozing */\n  }\n</style>\n<div class=\"modal\">Modal Oyna</div>",
+        "expectedOutput": "z-index: 100",
+        "tests": [
+          {
+            "type": "css",
+            "expected": "z-index: 100",
+            "label": "z-index: 100 bo'lishi kerak"
+          }
+        ],
+        "solution": "<style>\n  .modal {\n    position: fixed;\n    z-index: 100;\n  }\n</style>\n<div class=\"modal\">Modal Oyna</div>"
+      },
+      {
+        "id": "css-26",
+        "order": 26,
+        "title": "CSS Hover Effekti va Psevdo-sinflar",
+        "xpReward": 45,
+        "theory": "### Sichqoncha Kelganda O'zgarish: :hover 🖱️\n- `:hover` — sichqoncha kursor bilan element ustiga kelganda stillarni o'zgartiradi.\n- `:active` — element bosib turilganda.\n- `:focus` — inputga kursorni qo'yganda.\n\n```css\nbutton:hover {\n  background-color: #00ff88;\n  color: #000;\n}\n```",
+        "task": "button:hover uchun background-color: #00ff88; stilini yozing.",
+        "hints": [
+          "button:hover {\n  background-color: #00ff88;\n}"
+        ],
+        "initialCode": "<style>\n  button {\n    background: #222;\n    color: #fff;\n  }\n  /* button:hover yozing */\n</style>\n<button>Meni Ustiga Keling</button>",
+        "expectedOutput": "button:hover { background-color: #00ff88; }",
+        "tests": [
+          {
+            "type": "css",
+            "expected": "button:hover",
+            "label": "button:hover psevdo-sinfi bo'lishi kerak"
+          },
+          {
+            "type": "css",
+            "expected": "background-color: #00ff88",
+            "label": "background-color: #00ff88 bo'lishi kerak"
+          }
+        ],
+        "solution": "<style>\n  button {\n    background: #222;\n    color: #fff;\n  }\n  button:hover {\n    background-color: #00ff88;\n  }\n</style>\n<button>Meni Ustiga Keling</button>"
+      },
+      {
+        "id": "css-27",
+        "order": 27,
+        "title": "CSS Transitions: Silliq Animatsiyalar",
+        "xpReward": 45,
+        "theory": "### Keskinlikdan Silliqlikka: Transition ⚡\nHolat o'zgarganda (masalan, :hover paytida) stillar to'satdan emas, silliq o'tishi uchun `transition` qo'llaniladi.\n- Sintaksis: `transition: qaysi_xususiyat vaqt egri_chiziq;`\n- Masalan: `transition: all 0.3s ease;`\n\n```css\nbutton {\n  transition: all 0.3s ease;\n}\n```",
+        "task": ".card uchun transition: all 0.3s ease; qoidasini yozing.",
+        "hints": [
+          ".card {\n  transition: all 0.3s ease;\n}"
+        ],
+        "initialCode": "<style>\n  .card {\n    padding: 20px;\n    background: #111;\n    /* transition qo'shing */\n  }\n</style>\n<div class=\"card\">Silliq Karta</div>",
+        "expectedOutput": "transition: all 0.3s ease",
+        "tests": [
+          {
+            "type": "css",
+            "expected": "transition: all 0.3s ease",
+            "label": "transition: all 0.3s ease bo'lishi kerak"
+          }
+        ],
+        "solution": "<style>\n  .card {\n    padding: 20px;\n    background: #111;\n    transition: all 0.3s ease;\n  }\n</style>\n<div class=\"card\">Silliq Karta</div>"
+      },
+      {
+        "id": "css-28",
+        "order": 28,
+        "title": "CSS O'zgaruvchilari (Custom Properties)",
+        "xpReward": 50,
+        "theory": "### Toza va Qayta Ishlatiluvchi Stillar 🎛️\nCSS o'zgaruvchilari yordamida butun sayt bo'ylab rang va stillarni bir joydan boshqarish mumkin.\n- E'lon qilish: `--neon-green: #00ff88;` (odatda `:root` ichida).\n- Ishlatish: `var(--neon-green)`.\n\n```css\n:root {\n  --primary: #00ff88;\n}\nh1 {\n  color: var(--primary);\n}\n```",
+        "task": ":root ichida --main-color: #00ff88; o'zgaruvchisini yarating va .text da color: var(--main-color); sifatida ishlating.",
+        "hints": [
+          ":root {\n  --main-color: #00ff88;\n}\n.text {\n  color: var(--main-color);\n}"
+        ],
+        "initialCode": "<style>\n  :root {\n    /* --main-color o'zgaruvchisini e'lon qiling */\n  }\n  .text {\n    /* var() orqali rang bering */\n  }\n</style>\n<p class=\"text\">O'zgaruvchili Rang</p>",
+        "expectedOutput": "--main-color: #00ff88; color: var(--main-color);",
+        "tests": [
+          {
+            "type": "css",
+            "expected": "--main-color: #00ff88",
+            "label": "--main-color o'zgaruvchisi e'lon qilingan bo'lishi kerak"
+          },
+          {
+            "type": "css",
+            "expected": "var(--main-color)",
+            "label": "var(--main-color) ishlatilgan bo'lishi kerak"
+          }
+        ],
+        "solution": "<style>\n  :root {\n    --main-color: #00ff88;\n  }\n  .text {\n    color: var(--main-color);\n  }\n</style>\n<p class=\"text\">O'zgaruvchili Rang</p>"
+      },
+      {
+        "id": "css-29",
+        "order": 29,
+        "title": "CSS Transform: Masshtab va Aylantirish",
+        "xpReward": 50,
+        "theory": "### Shakllarni Deformatsiya Qilish: Transform 🌀\n- `transform: scale(1.1);` — elementni 10% kattalashtirish.\n- `transform: rotate(45deg);` — 45 darajaga burish.\n- `transform: translateY(-5px);` — 5 piksel yuqoriga surish.\n\n```css\n.btn:hover {\n  transform: translateY(-4px) scale(1.02);\n}\n```",
+        "task": ".icon:hover uchun transform: scale(1.1); stilini yozing.",
+        "hints": [
+          ".icon:hover {\n  transform: scale(1.1);\n}"
+        ],
+        "initialCode": "<style>\n  .icon {\n    font-size: 32px;\n  }\n  /* .icon:hover transform yozing */\n</style>\n<div class=\"icon\">🚀</div>",
+        "expectedOutput": ".icon:hover { transform: scale(1.1); }",
+        "tests": [
+          {
+            "type": "css",
+            "expected": ".icon:hover",
+            "label": ".icon:hover psevdo-sinfi bo'lishi kerak"
+          },
+          {
+            "type": "css",
+            "expected": "transform: scale(1.1)",
+            "label": "transform: scale(1.1) bo'lishi kerak"
+          }
+        ],
+        "solution": "<style>\n  .icon {\n    font-size: 32px;\n  }\n  .icon:hover {\n    transform: scale(1.1);\n  }\n</style>\n<div class=\"icon\">🚀</div>"
+      },
+      {
+        "id": "css-30",
+        "order": 30,
+        "title": "CSS Keyframes va Maxsus Animatsiya",
+        "xpReward": 50,
+        "theory": "### O'z Harakatlaringizni Yarating: @keyframes 🎞️\n`@keyframes` orqali vaqt bo'yicha mustaqil harakatlanuvchi murakkab animatsiyalar tuziladi.\n\n```css\n@keyframes pulse {\n  0% { opacity: 0.5; }\n  100% { opacity: 1; }\n}\n\n.pulsing {\n  animation: pulse 1s infinite alternate;\n}\n```",
+        "task": "@keyframes pulse qoidasini yozing va .dot uchun animation: pulse 2s infinite; qilib ulang.",
+        "hints": [
+          "@keyframes pulse {\n  from { opacity: 0.2; }\n  to { opacity: 1; }\n}\n.dot {\n  animation: pulse 2s infinite;\n}"
+        ],
+        "initialCode": "<style>\n  /* @keyframes pulse va .dot animation yozing */\n</style>\n<div class=\"dot\" style=\"width: 20px; height: 20px; background: #00ff88; border-radius: 50%;\"></div>",
+        "expectedOutput": "@keyframes pulse animation: pulse 2s infinite",
+        "tests": [
+          {
+            "type": "css",
+            "expected": "@keyframes pulse",
+            "label": "@keyframes pulse e'lon qilingan bo'lishi kerak"
+          },
+          {
+            "type": "css",
+            "expected": "animation: pulse 2s infinite",
+            "label": "animation: pulse 2s infinite qo'llangan bo'lishi kerak"
+          }
+        ],
+        "solution": "<style>\n  @keyframes pulse {\n    from { opacity: 0.2; }\n    to { opacity: 1; }\n  }\n  .dot {\n    animation: pulse 2s infinite;\n  }\n</style>\n<div class=\"dot\" style=\"width: 20px; height: 20px; background: #00ff88; border-radius: 50%;\"></div>"
+      },
+      {
+        "id": "css-31",
+        "order": 31,
+        "title": "CSS Glassmorphism: Shaffof Oyna Effekti",
+        "xpReward": 50,
+        "theory": "### Zamonaviy UI Trend: Glassmorphism 🪟\nZamonaviy interfeyslarda muzlatilgan shaffof oyna effekti juda mashhur.\n- `background: rgba(255, 255, 255, 0.1);` — yarim-shaffof fon.\n- `backdrop-filter: blur(10px);` — orqa fondagi narsalarni xiralashtirish (blur).\n- `border: 1px solid rgba(255, 255, 255, 0.2);` — yupqa oynasimon hoshiya.\n\n```css\n.glass {\n  background: rgba(255, 255, 255, 0.1);\n  backdrop-filter: blur(10px);\n}\n```",
+        "task": ".glass-panel uchun background: rgba(255, 255, 255, 0.1); va backdrop-filter: blur(10px); stillarini yozing.",
+        "hints": [
+          ".glass-panel {\n  background: rgba(255, 255, 255, 0.1);\n  backdrop-filter: blur(10px);\n}"
+        ],
+        "initialCode": "<style>\n  .glass-panel {\n    padding: 24px;\n    border-radius: 16px;\n    /* Glassmorphism stillari */\n  }\n</style>\n<div class=\"glass-panel\">Glassmorphism Paneli</div>",
+        "expectedOutput": "background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);",
+        "tests": [
+          {
+            "type": "css",
+            "expected": "rgba(255, 255, 255, 0.1)",
+            "label": "Shaffof oq fon bo'lishi kerak"
+          },
+          {
+            "type": "css",
+            "expected": "backdrop-filter: blur(10px)",
+            "label": "backdrop-filter: blur(10px) bo'lishi kerak"
+          }
+        ],
+        "solution": "<style>\n  .glass-panel {\n    padding: 24px;\n    border-radius: 16px;\n    background: rgba(255, 255, 255, 0.1);\n    backdrop-filter: blur(10px);\n  }\n</style>\n<div class=\"glass-panel\">Glassmorphism Paneli</div>"
+      },
+      {
+        "id": "css-32",
+        "order": 32,
+        "title": "CSS Gradients: Ranglar Uyg'unligi",
+        "xpReward": 50,
+        "theory": "### Go'zal Rang O'tishlari: Gradients 🌈\nBir rangdan ikkinchisiga silliq o'tish saytga yuqori sifatli (premium) ko'rinish beradi.\n- `linear-gradient(yo'nalish, rang1, rang2)` — chiziqli gradient.\n- `background: linear-gradient(135deg, #00ff88, #38bdf8);`\n\n```css\n.gradient-btn {\n  background: linear-gradient(90deg, #a855f7, #ec4899);\n}\n```",
+        "task": ".header-bg uchun background: linear-gradient(90deg, #00ff88, #38bdf8); stilini yozing.",
+        "hints": [
+          ".header-bg {\n  background: linear-gradient(90deg, #00ff88, #38bdf8);\n}"
+        ],
+        "initialCode": "<style>\n  .header-bg {\n    height: 100px;\n    /* linear-gradient yozing */\n  }\n</style>\n<div class=\"header-bg\"></div>",
+        "expectedOutput": "linear-gradient(90deg, #00ff88, #38bdf8)",
+        "tests": [
+          {
+            "type": "css",
+            "expected": "linear-gradient(90deg, #00ff88, #38bdf8)",
+            "label": "linear-gradient to'g'ri bo'lishi kerak"
+          }
+        ],
+        "solution": "<style>\n  .header-bg {\n    height: 100px;\n    background: linear-gradient(90deg, #00ff88, #38bdf8);\n  }\n</style>\n<div class=\"header-bg\"></div>"
+      },
+      {
+        "id": "css-33",
+        "order": 33,
+        "title": "Responsive Design: @media So'rovlari",
+        "xpReward": 50,
+        "theory": "### Telefon va Kompyuterga Moslashish 📱💻\nSaytingiz har xil o'lchamdagi ekranlarda chiroyli ko'rinishi uchun media so'rovlar ishlatiladi.\n- `@media (max-width: 768px)` — ekran kengligi 768px dan kichik bo'lganda (planshet va telefonlarda) ishlaydi.\n\n```css\n@media (max-width: 768px) {\n  .menu {\n    flex-direction: column;\n  }\n}\n```",
+        "task": "@media (max-width: 768px) ichida .container uchun flex-direction: column; stilini yozing.",
+        "hints": [
+          "@media (max-width: 768px) {\n  .container {\n    flex-direction: column;\n  }\n}"
+        ],
+        "initialCode": "<style>\n  .container {\n    display: flex;\n  }\n  /* Media query yozing */\n</style>\n<div class=\"container\">\n  <div>1</div>\n  <div>2</div>\n</div>",
+        "expectedOutput": "@media (max-width: 768px) flex-direction: column;",
+        "tests": [
+          {
+            "type": "css",
+            "expected": "@media (max-width: 768px)",
+            "label": "@media (max-width: 768px) bo'lishi kerak"
+          },
+          {
+            "type": "css",
+            "expected": "flex-direction: column",
+            "label": "flex-direction: column bo'lishi kerak"
+          }
+        ],
+        "solution": "<style>\n  .container {\n    display: flex;\n  }\n  @media (max-width: 768px) {\n    .container {\n      flex-direction: column;\n    }\n  }\n</style>\n<div class=\"container\">\n  <div>1</div>\n  <div>2</div>\n</div>"
+      },
+      {
+        "id": "web-34",
+        "order": 34,
+        "title": "Amaliy Loyiha: Kiber Profil Kartochkasi",
+        "xpReward": 60,
+        "theory": "### Amaliyot: O'z Kiber Kartochkangizni Yasang 🃏\nHozirgacha o'rganilgan HTML va CSS bilimlarini birlashtirib, zamonaviy Neon dasturchi kartochkasini yarating.\nUnda:\n- Kartochka qutisi (`.card`)\n- Dumaloq rasm yoki avatar\n- Ism va kasb sarlavhasi\n- Neon hoshiya va soya",
+        "task": ".profile-card klassiga border-radius: 16px; va box-shadow: 0 0 25px #00ff88; bering, ichida <h3>DevNinja</h3> va <button class='btn-follow'>Kuzatish</button> yarating.",
+        "hints": [
+          "<style>\n.profile-card {\n  border-radius: 16px;\n  box-shadow: 0 0 25px #00ff88;\n  padding: 20px;\n  background: #111;\n}\n</style>\n<div class=\"profile-card\">\n  <h3>DevNinja</h3>\n  <button class=\"btn-follow\">Kuzatish</button>\n</div>"
+        ],
+        "initialCode": "<style>\n  .profile-card {\n    padding: 20px;\n    background: #0d0d17;\n    /* Stillarni yozing */\n  }\n</style>\n<div class=\"profile-card\">\n  <!-- HTML elementlarni yozing -->\n</div>",
+        "expectedOutput": "border-radius: 16px; box-shadow: 0 0 25px #00ff88; DevNinja",
+        "tests": [
+          {
+            "type": "css",
+            "expected": "border-radius: 16px",
+            "label": "border-radius: 16px bo'lishi kerak"
+          },
+          {
+            "type": "css",
+            "expected": "box-shadow: 0 0 25px #00ff88",
+            "label": "Neon box-shadow bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "<h3>devninja</h3>",
+            "label": "<h3>DevNinja</h3> sarlavhasi bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "class=\"btn-follow\"",
+            "label": "class='btn-follow' tugmasi bo'lishi kerak"
+          }
+        ],
+        "solution": "<style>\n  .profile-card {\n    padding: 20px;\n    background: #0d0d17;\n    border-radius: 16px;\n    box-shadow: 0 0 25px #00ff88;\n  }\n</style>\n<div class=\"profile-card\">\n  <h3>DevNinja</h3>\n  <button class=\"btn-follow\">Kuzatish</button>\n</div>"
+      },
+      {
+        "id": "web-35",
+        "order": 35,
+        "title": "Yakuniy Loyiha: Zamonaviy Hero Landing Sektsiyasi",
+        "xpReward": 100,
+        "theory": "### Tabriklaymiz! Yakuniy Veb Loyiha 🚀\nSaytga tashrif buyuruvchini birinchi kutib oluvchi eng muhim qism — bu Hero sektsiyasidir.\nUnda:\n- Katta ta'sirchan sarlavha (`<h1>`)\n- Qiziqtiruvchi izoh matni (`<p>`)\n- Harakatga undovchi asosiy tugma (`<button>`)\n- Flexbox yoki Grid bilan markazlashtirilgan chiroyli dizayn.",
+        "task": ".hero klassiga display: flex; va justify-content: center; stillarini bering. Ichida <h1>Kelajak Kodi</h1>, <p>Dasturlashni bugun boshlang</p> va <button class='btn-hero'>Boshlash</button> joylashtiring.",
+        "hints": [
+          "<style>\n.hero {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n</style>\n<section class=\"hero\">\n  <h1>Kelajak Kodi</h1>\n  <p>Dasturlashni bugun boshlang</p>\n  <button class=\"btn-hero\">Boshlash</button>\n</section>"
+        ],
+        "initialCode": "<style>\n  .hero {\n    /* Flexbox stillari */\n  }\n</style>\n<section class=\"hero\">\n  <!-- Hero elementlari -->\n</section>",
+        "expectedOutput": "display: flex; justify-content: center; <h1>Kelajak Kodi</h1>",
+        "tests": [
+          {
+            "type": "css",
+            "expected": "display: flex",
+            "label": "display: flex bo'lishi kerak"
+          },
+          {
+            "type": "css",
+            "expected": "justify-content: center",
+            "label": "justify-content: center bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "<h1>kelajak kodi</h1>",
+            "label": "<h1>Kelajak Kodi</h1> sarlavhasi bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "dasturlashni bugun boshlang",
+            "label": "Izoh matni to'g'ri bo'lishi kerak"
+          },
+          {
+            "type": "html",
+            "expected": "class=\"btn-hero\"",
+            "label": "class='btn-hero' tugmasi bo'lishi kerak"
+          }
+        ],
+        "solution": "<style>\n  .hero {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;\n  }\n</style>\n<section class=\"hero\">\n  <h1>Kelajak Kodi</h1>\n  <p>Dasturlashni bugun boshlang</p>\n  <button class=\"btn-hero\">Boshlash</button>\n</section>"
       }
     ]
   },
